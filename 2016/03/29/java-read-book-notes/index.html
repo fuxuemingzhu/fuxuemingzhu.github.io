@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="经验分享,java,读书," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Java必须知道的300个问题这本书是在图书馆随便逛的时候找到的书。花了一下午看完了，感觉有用的地方不是很多，大部分都是些概念，并没有太大用途。里边有些东西还是可以看一看的，总结如下。  当前写完这本书笔记的时间是：2016/3/29 19:52:26">
+<meta name="keywords" content="经验分享,java,读书">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java读书笔记">
+<meta property="og:url" content="http://fuxuemingzhu.me/2016/03/29/java-read-book-notes/index.html">
+<meta property="og:site_name" content="负雪明烛的博客">
+<meta property="og:description" content="Java必须知道的300个问题这本书是在图书馆随便逛的时候找到的书。花了一下午看完了，感觉有用的地方不是很多，大部分都是些概念，并没有太大用途。里边有些东西还是可以看一看的，总结如下。  当前写完这本书笔记的时间是：2016/3/29 19:52:26">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/java-read-book-notes/300-questions.jpg?raw=true">
+<meta property="og:updated_time" content="2017-08-09T12:45:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java读书笔记">
+<meta name="twitter:description" content="Java必须知道的300个问题这本书是在图书馆随便逛的时候找到的书。花了一下午看完了，感觉有用的地方不是很多，大部分都是些概念，并没有太大用途。里边有些东西还是可以看一看的，总结如下。  当前写完这本书笔记的时间是：2016/3/29 19:52:26">
+<meta name="twitter:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/java-read-book-notes/300-questions.jpg?raw=true">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://fuxuemingzhu.me/2016/03/29/java-read-book-notes/"/>
+
+
+
+
+
+  <title>Java读书笔记 | 负雪明烛的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">负雪明烛的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">你现在做的是你当下最重要的事吗？</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <!-- echarts -->
+    <script type="text/javascript" src="/js/src/echarts.common.min.js"></script>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2016/03/29/java-read-book-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="负雪明烛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="负雪明烛的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java读书笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-29T16:34:25+08:00">
+                2016-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">术业专攻</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Java必须知道的300个问题"><a href="#Java必须知道的300个问题" class="headerlink" title="Java必须知道的300个问题"></a>Java必须知道的300个问题</h1><p>这本书是在图书馆随便逛的时候找到的书。花了一下午看完了，感觉有用的地方不是很多，大部分都是些概念，并没有太大用途。里边有些东西还是可以看一看的，总结如下。</p>
+<p><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/java-read-book-notes/300-questions.jpg?raw=true" alt=""></p>
+<p>当前写完这本书笔记的时间是：2016/3/29 19:52:26 </p>
+<a id="more"></a>
+<h2 id="Java语言基础"><a href="#Java语言基础" class="headerlink" title="Java语言基础"></a>Java语言基础</h2><h3 id="1-表达式3-2-6-0-4的值？"><a href="#1-表达式3-2-6-0-4的值？" class="headerlink" title="1.表达式3-2.6==0.4的值？"></a>1.表达式3-2.6==0.4的值？</h3><p>答：false。 这是有基本数据类型浮点数计算的不精确性造成的。</p>
+<p>3-2.6=0.39999999999999999999..</p>
+<p>可以用BigDecimal进行浮点数精确计算。</p>
+<h3 id="2-amp-和-amp-amp-两个运算符的区别？"><a href="#2-amp-和-amp-amp-两个运算符的区别？" class="headerlink" title="2.&amp;和&amp;&amp;两个运算符的区别？"></a>2.&amp;和&amp;&amp;两个运算符的区别？</h3><p>答：&amp; 位与，&amp;&amp; 逻辑与。</p>
+<h3 id="3-不适用循环和条件语句如何求1-2-3-…-n？"><a href="#3-不适用循环和条件语句如何求1-2-3-…-n？" class="headerlink" title="3.不适用循环和条件语句如何求1+2+3+…+n？"></a>3.不适用循环和条件语句如何求1+2+3+…+n？</h3><p>答：函数递归调用。</p>
+<h3 id="4-能正确编译”short-s-1-s-s-1-”吗？"><a href="#4-能正确编译”short-s-1-s-s-1-”吗？" class="headerlink" title="4.能正确编译”short s=1;s=s+1;”吗？"></a>4.能正确编译”short s=1;s=s+1;”吗？</h3><p>答：不能。类型不匹配。可：s+=1；</p>
+<h3 id="5-计算结果一定正确吗？"><a href="#5-计算结果一定正确吗？" class="headerlink" title="5. += 计算结果一定正确吗？"></a>5. += 计算结果一定正确吗？</h3><p>答：不。可能溢出。</p>
+<h3 id="6-两个整数相乘结果一定正确吗？"><a href="#6-两个整数相乘结果一定正确吗？" class="headerlink" title="6.两个整数相乘结果一定正确吗？"></a>6.两个整数相乘结果一定正确吗？</h3><p>不。</p>
+<p>long num=2147483648.超出int范围，编译错误。</p>
+<p>long num=214748364*10 结果为-10.int溢出。</p>
+<p>long num=2147483648L*10 正确。</p>
+<h3 id="7-如何跳出多重嵌套循环？"><a href="#7-如何跳出多重嵌套循环？" class="headerlink" title="7.如何跳出多重嵌套循环？"></a>7.如何跳出多重嵌套循环？</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">label:</div><div class="line">fori()&#123;</div><div class="line">	<span class="keyword">break</span> label;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="8-存储相同数据量的一维数组和二维数组所占内存是否相同？"><a href="#8-存储相同数据量的一维数组和二维数组所占内存是否相同？" class="headerlink" title="8.存储相同数据量的一维数组和二维数组所占内存是否相同？"></a>8.存储相同数据量的一维数组和二维数组所占内存是否相同？</h3><p>二维数组远远大于以为数组。？？？</p>
+<h3 id="9-只能通过构造方法构造对象吗？"><a href="#9-只能通过构造方法构造对象吗？" class="headerlink" title="9.只能通过构造方法构造对象吗？"></a>9.只能通过构造方法构造对象吗？</h3><p>不是。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Calendar c=Clalendar.getInstance();</div></pre></td></tr></table></figure>
+<h3 id="10-接口和抽象类的区别？"><a href="#10-接口和抽象类的区别？" class="headerlink" title="10.接口和抽象类的区别？"></a>10.接口和抽象类的区别？</h3><p>1、抽象类可以提供成员的实现细节，而接口不能。数级抽象时如果要求提供成员的实现细节，可选抽象类。</p>
+<p>2、如果涉及抽象时选择抽象类，在以后的版本中可以随意为抽象类添加新成员。而接口只有修改现有代码才能添加新成员。</p>
+<p>3.一个类可以实现多个接口，但是能继承一个抽象类。如果要实现类似多重继承的效果，选接口。</p>
+<p>两者相似，某些功能可以互换。但理念不同，抽象类用于继承，表示is-a；接口用于实现，表示like-a。</p>
+<h3 id="11-clone-方法的使用？"><a href="#11-clone-方法的使用？" class="headerlink" title="11.clone()方法的使用？"></a>11.clone()方法的使用？</h3><p>1.浅克隆</p>
+<p>被克隆的对象各个属性都是基本类型，而不是引用类型，如果存在引用类型的属性，则需要进行深克隆。</p>
+<p>2.深克隆</p>
+<p>如果需要克隆的饿对象的域包含引用类型，则需要使用深克隆；<br>繁殖，可以直接使用Object类的clone()方法进行浅克隆。</p>
+<h3 id="12-两种方式可以实现深克隆，效率如何？"><a href="#12-两种方式可以实现深克隆，效率如何？" class="headerlink" title="12.两种方式可以实现深克隆，效率如何？"></a>12.两种方式可以实现深克隆，效率如何？</h3><p>1.序列化，效率很差。</p>
+<p>2.榆次克隆各个可变的引用类型域的方式。</p>
+<h3 id="13-在内部类中调用外部类同名的成员？"><a href="#13-在内部类中调用外部类同名的成员？" class="headerlink" title="13.在内部类中调用外部类同名的成员？"></a>13.在内部类中调用外部类同名的成员？</h3><p>在内部类中调用内容类的x： this.x=…</p>
+<p>在内部类调用外部类的X: TheSamName.this.x=…</p>
+<h3 id="14-反射？"><a href="#14-反射？" class="headerlink" title="14.反射？"></a>14.反射？</h3><p>额，不会。。</p>
+<h2 id="字符串和包装类"><a href="#字符串和包装类" class="headerlink" title="字符串和包装类"></a>字符串和包装类</h2><h3 id="15-自动装包、拆包？"><a href="#15-自动装包、拆包？" class="headerlink" title="15.自动装包、拆包？"></a>15.自动装包、拆包？</h3><p>基本数据类型自动转换成类.集合中不能存储基本数据类型。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> a=<span class="number">3</span>;</div><div class="line"></div><div class="line">arraylist.add(a);</div></pre></td></tr></table></figure>
+<h3 id="16-String可以被继承么？"><a href="#16-String可以被继承么？" class="headerlink" title="16.String可以被继承么？"></a>16.String可以被继承么？</h3><p>不可以。final修饰的类不能被继承。</p>
+<h3 id="17-各种进制的转换"><a href="#17-各种进制的转换" class="headerlink" title="17.各种进制的转换"></a>17.各种进制的转换</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Integer.parseInt(<span class="string">"101001010"</span>,<span class="number">2</span>);二进制转<span class="keyword">int</span></div><div class="line">Integer.toBinaryString(<span class="keyword">int</span> i);</div><div class="line">...</div></pre></td></tr></table></figure>
+<h2 id="Java集合类框架"><a href="#Java集合类框架" class="headerlink" title="Java集合类框架"></a>Java集合类框架</h2><h3 id="18-数组-和-集合的转换"><a href="#18-数组-和-集合的转换" class="headerlink" title="18.数组 和 集合的转换"></a>18.数组 和 集合的转换</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">List&lt;Integer&gt; list=<span class="keyword">new</span> Arrays.asList(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>);</div><div class="line"></div><div class="line">Interger[] array=list.toArray(<span class="keyword">new</span> Integer[]&#123;&#125;);</div></pre></td></tr></table></figure>
+<h3 id="19-Collection-和-Collections-的区别？"><a href="#19-Collection-和-Collections-的区别？" class="headerlink" title="19.Collection 和 Collections 的区别？"></a>19.Collection 和 Collections 的区别？</h3><p>Collection是集合类的派生接口。是Java集合类的基础。</p>
+<p>Collections是为集合类定义的工具类，包含了一些查找排序的方法，非常实用。</p>
+<h3 id="20-获得Map中的全部键？"><a href="#20-获得Map中的全部键？" class="headerlink" title="20.获得Map中的全部键？"></a>20.获得Map中的全部键？</h3><p>Map接口中的keySet()方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function">Set&lt;K&gt; <span class="title">keySet</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">Set&lt;Integer&gt; keySet</span>=map.keySet();</div></pre></td></tr></table></figure>
+<p>然后通过键获得值。</p>
+<h3 id="21-获得Map中的全部值？"><a href="#21-获得Map中的全部值？" class="headerlink" title="21.获得Map中的全部值？"></a>21.获得Map中的全部值？</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">values()</div><div class="line"></div><div class="line"><span class="function">Collection&lt;V&gt; <span class="title">values</span><span class="params">()</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function">Collection&lt;Integer&gt; values</span>=map.values();</div></pre></td></tr></table></figure>
+<h3 id="22-获得Map中的全部键值对？"><a href="#22-获得Map中的全部键值对？" class="headerlink" title="22.获得Map中的全部键值对？"></a>22.获得Map中的全部键值对？</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet()</div></pre></td></tr></table></figure>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><h3 id="23-throw和throws区别"><a href="#23-throw和throws区别" class="headerlink" title="23.throw和throws区别"></a>23.throw和throws区别</h3><p>throws是方法里的声明要抛出什么异常</p>
+<p>throw是抛出具体异常</p>
+<h2 id="I-O"><a href="#I-O" class="headerlink" title="I/O"></a>I/O</h2><h3 id="24-对象流？"><a href="#24-对象流？" class="headerlink" title="24.对象流？"></a>24.对象流？</h3><p>DataInput DataOutput 可以吧对象写入到磁盘中</p>
+<p>但是读写的对象必须实现了Serializable接口。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持写作不易，欢迎赞赏一瓶饮料支持一下！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="负雪明烛 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      负雪明烛
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://fuxuemingzhu.me/2016/03/29/java-read-book-notes/" title="Java读书笔记">http://fuxuemingzhu.me/2016/03/29/java-read-book-notes/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/经验分享/" rel="tag"># 经验分享</a>
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/读书/" rel="tag"># 读书</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/17/WeChoice/" rel="next" title="微信精选，每日精选微信优质文章App开发总结">
+                <i class="fa fa-chevron-left"></i> 微信精选，每日精选微信优质文章App开发总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/15/parter-end/" rel="prev" title="2016.04 阶段性总结">
+                2016.04 阶段性总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="负雪明烛" />
+          <p class="site-author-name" itemprop="name">负雪明烛</p>
+           
+              <p class="site-description motion-element" itemprop="description">苍山负雪，明烛天南</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1766461220" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fuxuemingzhu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java必须知道的300个问题"><span class="nav-number">1.</span> <span class="nav-text">Java必须知道的300个问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java语言基础"><span class="nav-number">1.1.</span> <span class="nav-text">Java语言基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-表达式3-2-6-0-4的值？"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.表达式3-2.6==0.4的值？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-amp-和-amp-amp-两个运算符的区别？"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.&和&&两个运算符的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-不适用循环和条件语句如何求1-2-3-…-n？"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.不适用循环和条件语句如何求1+2+3+…+n？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-能正确编译”short-s-1-s-s-1-”吗？"><span class="nav-number">1.1.4.</span> <span class="nav-text">4.能正确编译”short s=1;s=s+1;”吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-计算结果一定正确吗？"><span class="nav-number">1.1.5.</span> <span class="nav-text">5. += 计算结果一定正确吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-两个整数相乘结果一定正确吗？"><span class="nav-number">1.1.6.</span> <span class="nav-text">6.两个整数相乘结果一定正确吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-如何跳出多重嵌套循环？"><span class="nav-number">1.1.7.</span> <span class="nav-text">7.如何跳出多重嵌套循环？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-存储相同数据量的一维数组和二维数组所占内存是否相同？"><span class="nav-number">1.1.8.</span> <span class="nav-text">8.存储相同数据量的一维数组和二维数组所占内存是否相同？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-只能通过构造方法构造对象吗？"><span class="nav-number">1.1.9.</span> <span class="nav-text">9.只能通过构造方法构造对象吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-接口和抽象类的区别？"><span class="nav-number">1.1.10.</span> <span class="nav-text">10.接口和抽象类的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-clone-方法的使用？"><span class="nav-number">1.1.11.</span> <span class="nav-text">11.clone()方法的使用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-两种方式可以实现深克隆，效率如何？"><span class="nav-number">1.1.12.</span> <span class="nav-text">12.两种方式可以实现深克隆，效率如何？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-在内部类中调用外部类同名的成员？"><span class="nav-number">1.1.13.</span> <span class="nav-text">13.在内部类中调用外部类同名的成员？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-反射？"><span class="nav-number">1.1.14.</span> <span class="nav-text">14.反射？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串和包装类"><span class="nav-number">1.2.</span> <span class="nav-text">字符串和包装类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#15-自动装包、拆包？"><span class="nav-number">1.2.1.</span> <span class="nav-text">15.自动装包、拆包？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-String可以被继承么？"><span class="nav-number">1.2.2.</span> <span class="nav-text">16.String可以被继承么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-各种进制的转换"><span class="nav-number">1.2.3.</span> <span class="nav-text">17.各种进制的转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java集合类框架"><span class="nav-number">1.3.</span> <span class="nav-text">Java集合类框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#18-数组-和-集合的转换"><span class="nav-number">1.3.1.</span> <span class="nav-text">18.数组 和 集合的转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-Collection-和-Collections-的区别？"><span class="nav-number">1.3.2.</span> <span class="nav-text">19.Collection 和 Collections 的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-获得Map中的全部键？"><span class="nav-number">1.3.3.</span> <span class="nav-text">20.获得Map中的全部键？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-获得Map中的全部值？"><span class="nav-number">1.3.4.</span> <span class="nav-text">21.获得Map中的全部值？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-获得Map中的全部键值对？"><span class="nav-number">1.3.5.</span> <span class="nav-text">22.获得Map中的全部键值对？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常处理"><span class="nav-number">1.4.</span> <span class="nav-text">异常处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#23-throw和throws区别"><span class="nav-number">1.4.1.</span> <span class="nav-text">23.throw和throws区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-O"><span class="nav-number">1.5.</span> <span class="nav-text">I/O</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#24-对象流？"><span class="nav-number">1.5.1.</span> <span class="nav-text">24.对象流？</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">负雪明烛</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2138983"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!-- love -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  <!-- particle -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+
+</body>
+</html>

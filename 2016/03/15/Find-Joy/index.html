@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,经验分享," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="缘起想做一个笑话App的原因是因为在知乎上看过一个帖子，做Android可以有哪些数据可以练手，里面推荐了几个数据开放平台。在这些平台中无一不是有公共的笑话接口，当时心想这个可以拿来练手啊，还挺有意思的，估计还能积累一点用户。 碰巧（真的好巧）在Github中遇到了一个MVP设计模式的框架Beam，作者Jude95有一个笑话仓库————Joy（豆逼），就是一个做笑话的！更巧的是用到的接口也是我在关">
+<meta name="keywords" content="Android,经验分享">
+<meta property="og:type" content="article">
+<meta property="og:title" content="找乐，一个笑话App的制作过程记录">
+<meta property="og:url" content="http://fuxuemingzhu.me/2016/03/15/Find-Joy/index.html">
+<meta property="og:site_name" content="负雪明烛的博客">
+<meta property="og:description" content="缘起想做一个笑话App的原因是因为在知乎上看过一个帖子，做Android可以有哪些数据可以练手，里面推荐了几个数据开放平台。在这些平台中无一不是有公共的笑话接口，当时心想这个可以拿来练手啊，还挺有意思的，估计还能积累一点用户。 碰巧（真的好巧）在Github中遇到了一个MVP设计模式的框架Beam，作者Jude95有一个笑话仓库————Joy（豆逼），就是一个做笑话的！更巧的是用到的接口也是我在关">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/ic_laucher_192.png?raw=true">
+<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/%E8%B1%86%E9%80%BC.png?raw=true">
+<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/hecheng.png?raw=true">
+<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/yingyongbao.png?raw=true">
+<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/wandoujia.png?raw=true">
+<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/FIR.im.png?raw=true">
+<meta property="og:updated_time" content="2017-08-09T12:47:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="找乐，一个笑话App的制作过程记录">
+<meta name="twitter:description" content="缘起想做一个笑话App的原因是因为在知乎上看过一个帖子，做Android可以有哪些数据可以练手，里面推荐了几个数据开放平台。在这些平台中无一不是有公共的笑话接口，当时心想这个可以拿来练手啊，还挺有意思的，估计还能积累一点用户。 碰巧（真的好巧）在Github中遇到了一个MVP设计模式的框架Beam，作者Jude95有一个笑话仓库————Joy（豆逼），就是一个做笑话的！更巧的是用到的接口也是我在关">
+<meta name="twitter:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/ic_laucher_192.png?raw=true">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://fuxuemingzhu.me/2016/03/15/Find-Joy/"/>
+
+
+
+
+
+  <title>找乐，一个笑话App的制作过程记录 | 负雪明烛的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">负雪明烛的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">你现在做的是你当下最重要的事吗？</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <!-- echarts -->
+    <script type="text/javascript" src="/js/src/echarts.common.min.js"></script>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2016/03/15/Find-Joy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="负雪明烛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="负雪明烛的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">找乐，一个笑话App的制作过程记录</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-15T22:42:52+08:00">
+                2016-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">术业专攻</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h2><p>想做一个笑话App的原因是因为在知乎上看过一个帖子，做Android可以有哪些数据可以练手，里面推荐了几个数据开放平台。在这些平台中无一不是有公共的笑话接口，当时心想这个可以拿来练手啊，还挺有意思的，估计还能积累一点用户。</p>
+<p>碰巧（真的好巧）在Github中遇到了一个MVP设计模式的框架Beam，作者Jude95有一个笑话仓库————Joy（豆逼），就是一个做笑话的！更巧的是用到的接口也是我在关注的接口，心想不如改造一下吧，做个升级版，自己也可以在这个中学到别人是怎么写App的。后来发现这是一个非常正确的决定。</p>
+<p><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/ic_laucher_192.png?raw=true" alt=""></p>
+<a id="more"></a>
+<h2 id="雏形"><a href="#雏形" class="headerlink" title="雏形"></a>雏形</h2><p>因为是基于别人的改进，所以在写之前就已经有雏形，当然这个雏形不是很完善，这恰恰给了我修改的空间。在获得作者的修改同意后，我就进一步研究这个利用MVP框架书写的App。未修改之前：</p>
+<p><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/%E8%B1%86%E9%80%BC.png?raw=true" alt=""></p>
+<p>首先，豆逼只能查看段子和查看图片，我认为基本的复制文本和查看大图以及下载图片，这些都没有。作者只是用这个仓库来说明MVP模式的，所以只做了最基本的功能。作者也说，笑话连个id都没有，点赞、评论什么的根本没法做。那好，我就把我认为的文本复制和图片相关的做一下吧。</p>
+<h2 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h2><p>MVP模式在这个项目之前我研究很少，只是听说，但是这个项目完全给我耳目一新的感觉，MVP对Android来说实在是太有用了！关于MVP我以后想仔细写个帖子研究一下，这里只想说明MVP使Android项目层次分明，代码结构简单，复用性高。参考作者的<a href="https://github.com/Jude95/Beam" target="_blank" rel="external">Beam</a>。</p>
+<p>这个项目用了很棒的一个开源控件，也是项目作者自己的控件<a href="https://github.com/Jude95/EasyRecyclerView" target="_blank" rel="external">EasyRecyclerView</a>，这个控件对我来说相见恨晚。线性布局仿EasyRecyclerView已经实现了下拉刷新，上拉加载更多，错误提示等，简直把项目开发中可能遇到的坑都给做好了，我之前只能一个一个的去实现这些功能！为什么没有早早的用上这个控件！</p>
+<p>其他的没有重大的惊喜，但是项目总体感觉代码量很少，很精简。如果是我完成相同的功能的App，可能需要3倍的代码才能实现。</p>
+<h2 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h2><h3 id="查看大图"><a href="#查看大图" class="headerlink" title="查看大图"></a>查看大图</h3><p>首先实现点击查看大图的功能。</p>
+<p>PhotoView这个控件也是之前不久在Github中遇到的，使用的时候没想到竟然这么容易！只需要在xml中声明一个PhotoView，基本的放大、缩小、手势识别都有了！太方便！可能也是北邮人论坛官方客户端采用的一个查看大图的工具。</p>
+<p>在java文件加载图片时则与ImageView完全相同，这个不在赘述。</p>
+<p>还有一个拓展的地方是，单击图片返回（= = 一般都有吧？）。这个需要根据PhotoView的官方说明，使用Attacher来管理点击事件，经过我测试，貌似直接声明ImageView的点击是不会有效果的。</p>
+<h3 id="图片下载"><a href="#图片下载" class="headerlink" title="图片下载"></a>图片下载</h3><p>这个App采用的是Glide加载网络图片，而Glide并没有直接的下载存储的方法，只有自己拓展，耽误了些功夫。</p>
+<p>直接分享一段图片下载和通知图库的代码吧。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saveImage</span><span class="params">(String imageUrl)</span> </span>&#123;</div><div class="line"></div><div class="line">String[] names = <span class="keyword">new</span> String[<span class="number">0</span>];</div><div class="line"><span class="keyword">if</span> (imageUrl != <span class="keyword">null</span>) &#123;</div><div class="line">    names = imageUrl.split(<span class="string">"/"</span>);</div><div class="line">&#125;</div><div class="line">String imageName = names[names.length - <span class="number">1</span>];</div><div class="line">Glide</div><div class="line">	.with(getView())</div><div class="line">	.load(imageUrl)</div><div class="line">	.asBitmap()</div><div class="line">	.toBytes(Bitmap.CompressFormat.JPEG, <span class="number">100</span>)</div><div class="line">	.into(<span class="keyword">new</span> SimpleTarget&lt;<span class="keyword">byte</span>[]&gt;() &#123;</div><div class="line">	    <span class="meta">@Override</span></div><div class="line">	    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResourceReady</span><span class="params">(<span class="keyword">final</span> <span class="keyword">byte</span>[] resource, GlideAnimation&lt;? <span class="keyword">super</span> <span class="keyword">byte</span>[]&gt; glideAnimation)</span> </span>&#123;</div><div class="line">		<span class="keyword">new</span> AsyncTask&lt;Void, Void, Void&gt;() &#123;</div><div class="line">		    <span class="meta">@Override</span></div><div class="line">		    <span class="function"><span class="keyword">protected</span> Void <span class="title">doInBackground</span><span class="params">(Void... params)</span> </span>&#123;</div><div class="line"></div><div class="line">			<span class="keyword">if</span> (ImageStorage.checkifImageExists(imageName)) &#123;</div><div class="line">			    Snackbar.make(getView().fab, <span class="string">"图片已存在"</span>, Snackbar</div><div class="line">				    .LENGTH_LONG)</div><div class="line">				    .setAction(<span class="string">"Action"</span>, <span class="keyword">null</span>).show();</div><div class="line">			    <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">			&#125;</div><div class="line">			String path = Environment.getExternalStorageDirectory().toString();</div><div class="line">			JUtils.Log(<span class="string">"path"</span>, path);</div><div class="line"></div><div class="line">			Bitmap bitmap = BitmapFactory.decodeByteArray(resource, <span class="number">0</span>, resource.length);</div><div class="line">			JUtils.Log(<span class="string">"imageName"</span>, imageName);</div><div class="line"></div><div class="line">			ImageStorage.saveToSdCard(getView(), bitmap, imageName);</div><div class="line"></div><div class="line">			Snackbar.make(getView().fab, <span class="string">"图片已下载"</span>, Snackbar.LENGTH_LONG)</div><div class="line">				.setAction(<span class="string">"Action"</span>, <span class="keyword">null</span>).show();</div><div class="line"></div><div class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		    &#125;</div><div class="line">		&#125;.execute();</div><div class="line">	    &#125;</div><div class="line">	&#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中ImageStorage.java:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ImageStorage</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">saveToSdCard</span><span class="params">(Context context, Bitmap bitmap, String filename)</span> </span>&#123;</div><div class="line"></div><div class="line">	String stored = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">	File sdcard = Environment.getExternalStorageDirectory();</div><div class="line"></div><div class="line">	File folder = <span class="keyword">new</span> File(sdcard.getAbsoluteFile(), <span class="string">"FindJoy"</span>);<span class="comment">//the dot makes this directory hidden to</span></div><div class="line">	<span class="comment">// the</span></div><div class="line">	<span class="comment">// user</span></div><div class="line">	folder.mkdir();</div><div class="line">	File file = <span class="keyword">new</span> File(folder.getAbsoluteFile(), filename + <span class="string">".jpg"</span>);</div><div class="line">	<span class="keyword">if</span> (file.exists())</div><div class="line">	    <span class="keyword">return</span> stored;</div><div class="line"></div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">	    FileOutputStream out = <span class="keyword">new</span> FileOutputStream(file);</div><div class="line">	    bitmap.compress(Bitmap.CompressFormat.JPEG, <span class="number">100</span>, out);</div><div class="line">	    out.flush();</div><div class="line">	    out.close();</div><div class="line">	    stored = <span class="string">"success"</span>;</div><div class="line">	    JUtils.Log(<span class="string">"stored"</span>, stored);</div><div class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">	    e.printStackTrace();</div><div class="line">	&#125;</div><div class="line">	<span class="comment">// 其次把文件插入到系统图库</span></div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">	    MediaStore.Images.Media.insertImage(context.getContentResolver(),</div><div class="line">		    file.getAbsolutePath(), filename, <span class="keyword">null</span>);</div><div class="line">	&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</div><div class="line">	    e.printStackTrace();</div><div class="line">	&#125;</div><div class="line">	<span class="comment">// 最后通知图库更新</span></div><div class="line">	context.sendBroadcast(<span class="keyword">new</span> Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse(<span class="string">"file://"</span> + file</div><div class="line">		.getAbsolutePath())));</div><div class="line">	<span class="keyword">return</span> stored;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> File <span class="title">getImage</span><span class="params">(String imagename)</span> </span>&#123;</div><div class="line"></div><div class="line">	File mediaImage = <span class="keyword">null</span>;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">	    String root = Environment.getExternalStorageDirectory().toString();</div><div class="line">	    File myDir = <span class="keyword">new</span> File(root);</div><div class="line">	    <span class="keyword">if</span> (!myDir.exists())</div><div class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line"></div><div class="line">	    mediaImage = <span class="keyword">new</span> File(myDir.getPath() + <span class="string">"/FindJoy/"</span> + imagename);</div><div class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">	    <span class="comment">// TODO Auto-generated catch block</span></div><div class="line">	    e.printStackTrace();</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> mediaImage;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">checkifImageExists</span><span class="params">(String imagename)</span> </span>&#123;</div><div class="line">	Bitmap b = <span class="keyword">null</span>;</div><div class="line">	File file = ImageStorage.getImage(<span class="string">"/"</span> +</div><div class="line">		imagename + <span class="string">""</span> +</div><div class="line">		<span class="string">".jpg"</span>);</div><div class="line">	String path = file.getAbsolutePath();</div><div class="line"></div><div class="line">	<span class="keyword">if</span> (path != <span class="keyword">null</span>)</div><div class="line">	    b = BitmapFactory.decodeFile(path);</div><div class="line"></div><div class="line">	<span class="keyword">if</span> (b == <span class="keyword">null</span> || b.equals(<span class="string">""</span>)) &#123;</div><div class="line">	    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>为什么之前我试了很久但是一直发现图库没有图片呢？一直以为是自己的图片没有存储下来，后来用图库的查看文件夹的方式发现了FindJoy目录。</p>
+<p>原来是需要通知图库更新，否则图片不会再图库中显示。具体请看上面代码。</p>
+<h3 id="复制段子"><a href="#复制段子" class="headerlink" title="复制段子"></a>复制段子</h3><p>这个本身是不麻烦的，出现问题的地方在于，这个MVP框架中怎么对这个List加上OnItemClilkListner。本身我就不很熟，这个地方犯了不少错误，我怎么没想到看EasyRecyclerView的官方说明呢？</p>
+<p>解决方法是在TextViewHolder中的itemView加上：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">itemView.setOnClickListener(view -&gt;</div><div class="line">    <span class="keyword">new</span> MaterialDialog.Builder(getContext())</div><div class="line">	    .title(R.string.select)</div><div class="line">	    .content(R.string.copy)</div><div class="line">	    .positiveText(R.string.agree)</div><div class="line">	    .negativeText(R.string.disagree)</div><div class="line">	    .onPositive((dialog, which) -&gt; &#123;</div><div class="line">		<span class="comment">// Gets a handle to the clipboard service.</span></div><div class="line">		ClipboardManager clipboard = (ClipboardManager) getContext().</div><div class="line">			getSystemService(Context.CLIPBOARD_SERVICE);</div><div class="line">		<span class="comment">// Creates a new text clip to put on the clipboard</span></div><div class="line">		ClipData clip = ClipData.newPlainText(<span class="string">"joy"</span>, data.getText());</div><div class="line">		<span class="comment">// Set the clipboard's primary clip.</span></div><div class="line">		clipboard.setPrimaryClip(clip);</div><div class="line">		Snackbar.make(itemView, <span class="string">"已将该段子复制到粘贴板"</span>, Snackbar.LENGTH_SHORT).show();</div><div class="line">	    &#125;)</div><div class="line">	    .show()</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>官方库还有可以设置EasyRecyclerView的监听的方法，效果是一样的。</p>
+<h3 id="友盟统计"><a href="#友盟统计" class="headerlink" title="友盟统计"></a>友盟统计</h3><p>友盟统计可能是我自己往外发包的一个必选的项了，因为要知道App的使用情况啊。这次发现友盟统计比以前好用多了，jar包也放到了jCenter()仓库，非常方便了。</p>
+<p>这里要赞一下这个MVP库的好处了，竟然可以让所有的Activity的生命周期都调用同一段代码来实现友盟统计中要求的所有Actvity的OnResume()和OnPause()方法中都调用统计方法。</p>
+<p>实现是通过一个顶级管理类MyActivityLifeCycleDelegate继承ActivityLifeCycleDelegate，在里面设置友盟统计的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyActivityLifeCycleDelegate</span> <span class="keyword">extends</span> <span class="title">ActivityLifeCycleDelegate</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyActivityLifeCycleDelegate</span><span class="params">(Activity act)</span> </span>&#123;</div><div class="line">	<span class="keyword">super</span>(act);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">	<span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">	JUtils.Log(<span class="string">"onCreate"</span> + getActivity().getClass().getName());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">super</span>.onPause();</div><div class="line">	JUtils.Log(<span class="string">"onPause"</span>);</div><div class="line">	MobclickAgent.onPause(getActivity());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">super</span>.onResume();</div><div class="line">	JUtils.Log(<span class="string">"onResume"</span>);</div><div class="line">	MobclickAgent.onResume(getActivity());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后在App的Application中声明：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Beam.setActivityLifeCycleDelegateProvider(MyActivityLifeCycleDelegate::<span class="keyword">new</span>);</div></pre></td></tr></table></figure>
+<p>（话说上面这行代码是IDE自己简化的，好高端啊，竟然有点不明白是怎么回事了。。）</p>
+<p>哦，对了，不要忘记在Manifest中声明友盟的appkey。嗯。统计就集成好了。</p>
+<h3 id="自动更新"><a href="#自动更新" class="headerlink" title="自动更新"></a>自动更新</h3><p>同样是友盟的服务，我也以为只是几分钟的事情就搞定了，可是因为自己的问题，耽误了一段时间，竟然还想着把这个锅扔给友盟。好吧，我错了。</p>
+<p>这个和统计不一样的是需要手动下载包放到项目当中，其中包括了一个.so文件。</p>
+<p>因为在app的gradle中声明了这句：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">compile <span class="title">fileTree</span><span class="params">(include: [<span class="string">'*.jar'</span>], dir: <span class="string">'libs'</span>)</span></span></div></pre></td></tr></table></figure>
+<p>我就以为万事大吉了。事实上我开启了友盟的debug模式才看了出来是我的.so没有加载进去。</p>
+<p>嗯，jni应该这么声明，我给忘了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sourceSets &#123;</div><div class="line">main &#123;</div><div class="line">    jniLibs.srcDirs = [<span class="string">'libs'</span>]</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样.so文件就能加载进去了。而友盟自动更新只需要在MainActivity中写一句代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UmengUpdateAgent.update(<span class="keyword">this</span>);</div></pre></td></tr></table></figure>
+<p>很酷对不对？</p>
+<p>自动更新是根据app versionCode来判断的，更新的时候注意修改。</p>
+<h3 id="App截图"><a href="#App截图" class="headerlink" title="App截图"></a>App截图</h3><p>这些功能做完之后我修改了一下配色，最终效果大体如图，部分功能未截图。</p>
+<p><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/hecheng.png?raw=true" alt=""></p>
+<h3 id="应用市场"><a href="#应用市场" class="headerlink" title="应用市场"></a>应用市场</h3><p>嗯，这些都实现了之后就上线应用商店了，主要有这几个：</p>
+<ul>
+<li>小米应用商店：<a href="http://app.mi.com/detail/286105" target="_blank" rel="external">http://app.mi.com/detail/286105</a></li>
+<li>应用宝：<a href="http://android.myapp.com/myapp/detail.htm?apkName=com.fuxuemingzhu.findjoy" target="_blank" rel="external">http://android.myapp.com/myapp/detail.htm?apkName=com.fuxuemingzhu.findjoy</a></li>
+<li>豌豆荚：<a href="http://www.wandoujia.com/apps/com.fuxuemingzhu.findjoy" target="_blank" rel="external">http://www.wandoujia.com/apps/com.fuxuemingzhu.findjoy</a></li>
+<li>Fir.im：<a href="http://fir.im/axy4" target="_blank" rel="external">http://fir.im/axy4</a></li>
+</ul>
+<p>可以扫码下载：</p>
+<p>应用宝下载：<br><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/yingyongbao.png?raw=true" alt=""></p>
+<p>豌豆荚下载：<br><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/wandoujia.png?raw=true" alt=""></p>
+<p>Fir.im下载：<br><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/FIR.im.png?raw=true" alt=""></p>
+<p>尽量不要用Fir，因为Fir没有直观的下载数目统计，嗯。尽量通过正规应用商店吧。</p>
+<p>下载这事还得大家捧个场。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>虽然是一个非常简单的App，但是却包含着非常多的心思在里面，而且尝试新的东西的时候可以学到不少东西，这个是值得肯定的。毕竟我现在有种想把之前的App都揉碎重新来写的冲动，毕竟抵挡不住 MVP + Material Design的双重诱惑啊！</p>
+<p>Android 开发还有很长的路要走。</p>
+<p>本项目已经完全开源，代码在：<a href="https://github.com/fuxuemingzhu/FindJoy" target="_blank" rel="external">https://github.com/fuxuemingzhu/FindJoy</a>，欢迎Star和Fork.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持写作不易，欢迎赞赏一瓶饮料支持一下！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="负雪明烛 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      负雪明烛
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://fuxuemingzhu.me/2016/03/15/Find-Joy/" title="找乐，一个笑话App的制作过程记录">http://fuxuemingzhu.me/2016/03/15/Find-Joy/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/经验分享/" rel="tag"># 经验分享</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/11/ReUsableActivity-Using/" rel="next" title="分享一个拥有大量结构相同Activity的项目精简经验，ReUsableActivity">
+                <i class="fa fa-chevron-left"></i> 分享一个拥有大量结构相同Activity的项目精简经验，ReUsableActivity
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/17/WeChoice/" rel="prev" title="微信精选，每日精选微信优质文章App开发总结">
+                微信精选，每日精选微信优质文章App开发总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="负雪明烛" />
+          <p class="site-author-name" itemprop="name">负雪明烛</p>
+           
+              <p class="site-description motion-element" itemprop="description">苍山负雪，明烛天南</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1766461220" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fuxuemingzhu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#缘起"><span class="nav-number">1.</span> <span class="nav-text">缘起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#雏形"><span class="nav-number">2.</span> <span class="nav-text">雏形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#研究"><span class="nav-number">3.</span> <span class="nav-text">研究</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改进"><span class="nav-number">4.</span> <span class="nav-text">改进</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看大图"><span class="nav-number">4.1.</span> <span class="nav-text">查看大图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片下载"><span class="nav-number">4.2.</span> <span class="nav-text">图片下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制段子"><span class="nav-number">4.3.</span> <span class="nav-text">复制段子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#友盟统计"><span class="nav-number">4.4.</span> <span class="nav-text">友盟统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动更新"><span class="nav-number">4.5.</span> <span class="nav-text">自动更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#App截图"><span class="nav-number">4.6.</span> <span class="nav-text">App截图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用市场"><span class="nav-number">4.7.</span> <span class="nav-text">应用市场</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">5.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">负雪明烛</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2138983"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!-- love -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  <!-- particle -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+
+</body>
+</html>
