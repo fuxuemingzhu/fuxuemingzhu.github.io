@@ -411,7 +411,7 @@
 <p>几经对比，我最终选择了<strong>芝麻乐开源众筹系统</strong><a href="https://www.zhimale.com/" target="_blank" rel="external">https://www.zhimale.com/</a>，开源版本，永久免费，顺便也给人家打一个广告。我感觉这个系统唯一的不足就是帮助文档太少，可能对于我一个新手帮助不够吧。</p>
 <h2 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h2><p>我的阿里云服务器运行的是Ubuntu，正好我的电脑也有Ubuntu，所以，就先在本地搭建服务器试用吧。下面进入正式讲解。</p>
 <p>首先，需要安装一个Apache，在放狗搜的时候发现了LAMP(Linux-Apache-MySQL-PHP)这个东西。对呀，一次性安装齐全多好！在Ubuntu的官方网站上有教程<a href="https://help.ubuntu.com/community/ApacheMySQLPHP" target="_blank" rel="external">https://help.ubuntu.com/community/ApacheMySQLPHP</a>。对我来说只需要一行命令（软件更新速度慢，没用）：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo apt-get install lamp-server^</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> sudo apt-get install lamp-server^</div></pre></td></tr></table></figure>
 <p>不要忘记最后的 ^ 号。</p>
 <p>Ubuntu好啊，一行命令就完成了所有的安装，这在Windows下不可想象。中间有一个对MySQL的密码的设置，设置好一定要记住！</p>
 <p><img src="http://i.imgur.com/6fcMruh.png" alt=""></p>
@@ -428,9 +428,9 @@
 <p>然后再在浏览器地址栏输入：<a href="http://localhost/testphp.php，出现如图所示内容表示PHP安装成功！" target="_blank" rel="external">http://localhost/testphp.php，出现如图所示内容表示PHP安装成功！</a></p>
 <p><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/My-Aliyun-Server-Setting/2016-03-02%2023-26-23%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png?raw=true" alt=""></p>
 <p>因为芝麻乐系统需要用到php-gd，所以采用以下命令安装。不需要的请不要安装。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> apt-get install php5-gd</span></div><div class="line">```java</div><div class="line"></div><div class="line">或者</div><div class="line"></div><div class="line">```shell</div><div class="line"><span class="meta">$</span><span class="bash"> sudo apt-get install php5-gd</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> apt-get install php5-gd</div><div class="line">```java</div><div class="line"></div><div class="line">或者</div><div class="line"></div><div class="line">```shell</div><div class="line"><span class="meta">$</span> sudo apt-get install php5-gd</div></pre></td></tr></table></figure>
 <p>并且重启狗帕琪。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> sudo /etc/init.d/apache2 restart</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> sudo /etc/init.d/apache2 restart</div></pre></td></tr></table></figure>
 <p>至此，所有软件的安装已经结束。还是很简单的吧？</p>
 <h2 id="软件配置"><a href="#软件配置" class="headerlink" title="软件配置"></a>软件配置</h2><p>软件安装过程中会自动生成 /etc/apache2/ 和 /var/www/ 文件夹，这两个基本是我们最重要的设置地方。其中 /etc/apache2/ 是apache的自身设置文件夹， /var/www/ 是要展示的网站的文件夹。其中 /etc/apache2/ 的文件夹目录如下：</p>
 <p><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/My-Aliyun-Server-Setting/2016-03-02%2023-41-22%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png?raw=true" alt=""></p>
@@ -440,10 +440,10 @@
 <p>在 /var/www/ 文件夹下新建www.test.net的文件夹，并将开源网站所有代码和文件放入到其中，效果如图。</p>
 <p><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/My-Aliyun-Server-Setting/2016-03-02%2023-51-29%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png?raw=true" alt=""></p>
 <p>下面修改apache的路径指向www.test.net的文件夹。使用以下命令进行编辑。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo vim /etc/apache2/sites-available/000-default.conf</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> sudo vim /etc/apache2/sites-available/000-default.conf</div></pre></td></tr></table></figure>
 <p>将其中的ServerName取消注释，并将DocumentRoot修改为 /var/www/www.test.net，并使用 :wq! 命令保存关闭vim.</p>
 <p>重启Apache:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> sudo /etc/init.d/apache2 restart</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> sudo /etc/init.d/apache2 restart</div></pre></td></tr></table></figure>
 <p>如果没有问题的话就已经进入了芝麻乐重酬平台开源系统的安装界面了。按照芝麻乐的官方教程来做，应该很快就能安装成功。</p>
 <p>官方教程网址：<a href="https://www.zhimale.com/News/show/id/8.html" target="_blank" rel="external">https://www.zhimale.com/News/show/id/8.html</a></p>
 <p><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/My-Aliyun-Server-Setting/%E8%8A%9D%E9%BA%BB%E4%B9%90-2.png?raw=true" alt=""></p>
@@ -454,14 +454,14 @@
 <p>这个配置是挺麻烦的，因为服务器上的文件是可以ftp给大家看的，如果没有做到充分地保障的话，服务器可能被大家搞得一塌糊涂，需要花点功夫好好折腾一下。</p>
 <p>Windows上安装FileZilla，这样可以连接到服务器ip，注意端口为21.</p>
 <p>将Windows下的芝麻乐平台代码进行上传，如果出现530错误，说明vsftpd设置的文件夹没有写入权限，需要使用以下命令改变文件夹的写入权限。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> sudo chmod 755 /home/sftp/</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> sudo chmod 755 /home/sftp/</div></pre></td></tr></table></figure>
 <p>上传成功之后进行文件夹复制，使用以下命令。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> sudo cp /home/sft/ /var/www</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> sudo cp /home/sft/ /var/www</div></pre></td></tr></table></figure>
 <p>文件复制参考：<a href="http://zhidao.baidu.com/question/63755445.html" title="ubuntu 拷贝 文件夹 到 另外一个文件家下，如何些shell命令" target="_blank" rel="external">http://zhidao.baidu.com/question/63755445.html</a></p>
 <p>如果失败的话，同样是因为文件夹权限的问题，记得使用chmod改变/var/www/文件夹的写入权限。</p>
 <p><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/My-Aliyun-Server-Setting/%E8%8A%9D%E9%BA%BB%E4%B9%90-1.png?raw=true" alt=""></p>
 <p>这样之后，就成功把系统放入到了要配置的目标文件夹。下面配置Apache指向这里的文件夹。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo vim /etc/apache2/sites-available/000-default.conf</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> sudo vim /etc/apache2/sites-available/000-default.conf</div></pre></td></tr></table></figure>
 <p>将其中的ServerName取消注释，并将DocumentRoot修改为 /var/www/sftp，并使用 :wq! 命令保存关闭vim.</p>
 <p>注意：上面的这些过程中如果出现错误一般就是读写权限的问题，出现错误之后注意修改文件夹的写入权限。</p>
 <p>重启Apache，理论上已经可以用了，浏览器直接输入服务器的网址就行。</p>
