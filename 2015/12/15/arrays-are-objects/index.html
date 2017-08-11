@@ -108,14 +108,14 @@
 <meta property="og:site_name" content="负雪明烛的博客">
 <meta property="og:description" content="起源事件起源是论坛里的一篇帖子，关于数组的.lenth多次调用是否会影响效率，回帖中发现有人说数组是类，调用类的.lenth属性就是看一下值，速度不会慢，云云。然后我就非常不同意的问人家“数组是对象？”，其实有点故意挑毛病的味道，但正是我这句话引起了论坛里较真的同学们的批判，事实证明，我错了，数组就是对象。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://bbs6.byr.cn/att/Java/0/46465/361">
+<meta property="og:image" content="http://bbs.byr.cn/att/Java/0/46465/361">
 <meta property="og:image" content="http://i.imgur.com/BLs4Bzk.jpg">
 <meta property="og:image" content="http://i.imgur.com/CDbujlN.jpg">
-<meta property="og:updated_time" content="2017-08-09T13:06:54.000Z">
+<meta property="og:updated_time" content="2017-08-11T08:05:58.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数组竟然是对象">
 <meta name="twitter:description" content="起源事件起源是论坛里的一篇帖子，关于数组的.lenth多次调用是否会影响效率，回帖中发现有人说数组是类，调用类的.lenth属性就是看一下值，速度不会慢，云云。然后我就非常不同意的问人家“数组是对象？”，其实有点故意挑毛病的味道，但正是我这句话引起了论坛里较真的同学们的批判，事实证明，我错了，数组就是对象。">
-<meta name="twitter:image" content="http://bbs6.byr.cn/att/Java/0/46465/361">
+<meta name="twitter:image" content="http://bbs.byr.cn/att/Java/0/46465/361">
 
 
 
@@ -370,7 +370,7 @@
         <h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>事件起源是论坛里的一篇帖子，关于数组的.lenth多次调用是否会影响效率，回帖中发现有人说数组是类，调用类的.lenth属性就是看一下值，速度不会慢，云云。然后我就非常不同意的问人家“数组是对象？”，其实有点故意挑毛病的味道，但正是我这句话引起了论坛里较真的同学们的批判，事实证明，我错了，数组就是对象。</p>
 <a id="more"></a>
 <h2 id="经过"><a href="#经过" class="headerlink" title="经过"></a>经过</h2><p>论坛里同学也给出了比较合理的反驳理由，就是下面这张图：</p>
-<p><img src="http://bbs6.byr.cn/att/Java/0/46465/361" alt=""></p>
+<p><img src="http://bbs.byr.cn/att/Java/0/46465/361" alt=""></p>
 <p>已经比较直观地说明数组是<strong>Object</strong>类的<strong>子类</strong>了，也就是说数组是对象。</p>
 <p>但是我并不这么认为，因为我是从C,C++一步步学过来的，在我印象之中，C里面的数组就是内存中的连续的一段数据，数组的名称就是内存地址的开始位置的指针。后来这个想法就一直持续到C++里和java里。当然C里面并没有对象的说法，但是C++和java里面都有对象的说法。对于C++中，数组是不是对象我已经完全不知道了，我估计也是内存的物理地址，通过更改数组的下标就可以访问到数组的不同地址的元素。java里面我也理所当然的这么认为了。</p>
 <p>当然，有很多机会都可以向我说明数组是对象，比如<code>array.length</code>，我在今天以前都认为这是java的一个为数组设计的简便获取数组长度的方式，并不认为是调用类的属性。更让我信以为真的是<code>length</code>后面没有<code>()</code>，说明不是方法。这种思维根深蒂固。</p>

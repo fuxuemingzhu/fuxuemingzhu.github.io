@@ -108,17 +108,17 @@
 <meta property="og:site_name" content="负雪明烛的博客">
 <meta property="og:description" content="缘起想做一个笑话App的原因是因为在知乎上看过一个帖子，做Android可以有哪些数据可以练手，里面推荐了几个数据开放平台。在这些平台中无一不是有公共的笑话接口，当时心想这个可以拿来练手啊，还挺有意思的，估计还能积累一点用户。 碰巧（真的好巧）在Github中遇到了一个MVP设计模式的框架Beam，作者Jude95有一个笑话仓库————Joy（豆逼），就是一个做笑话的！更巧的是用到的接口也是我在关">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/ic_laucher_192.png?raw=true">
-<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/%E8%B1%86%E9%80%BC.png?raw=true">
-<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/hecheng.png?raw=true">
-<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/yingyongbao.png?raw=true">
-<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/wandoujia.png?raw=true">
-<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/FIR.im.png?raw=true">
-<meta property="og:updated_time" content="2017-08-09T12:47:52.000Z">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/15/Find-Joy/ic_laucher_192.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/15/Find-Joy/screen.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/15/Find-Joy/hecheng.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/15/Find-Joy/yingyongbao.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/15/Find-Joy/wandoujia.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/15/Find-Joy/FIR.im.png">
+<meta property="og:updated_time" content="2017-08-11T07:13:09.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="找乐，一个笑话App的制作过程记录">
 <meta name="twitter:description" content="缘起想做一个笑话App的原因是因为在知乎上看过一个帖子，做Android可以有哪些数据可以练手，里面推荐了几个数据开放平台。在这些平台中无一不是有公共的笑话接口，当时心想这个可以拿来练手啊，还挺有意思的，估计还能积累一点用户。 碰巧（真的好巧）在Github中遇到了一个MVP设计模式的框架Beam，作者Jude95有一个笑话仓库————Joy（豆逼），就是一个做笑话的！更巧的是用到的接口也是我在关">
-<meta name="twitter:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/ic_laucher_192.png?raw=true">
+<meta name="twitter:image" content="http://fuxuemingzhu.me/2016/03/15/Find-Joy/ic_laucher_192.png">
 
 
 
@@ -372,10 +372,10 @@
       
         <h2 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h2><p>想做一个笑话App的原因是因为在知乎上看过一个帖子，做Android可以有哪些数据可以练手，里面推荐了几个数据开放平台。在这些平台中无一不是有公共的笑话接口，当时心想这个可以拿来练手啊，还挺有意思的，估计还能积累一点用户。</p>
 <p>碰巧（真的好巧）在Github中遇到了一个MVP设计模式的框架Beam，作者Jude95有一个笑话仓库————Joy（豆逼），就是一个做笑话的！更巧的是用到的接口也是我在关注的接口，心想不如改造一下吧，做个升级版，自己也可以在这个中学到别人是怎么写App的。后来发现这是一个非常正确的决定。</p>
-<p><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/ic_laucher_192.png?raw=true" alt=""></p>
+<img src="/2016/03/15/Find-Joy/ic_laucher_192.png" alt="ic_laucher_192.png" title="">
 <a id="more"></a>
 <h2 id="雏形"><a href="#雏形" class="headerlink" title="雏形"></a>雏形</h2><p>因为是基于别人的改进，所以在写之前就已经有雏形，当然这个雏形不是很完善，这恰恰给了我修改的空间。在获得作者的修改同意后，我就进一步研究这个利用MVP框架书写的App。未修改之前：</p>
-<p><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/%E8%B1%86%E9%80%BC.png?raw=true" alt=""></p>
+<img src="/2016/03/15/Find-Joy/screen.png" alt="screen.png" title="">
 <p>首先，豆逼只能查看段子和查看图片，我认为基本的复制文本和查看大图以及下载图片，这些都没有。作者只是用这个仓库来说明MVP模式的，所以只做了最基本的功能。作者也说，笑话连个id都没有，点赞、评论什么的根本没法做。那好，我就把我认为的文本复制和图片相关的做一下吧。</p>
 <h2 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h2><p>MVP模式在这个项目之前我研究很少，只是听说，但是这个项目完全给我耳目一新的感觉，MVP对Android来说实在是太有用了！关于MVP我以后想仔细写个帖子研究一下，这里只想说明MVP使Android项目层次分明，代码结构简单，复用性高。参考作者的<a href="https://github.com/Jude95/Beam" target="_blank" rel="external">Beam</a>。</p>
 <p>这个项目用了很棒的一个开源控件，也是项目作者自己的控件<a href="https://github.com/Jude95/EasyRecyclerView" target="_blank" rel="external">EasyRecyclerView</a>，这个控件对我来说相见恨晚。线性布局仿EasyRecyclerView已经实现了下拉刷新，上拉加载更多，错误提示等，简直把项目开发中可能遇到的坑都给做好了，我之前只能一个一个的去实现这些功能！为什么没有早早的用上这个控件！</p>
@@ -415,7 +415,7 @@
 <p>很酷对不对？</p>
 <p>自动更新是根据app versionCode来判断的，更新的时候注意修改。</p>
 <h3 id="App截图"><a href="#App截图" class="headerlink" title="App截图"></a>App截图</h3><p>这些功能做完之后我修改了一下配色，最终效果大体如图，部分功能未截图。</p>
-<p><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/hecheng.png?raw=true" alt=""></p>
+<img src="/2016/03/15/Find-Joy/hecheng.png" alt="hecheng.png" title="">
 <h3 id="应用市场"><a href="#应用市场" class="headerlink" title="应用市场"></a>应用市场</h3><p>嗯，这些都实现了之后就上线应用商店了，主要有这几个：</p>
 <ul>
 <li>小米应用商店：<a href="http://app.mi.com/detail/286105" target="_blank" rel="external">http://app.mi.com/detail/286105</a></li>
@@ -424,9 +424,9 @@
 <li>Fir.im：<a href="http://fir.im/axy4" target="_blank" rel="external">http://fir.im/axy4</a></li>
 </ul>
 <p>可以扫码下载：</p>
-<p>应用宝下载：<br><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/yingyongbao.png?raw=true" alt=""></p>
-<p>豌豆荚下载：<br><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/wandoujia.png?raw=true" alt=""></p>
-<p>Fir.im下载：<br><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/FindJoy/FIR.im.png?raw=true" alt=""></p>
+<p>应用宝下载：<br><img src="/2016/03/15/Find-Joy/yingyongbao.png" alt="yingyongbao.png" title=""></p>
+<p>豌豆荚下载：<br><img src="/2016/03/15/Find-Joy/wandoujia.png" alt="wandoujia.png" title=""></p>
+<p>Fir.im下载：<br><img src="/2016/03/15/Find-Joy/FIR.im.png" alt="FIR.im.png" title=""></p>
 <p>尽量不要用Fir，因为Fir没有直观的下载数目统计，嗯。尽量通过正规应用商店吧。</p>
 <p>下载这事还得大家捧个场。</p>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>虽然是一个非常简单的App，但是却包含着非常多的心思在里面，而且尝试新的东西的时候可以学到不少东西，这个是值得肯定的。毕竟我现在有种想把之前的App都揉碎重新来写的冲动，毕竟抵挡不住 MVP + Material Design的双重诱惑啊！</p>

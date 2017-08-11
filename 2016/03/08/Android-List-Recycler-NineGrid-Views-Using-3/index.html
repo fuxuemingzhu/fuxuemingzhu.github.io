@@ -108,15 +108,15 @@
 <meta property="og:site_name" content="负雪明烛的博客">
 <meta property="og:description" content="引子上文讲到RecyclerView的使用，确实非常方便易用，而且样式多样，很灵活。但在图像展示时，经常有朋友圈和微博等9张图以内的图片展示需求，这时候，不是一个可以无限下滑的RecyclerVew能解决的图片显示问题。那就需要一个类似于GridView的，九张图显示控件。并且，这个控件应该能针对不同个数的图片都有很好的显示效果，使图片尽可能大的展示在特定空间区域之内，很荣幸能遇到这样的一个开源控">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/Android-List-Recycler-NineGrid-Views-Using/Screenshot_2016-03-07-10-35-46_com.fuxuemingzhu.t.png?raw=true">
-<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/Android-List-Recycler-NineGrid-Views-Using/QQ20160308170257.png?raw=true">
-<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/Android-List-Recycler-NineGrid-Views-Using/QQ20160308170310.png?raw=true">
-<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/Android-List-Recycler-NineGrid-Views-Using/QQ20160308171149.png?raw=true">
-<meta property="og:updated_time" content="2017-08-09T12:53:32.000Z">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/08/Android-List-Recycler-NineGrid-Views-Using-3/Screenshot_2016-03-07-10-35-46_com.fuxuemingzhu.t.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/08/Android-List-Recycler-NineGrid-Views-Using-3/QQ20160308170257.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/08/Android-List-Recycler-NineGrid-Views-Using-3/QQ20160308170310.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/08/Android-List-Recycler-NineGrid-Views-Using-3/QQ20160308171149.png">
+<meta property="og:updated_time" content="2017-08-11T07:43:26.847Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 控件使用教程（三）—— NineGridImageView 展示图片">
 <meta name="twitter:description" content="引子上文讲到RecyclerView的使用，确实非常方便易用，而且样式多样，很灵活。但在图像展示时，经常有朋友圈和微博等9张图以内的图片展示需求，这时候，不是一个可以无限下滑的RecyclerVew能解决的图片显示问题。那就需要一个类似于GridView的，九张图显示控件。并且，这个控件应该能针对不同个数的图片都有很好的显示效果，使图片尽可能大的展示在特定空间区域之内，很荣幸能遇到这样的一个开源控">
-<meta name="twitter:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/Android-List-Recycler-NineGrid-Views-Using/Screenshot_2016-03-07-10-35-46_com.fuxuemingzhu.t.png?raw=true">
+<meta name="twitter:image" content="http://fuxuemingzhu.me/2016/03/08/Android-List-Recycler-NineGrid-Views-Using-3/Screenshot_2016-03-07-10-35-46_com.fuxuemingzhu.t.png">
 
 
 
@@ -371,7 +371,7 @@
         <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>上文讲到RecyclerView的使用，确实非常方便易用，而且样式多样，很灵活。但在图像展示时，经常有朋友圈和微博等9张图以内的图片展示需求，这时候，不是一个可以无限下滑的RecyclerVew能解决的图片显示问题。那就需要一个类似于GridView的，九张图显示控件。并且，这个控件应该能针对不同个数的图片都有很好的显示效果，使图片尽可能大的展示在特定空间区域之内，很荣幸能遇到这样的一个开源控件，<a href="https://github.com/laobie/NineGridImageView" target="_blank" rel="external">NineGridImageView</a>.</p>
 <h2 id="NineGridImageView"><a href="#NineGridImageView" class="headerlink" title="NineGridImageView"></a>NineGridImageView</h2><p>因为是一个比较新的控件，而且作者也已经开博讲解怎么使用，所以我不过多阐述如何使用，如有需求请转步作者博客<a href="http://laobie.github.io/android/2016/03/06/nine-grid-iamge-view-libaray.html" target="_blank" rel="external">http://laobie.github.io/android/2016/03/06/nine-grid-iamge-view-libaray.html</a>来进一步了解。我来说一说我是怎么使用的。</p>
 <a id="more"></a>
-<p><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/Android-List-Recycler-NineGrid-Views-Using/Screenshot_2016-03-07-10-35-46_com.fuxuemingzhu.t.png?raw=true" width="300"></p>
+<img src="/2016/03/08/Android-List-Recycler-NineGrid-Views-Using-3/Screenshot_2016-03-07-10-35-46_com.fuxuemingzhu.t.png" alt="Screenshot_2016-03-07-10-35-46_com.fuxuemingzhu.t.png" title="">
 <p>使用：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.jaeger.ninegridimageview:library:1.0.0&apos;</div></pre></td></tr></table></figure>
 <p>xml配置：</p>
@@ -383,9 +383,9 @@
 <p>获得图片资源的方法可以从本系列第一篇博文中找到，这里说明如何把资源加载到NineGridImageView。已知urls_list中放的是各个图片的地址。如下方式进行adapter加载和资源输入。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nine_grid.setAdapter(mAdapter);</div><div class="line">nine_grid.setImagesData(urls_list);</div></pre></td></tr></table></figure>
 <p>至此，图片已经能够显示了，而且显示效果会根据图片的个数进行改变，来做到对图片的适配。效果如下：</p>
-<p><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/Android-List-Recycler-NineGrid-Views-Using/QQ20160308170257.png?raw=true" width="300"></p>
-<p><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/Android-List-Recycler-NineGrid-Views-Using/QQ20160308170310.png?raw=true" width="300"></p>
-<p><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/Android-List-Recycler-NineGrid-Views-Using/QQ20160308171149.png?raw=true" width="300"></p>
+<img src="/2016/03/08/Android-List-Recycler-NineGrid-Views-Using-3/QQ20160308170257.png" alt="QQ20160308170257.png" title="">
+<img src="/2016/03/08/Android-List-Recycler-NineGrid-Views-Using-3/QQ20160308170310.png" alt="QQ20160308170310.png" title="">
+<img src="/2016/03/08/Android-List-Recycler-NineGrid-Views-Using-3/QQ20160308171149.png" alt="QQ20160308171149.png" title="">
 <p>可以看出本控件还是很方便易用的。</p>
 <p>这是控件对item的监听的办法，需要在adapter中书写：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onItemImageClick</span><span class="params">(Context context, <span class="keyword">int</span> index, List list)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onItemImageClick(context, index, list);</div><div class="line">    Toast.makeText(context, <span class="string">""</span> + index, Toast.LENGTH_LONG).show();</div><div class="line">&#125;</div></pre></td></tr></table></figure>

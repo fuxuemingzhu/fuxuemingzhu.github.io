@@ -108,14 +108,14 @@
 <meta property="og:site_name" content="负雪明烛的博客">
 <meta property="og:description" content="Echarts简介最近在实习的时候用到了Echarts。最刚开始我以为这个只能在前端通过js调用，对于我用python画图没帮助。可是自从再一次刷Github的时候发现了一个神器，激动地我差点睡不着了！这个就是pyecharts！这简直是神器啊，可以通过python调用Echarts的js接口然后就返回了画好的图~而且这个是可以交互的，比如下图，你就可以感受一下~~（利润，支出，收入三个标签也是可">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/hello-echarts/files.png?raw=true">
-<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/hello-echarts/yelee.png?raw=true">
-<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/hello-echarts/echarts.png?raw=true">
-<meta property="og:updated_time" content="2017-08-11T03:01:29.526Z">
+<meta property="og:image" content="http://fuxuemingzhu.me/2017/08/11/echarts-hexo/next.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2017/08/11/echarts-hexo/yelee.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2017/08/11/echarts-hexo/echarts.png">
+<meta property="og:updated_time" content="2017-08-11T06:31:47.674Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Hexo的Next主题中使用Echarts画图工具">
 <meta name="twitter:description" content="Echarts简介最近在实习的时候用到了Echarts。最刚开始我以为这个只能在前端通过js调用，对于我用python画图没帮助。可是自从再一次刷Github的时候发现了一个神器，激动地我差点睡不着了！这个就是pyecharts！这简直是神器啊，可以通过python调用Echarts的js接口然后就返回了画好的图~而且这个是可以交互的，比如下图，你就可以感受一下~~（利润，支出，收入三个标签也是可">
-<meta name="twitter:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/hello-echarts/files.png?raw=true">
+<meta name="twitter:image" content="http://fuxuemingzhu.me/2017/08/11/echarts-hexo/next.png">
 
 
 
@@ -368,10 +368,10 @@
 
       
         <h2 id="Echarts简介"><a href="#Echarts简介" class="headerlink" title="Echarts简介"></a>Echarts简介</h2><p>最近在实习的时候用到了Echarts。最刚开始我以为这个只能在前端通过js调用，对于我用python画图没帮助。可是自从再一次刷Github的时候发现了一个神器，激动地我差点睡不着了！这个就是<a href="https://github.com/chenjiandongx/pyecharts" target="_blank" rel="external">pyecharts</a>！这简直是神器啊，可以通过python调用Echarts的js接口然后就返回了画好的图~而且这个是可以交互的，比如下图，你就可以感受一下~~（利润，支出，收入三个标签也是可以点击的哦~）</p>
-<div id="echarts7461" style="width: 81%;height: 400px;margin: 0 auto"></div>
+<div id="echarts4553" style="width: 81%;height: 400px;margin: 0 auto"></div>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts7461'));
+        var myChart = echarts.init(document.getElementById('echarts4553'));
 
         // 指定图表的配置项和数据
         var option = {
@@ -443,11 +443,11 @@
 <p>首先，如果你用的是Yelee或者类似的主题，你应该可以很简单地直接参照<a href="http://blog.ursb.me/2016/04/06/Hexo%E9%A9%B1%E5%8A%A8%E5%8D%9A%E5%AE%A2%E4%B8%AD%E4%BD%BF%E7%94%A8Echarts%E5%8A%A8%E6%80%81%E5%9B%BE%E8%A1%A8/" target="_blank" rel="external">这个博客</a>去做。</p>
 <p>我也是在看上面的博客的时候遇到了问题，如果我用Yelee主题的话是很简单的可以实现上面的效果的，但是我现在更喜欢的是现在的Next主题。这两个主题的结构不一样。</p>
 <p>安装上文说的在所用主题目录下layout\_partial文件夹中不存在，更不存在head.ejs</p>
-<p>Next目录：<br><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/hello-echarts/files.png?raw=true" alt="Next下的目录"><br>Yelee目录：<br><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/hello-echarts/yelee.png?raw=true" alt="Yelee下的目录"></p>
+<p>Next目录：<br><img src="/2017/08/11/echarts-hexo/next.png" alt="Next下的目录" title="Next下的目录"><br>Yelee目录：<br><img src="/2017/08/11/echarts-hexo/yelee.png" alt="Yelee下的目录" title="Yelee下的目录"></p>
 <h2 id="Next主题做法"><a href="#Next主题做法" class="headerlink" title="Next主题做法"></a>Next主题做法</h2><p>由此看出，如果你和我一样使用Next主题的话上面的教程不能用。需要像我这样做：</p>
 <h3 id="下载js"><a href="#下载js" class="headerlink" title="下载js"></a>下载js</h3><p>首先下载Echarts的js文件：<a href="http://echarts.baidu.com/download.html" target="_blank" rel="external">Echarts</a></p>
 <p>把js文件放到next主题的\source\js\src目录下：</p>
-<p><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/hello-echarts/echarts.png?raw=true" alt="js位置"></p>
+<img src="/2017/08/11/echarts-hexo/echarts.png" alt="js位置" title="js位置">
 <h3 id="js文件的引用"><a href="#js文件的引用" class="headerlink" title="js文件的引用"></a>js文件的引用</h3><p>然后在next\layout\文件夹下，找到_layout.swig文件，并用文本查看器打开，在下面代码:</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">main</span> <span class="attr">id</span>=<span class="string">"main"</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main-inner"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content-wrap"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content"</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span></div><div class="line">        &#123;% block content %&#125;&#123;% endblock %&#125;</div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      &#123;% include '_third-party/duoshuo-hot-articles.swig' %&#125;</div><div class="line">      &#123;% include '_partials/comments.swig' %&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    &#123;% if theme.sidebar.display !== 'remove' %&#125;</div><div class="line">      &#123;% block sidebar %&#125;&#123;% endblock %&#125;</div><div class="line">    &#123;% endif %&#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">main</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>的前面添加：</p>

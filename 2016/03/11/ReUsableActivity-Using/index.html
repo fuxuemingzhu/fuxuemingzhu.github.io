@@ -108,13 +108,13 @@
 <meta property="og:site_name" content="负雪明烛的博客">
 <meta property="og:description" content="简介一个可以重复利用的Activity.通过设置不同的Fragment加入到一个可复用的Activity中实现代码的精简。 这个仓库可以用来精简项目中拥有大量重复的AppBar布局的Android App。 介绍一直以来，大家对臃肿的Activity就不是很喜欢，都在试图减少Activity的数量，通过利用Fragment来实现代码的精简和提高运行效率。这个仓库就是设计了一个可以重复利用的Actv">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/ReUsableActivity-Using/fragments.gif?raw=true">
-<meta property="og:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/ReUsableActivity-Using/project.JPG?raw=true">
-<meta property="og:updated_time" content="2017-08-09T12:49:16.000Z">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/11/ReUsableActivity-Using/fragments.gif">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/11/ReUsableActivity-Using/project.JPG">
+<meta property="og:updated_time" content="2017-08-11T07:25:33.830Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分享一个拥有大量结构相同Activity的项目精简经验，ReUsableActivity">
 <meta name="twitter:description" content="简介一个可以重复利用的Activity.通过设置不同的Fragment加入到一个可复用的Activity中实现代码的精简。 这个仓库可以用来精简项目中拥有大量重复的AppBar布局的Android App。 介绍一直以来，大家对臃肿的Activity就不是很喜欢，都在试图减少Activity的数量，通过利用Fragment来实现代码的精简和提高运行效率。这个仓库就是设计了一个可以重复利用的Actv">
-<meta name="twitter:image" content="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/ReUsableActivity-Using/fragments.gif?raw=true">
+<meta name="twitter:image" content="http://fuxuemingzhu.me/2016/03/11/ReUsableActivity-Using/fragments.gif">
 
 
 
@@ -372,7 +372,7 @@
 <p>同时，我承认这个只是一种重复利用的思想，至于更优雅的实现方式还请各位指教。</p>
 <a id="more"></a>
 <p>最后效果如下：</p>
-<p><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/ReUsableActivity-Using/fragments.gif?raw=true" alt=""></p>
+<img src="/2016/03/11/ReUsableActivity-Using/fragments.gif" alt="fragments.gif" title="">
 <p>以下代码来获取通用Activity向外界展示的式样。fragmentType声明了加载哪一种Fragment,title声明了Activity应该显示的title.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获取启动该Result的Intent</span></div><div class="line">Intent intent = getIntent();</div><div class="line"><span class="comment">// 获取该intent所携带的数据</span></div><div class="line">Bundle data = intent.getExtras();</div><div class="line"><span class="comment">// 从Bundle包中取出数据</span></div><div class="line">fragmentType = data.getInt(<span class="string">"fragmentType"</span>);</div><div class="line">title = data.getString(<span class="string">"title"</span>);</div></pre></td></tr></table></figure>
 <p>以下代码来说明要加载的Fragment.是由传入的fragmentType来确定的。</p>
@@ -381,7 +381,7 @@
 <p>上面Demo的代码是在Fragment中点击向ReUsableActivity传参数用来显示title，同时新的ReUsableActvity向新的Fragment传数据用来Fragment的展示。</p>
 <p>在实际利用中，在需要用ReUsableActivity时传递给ReUsableActivity参数并且打开此Activity即可。</p>
 <p>上面的项目的结构如下，虽然有众多的Acitvity显示，但是代码中却只有两个Acitvity.</p>
-<p><img src="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/images/ReUsableActivity-Using/project.JPG?raw=true" alt=""></p>
+<img src="/2016/03/11/ReUsableActivity-Using/project.JPG" alt="project.JPG" title="">
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>尽可能进行代码复用，来精简项目，这个是项目中的一个小小的经验，分享出来，希望大家能提供一个更好的解决方案。</p>
 <p>项目已经开源，仓库在<a href="https://github.com/fuxuemingzhu/ReUsableAcitvity" target="_blank" rel="external">https://github.com/fuxuemingzhu/ReUsableAcitvity</a>。希望大家指教。</p>
 
