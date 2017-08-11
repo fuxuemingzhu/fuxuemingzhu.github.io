@@ -117,7 +117,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":true,"scrollpercent":"trues","onmobile":false},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -395,10 +395,10 @@
 
       
         <h2 id="Echarts简介"><a href="#Echarts简介" class="headerlink" title="Echarts简介"></a>Echarts简介</h2><p>最近在实习的时候用到了Echarts。最刚开始我以为这个只能在前端通过js调用，对于我用python画图没帮助。可是自从再一次刷Github的时候发现了一个神器，激动地我差点睡不着了！这个就是<a href="https://github.com/chenjiandongx/pyecharts" target="_blank" rel="external">pyecharts</a>！这简直是神器啊，可以通过python调用Echarts的js接口然后就返回了画好的图~而且这个是可以交互的，比如下图，你就可以感受一下~~（利润，支出，收入三个标签也是可以点击的哦~）</p>
-<div id="echarts9227" style="width: 81%;height: 400px;margin: 0 auto"></div>
+<div id="echarts9520" style="width: 81%;height: 400px;margin: 0 auto"></div>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts9227'));
+        var myChart = echarts.init(document.getElementById('echarts9520'));
 
         // 指定图表的配置项和数据
         var option = {
@@ -739,6 +739,13 @@
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -779,11 +786,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
   </div>
