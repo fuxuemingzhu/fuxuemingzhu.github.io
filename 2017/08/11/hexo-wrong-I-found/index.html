@@ -108,10 +108,14 @@
 <meta property="og:site_name" content="负雪明烛的博客">
 <meta property="og:description" content="为什么要开这篇文章？就是因为我这两天已经被Hexo折腾得够呛！ 诚然，Hexo一键部署博客给写作带来了很大的便利，但是不可否认的是，Hexo的错误让人摸不到头脑，只有反复尝试才能得出正确结果。 因此，奉劝大家，不要瞎升级Hexo！不要瞎改动Hexo！不要瞎折腾Hexo！ 这里记录下我踩过的各种坑，留给大家排坑，也方便自己以后查找问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-11T04:22:25.573Z">
+<meta property="og:image" content="http://fuxuemingzhu.me/2017/08/11/hexo-wrong-I-found/github.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2017/08/11/hexo-wrong-I-found/posts.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2017/08/11/hexo-wrong-I-found/public.png">
+<meta property="og:updated_time" content="2017-08-11T06:09:13.004Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Hexo中我踩过的坑">
 <meta name="twitter:description" content="为什么要开这篇文章？就是因为我这两天已经被Hexo折腾得够呛！ 诚然，Hexo一键部署博客给写作带来了很大的便利，但是不可否认的是，Hexo的错误让人摸不到头脑，只有反复尝试才能得出正确结果。 因此，奉劝大家，不要瞎升级Hexo！不要瞎改动Hexo！不要瞎折腾Hexo！ 这里记录下我踩过的各种坑，留给大家排坑，也方便自己以后查找问题。">
+<meta name="twitter:image" content="http://fuxuemingzhu.me/2017/08/11/hexo-wrong-I-found/github.png">
 
 
 
@@ -377,20 +381,41 @@
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line">	<span class="bullet">-</span> <span class="attr">type:</span> <span class="string">git</span> </div><div class="line">	  <span class="attr">repo:</span> <span class="string">cfg@165.227.16.36:/var/repo/hexo_static</span></div><div class="line">	  <span class="attr">branch:</span> <span class="string">master</span></div><div class="line">	<span class="bullet">-</span> <span class="attr">type:</span> <span class="string">git</span> </div><div class="line">	  <span class="attr">repo:</span> <span class="string">git@github.com:fuxuemingzhu/fuxuemingzhu.github.io.git</span></div><div class="line">	  <span class="attr">branch:</span> <span class="string">master</span></div></pre></td></tr></table></figure>
 <p>把仓库的地址修改成你的Git地址。</p>
 <p>如果你使用的是Github的仓库，查看仓库地址的方式是在这里，记得切换成ssh模式查看。</p>
-
+<img src="/2017/08/11/hexo-wrong-I-found/github.png" alt="github仓库地址" title="github仓库地址">
 <h2 id="Hexo文章中用相对路径方式插入图片"><a href="#Hexo文章中用相对路径方式插入图片" class="headerlink" title="Hexo文章中用相对路径方式插入图片"></a>Hexo文章中用相对路径方式插入图片</h2><p>这个坑大家可能都感觉遇到过，其实这不是个坑。</p>
 <p>因为大家写博客就是公开的，完全可以把图片放到一个公开的图片网站再引用即可。但是我感觉不太好。</p>
 <p>这种方式莫名其妙地把图片放到了一个你可能完全不会去访问的网站，很难管理，如果想删除图片也比较麻烦，甚至无法删除。</p>
 <p>我之前的做法是放到自己的Github仓库中，然后引用自己仓库的图片的网址。这样不错，只不过图片要先上传一次，然后才能在博客里使用。</p>
-<p>正确做法是在Hexo中采用相对路径方式插入图片，即图片放到source\images\文件夹下，用以下的hexo命令插入图片：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% asset_img images/example.jpg This is an example image %&#125;</div></pre></td></tr></table></figure>
-<p>建议每个文章都建一个图片的文件夹，用于管理。方式是打开_config.yml开关：</p>
+<p>正确做法是在Hexo中采用相对路径方式插入图片。步骤如下。</p>
+<ol>
+<li>首先在hexo目录下安装插件：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</div></pre></td></tr></table></figure>
+<ol>
+<li>然后，把打开_config.yml开关。这样新建每个文章都建一个同名的图片的文件夹，用于管理。</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_config.yml</div><div class="line">post_asset_folder: true</div></pre></td></tr></table></figure>
-<p>文件相对路径的引用方式是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% asset_img images/Hexo-Wrong-I-Found/github.png github image %&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>把图片放到文章的同名文件夹之下，在博客中用以下的hexo命令插入图片，注意不用填写路径，直接写图片名字！</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% asset_img github.png github仓库地址 %&#125;</div></pre></td></tr></table></figure>
+<p>上面这个代码的结果就是上一节中github仓库的那张图片的代码。</p>
+<p>这个是图片放的位置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% asset_img posts.png  图片放的位置 %&#125;</div></pre></td></tr></table></figure>
+<img src="/2017/08/11/hexo-wrong-I-found/posts.png" alt="图片放的位置" title="图片放的位置">
+<p>在public文件夹下会生成对应资源图片：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% asset_img public.png  生成的图片 %&#125;</div></pre></td></tr></table></figure>
+<img src="/2017/08/11/hexo-wrong-I-found/public.png" alt="生成的图片" title="生成的图片">
+<p>使用以上的代码就能看到效果了~</p>
 <p>更多信息可以看官方文档：<a href="https://hexo.io/zh-cn/docs/asset-folders.html" target="_blank" rel="external">资源文件夹</a></p>
 <p>有得有失，这样做的时候就不能再markdown源文件中查看到图片了。</p>
 <h2 id="后续补充"><a href="#后续补充" class="headerlink" title="后续补充"></a>后续补充</h2><p>……</p>
+<blockquote>
+<p>参考资料：</p>
+<ul>
+<li><a href="http://www.jianshu.com/p/c2ba9533088a" target="_blank" rel="external">hexo博客图片问题</a></li>
+</ul>
+</blockquote>
 
       
     </div>
