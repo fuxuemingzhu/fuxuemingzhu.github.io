@@ -130,7 +130,7 @@
 <meta property="og:image" content="http://fuxuemingzhu.me/2017/08/11/hexo-wrong-I-found/github.png">
 <meta property="og:image" content="http://fuxuemingzhu.me/2017/08/11/hexo-wrong-I-found/posts.png">
 <meta property="og:image" content="http://fuxuemingzhu.me/2017/08/11/hexo-wrong-I-found/public.png">
-<meta property="og:updated_time" content="2017-08-11T11:16:38.114Z">
+<meta property="og:updated_time" content="2017-08-12T12:20:24.863Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Hexo中我踩过的坑">
 <meta name="twitter:description" content="为什么要开这篇文章？就是因为我这两天已经被Hexo折腾得够呛！ 诚然，Hexo一键部署博客给写作带来了很大的便利，但是不可否认的是，Hexo的错误让人摸不到头脑，只有反复尝试才能得出正确结果。 因此，奉劝大家，不要瞎升级Hexo！不要瞎改动Hexo！不要瞎折腾Hexo！ 这里记录下我踩过的各种坑，留给大家排坑，也方便自己以后查找问题。">
@@ -508,6 +508,8 @@
 <p>使用以上的代码就能看到效果了~</p>
 <p>更多信息可以看官方文档：<a href="https://hexo.io/zh-cn/docs/asset-folders.html" target="_blank" rel="external">资源文件夹</a></p>
 <p>有得有失，这样做的时候就不能再markdown源文件中查看到图片了。</p>
+<h2 id="page页面图片不能采用相对路径"><a href="#page页面图片不能采用相对路径" class="headerlink" title="page页面图片不能采用相对路径"></a>page页面图片不能采用相对路径</h2><p>博客的文章页面是可以采用相对路径寻找图片的，正如上文所述。可是，今天发现如果是一个page页面（可以通过侧边栏直接访问的），相对路径就不起作用了。。不是找不到图片的问题，而是如果是page页面采用asset_img的方式根本就不会识别出这里要插入图片。。</p>
+<p>因此，解决的办法是直接采用markdown方式插入图片就好了，虽然有点不那么优雅……</p>
 <h2 id="后续补充"><a href="#后续补充" class="headerlink" title="后续补充"></a>后续补充</h2><p>……</p>
 <blockquote>
 <p>参考资料：</p>
@@ -703,7 +705,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -725,7 +727,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -800,7 +802,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo升级3-0版本"><span class="nav-number">1.</span> <span class="nav-text">Hexo升级3.0版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo同时部署到多个Git仓库"><span class="nav-number">2.</span> <span class="nav-text">Hexo同时部署到多个Git仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo文章中用相对路径方式插入图片"><span class="nav-number">3.</span> <span class="nav-text">Hexo文章中用相对路径方式插入图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后续补充"><span class="nav-number">4.</span> <span class="nav-text">后续补充</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo升级3-0版本"><span class="nav-number">1.</span> <span class="nav-text">Hexo升级3.0版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo同时部署到多个Git仓库"><span class="nav-number">2.</span> <span class="nav-text">Hexo同时部署到多个Git仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo文章中用相对路径方式插入图片"><span class="nav-number">3.</span> <span class="nav-text">Hexo文章中用相对路径方式插入图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#page页面图片不能采用相对路径"><span class="nav-number">4.</span> <span class="nav-text">page页面图片不能采用相对路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后续补充"><span class="nav-number">5.</span> <span class="nav-text">后续补充</span></a></li></ol></div>
             
 
           </div>
@@ -1340,6 +1342,6 @@
   <script type="text/javascript" src="/js/src/love.js"></script>
   <!-- particle -->
   <script type="text/javascript" src="/js/src/particle.js"></script>
-
+  <script type="text/javascript">var OriginTitile=document.title,st;document.addEventListener("visibilitychange",function(){document.hidden?(document.title="负雪明烛在这里等你",clearTimeout(st)):(document.title="Got ya~~"+OriginTitile,st=setTimeout(function(){document.title=OriginTitile},3e3))})</script>
 </body>
 </html>
