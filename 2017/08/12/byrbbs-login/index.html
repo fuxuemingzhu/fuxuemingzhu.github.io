@@ -118,19 +118,21 @@
 
 
 
-<meta name="description" content="模拟登录北邮人论坛可能是每个学着写爬虫的北邮人必备技能了。在网上和论坛上也有相关资料，但质量参差不齐，有些甚至不能实现模拟登录。因此，这里我使用requests库和urllib2库两种方法，分别实现了北邮人论坛的模拟登录。可以说以后论坛登录看我的这篇帖子就好了。 教程所需环境：  Python 2.x requests 库">
+<meta name="description" content="模拟登录北邮人论坛可能是每个学着写爬虫的北邮人必备技能了。在网上和论坛上也有相关资料，但质量参差不齐，有些甚至不能实现模拟登录。因此，这里我使用requests库和urllib2库两种方法，分别实现了北邮人论坛的模拟登录。 教程所需环境：  Python 2.x requests 库">
 <meta name="keywords" content="经验分享,Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python实现北邮人论坛模拟登录">
 <meta property="og:url" content="http://fuxuemingzhu.me/2017/08/12/byrbbs-login/index.html">
 <meta property="og:site_name" content="负雪明烛的博客">
-<meta property="og:description" content="模拟登录北邮人论坛可能是每个学着写爬虫的北邮人必备技能了。在网上和论坛上也有相关资料，但质量参差不齐，有些甚至不能实现模拟登录。因此，这里我使用requests库和urllib2库两种方法，分别实现了北邮人论坛的模拟登录。可以说以后论坛登录看我的这篇帖子就好了。 教程所需环境：  Python 2.x requests 库">
+<meta property="og:description" content="模拟登录北邮人论坛可能是每个学着写爬虫的北邮人必备技能了。在网上和论坛上也有相关资料，但质量参差不齐，有些甚至不能实现模拟登录。因此，这里我使用requests库和urllib2库两种方法，分别实现了北邮人论坛的模拟登录。 教程所需环境：  Python 2.x requests 库">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://fuxuemingzhu.me/2017/08/12/byrbbs-login/laptop.jpg">
-<meta property="og:updated_time" content="2017-08-12T08:51:18.364Z">
+<meta property="og:image" content="http://fuxuemingzhu.me/2017/08/12/byrbbs-login/pre.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2017/08/12/byrbbs-login/log.png">
+<meta property="og:updated_time" content="2017-08-12T10:51:41.313Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python实现北邮人论坛模拟登录">
-<meta name="twitter:description" content="模拟登录北邮人论坛可能是每个学着写爬虫的北邮人必备技能了。在网上和论坛上也有相关资料，但质量参差不齐，有些甚至不能实现模拟登录。因此，这里我使用requests库和urllib2库两种方法，分别实现了北邮人论坛的模拟登录。可以说以后论坛登录看我的这篇帖子就好了。 教程所需环境：  Python 2.x requests 库">
+<meta name="twitter:description" content="模拟登录北邮人论坛可能是每个学着写爬虫的北邮人必备技能了。在网上和论坛上也有相关资料，但质量参差不齐，有些甚至不能实现模拟登录。因此，这里我使用requests库和urllib2库两种方法，分别实现了北邮人论坛的模拟登录。 教程所需环境：  Python 2.x requests 库">
 <meta name="twitter:image" content="http://fuxuemingzhu.me/2017/08/12/byrbbs-login/laptop.jpg">
 
 
@@ -462,7 +464,7 @@
       
 
       
-        <p>模拟登录北邮人论坛可能是每个学着写爬虫的北邮人必备技能了。在网上和论坛上也有相关资料，但质量参差不齐，有些甚至不能实现模拟登录。因此，这里我使用requests库和urllib2库两种方法，分别实现了北邮人论坛的模拟登录。可以说以后论坛登录看我的这篇帖子就好了。</p>
+        <p>模拟登录北邮人论坛可能是每个学着写爬虫的北邮人必备技能了。在网上和论坛上也有相关资料，但质量参差不齐，有些甚至不能实现模拟登录。因此，这里我使用requests库和urllib2库两种方法，分别实现了北邮人论坛的模拟登录。</p>
 <p>教程所需环境：</p>
 <ul>
 <li>Python 2.x</li>
@@ -477,21 +479,17 @@
 </blockquote>
 <p>通过使用可以看出，requests库确实是当前Python处理网络请求最好用的库！强力推荐大家放弃urllib2库！</p>
 <p>安装方式很简单：</p>
-<blockquote>
-<p>pip install requests</p>
-</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install requests</div></pre></td></tr></table></figure>
 <p>安装完成之后，可以用下面的代码测试是否安装成功：</p>
-<blockquote>
-<p>import requests</p>
-</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div></pre></td></tr></table></figure>
 <p>如果Python环境没有报错就说明安装成功，可以使用这个最方便的网络请求库了~</p>
 <p>下面我们开始分析模拟登录的逻辑。</p>
 <p>首先，打开论坛首页<a href="https://bbs.byr.cn/#!default" target="_blank" rel="external">https://bbs.byr.cn/#!default</a>，并且退出登录。</p>
 <p>然后，按F12键审查元素，并且切换到Network选项卡，并且勾选上preserve log选项。现在的状态如下：</p>
-
+<img src="/2017/08/12/byrbbs-login/pre.png" alt="初始状态" title="初始状态">
 <p>重点来了，输入用户名密码后点击登录，你应该能看到下面的信息：</p>
-
-<p>可以看出向<a href="https://bbs.byr.cn/user/ajax_login.json发送了一个post请求，发送了正确的用户名密码之后，就能登录成功。" target="_blank" rel="external">https://bbs.byr.cn/user/ajax_login.json发送了一个post请求，发送了正确的用户名密码之后，就能登录成功。</a></p>
+<img src="/2017/08/12/byrbbs-login/log.png" alt="登录状态" title="登录状态">
+<p>可以看出向<em><a href="https://bbs.byr.cn/user/ajax_login.json" target="_blank" rel="external">https://bbs.byr.cn/user/ajax_login.json</a></em>发送了一个post请求，发送了正确的用户名密码之后，就能登录成功。</p>
 <p>另外，经过测试得到，如果请求的头部不正确，论坛会拒绝登录，正确的方式是添加头部。必须添加下面的头部。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">'x-requested-with': 'XMLHttpRequest'</div></pre></td></tr></table></figure>
 <p>下面是完整的登录代码，请输入自己的用户名和密码。</p>
