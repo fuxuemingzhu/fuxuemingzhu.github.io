@@ -121,7 +121,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://fuxuemingzhu.me/2017/08/12/hexo-next-polish/music.jpg">
 <meta property="og:image" content="http://fuxuemingzhu.me/drawing/index/caicai-drawing-simple2.jpg">
-<meta property="og:updated_time" content="2017-08-13T07:53:48.813Z">
+<meta property="og:updated_time" content="2017-08-14T03:38:15.612Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="让你的Hexo博客变得更酷炫">
 <meta name="twitter:description" content="最近有了审美强迫症，不仅让自己的Ubuntu变得很酷炫，还想把自己的博客变得更吸引眼球。调了两三天的博客，只为让博客变得更美。 记录一下我的调整的地方，也为了让大家更能看到我博客的亮点。">
@@ -405,6 +405,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">术业专攻</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -459,12 +481,12 @@
 <ol>
 <li>找到 <code>\themes\next\layout\_layout.swing</code> 文件， 在文件的后面，<code>&lt;/body&gt;</code>标签之前 添加以下代码：</li>
 </ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"><span class="keyword">var</span> OriginTitile=<span class="built_in">document</span>.title,st;<span class="built_in">document</span>.addEventListener(<span class="string">"visibilitychange"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">document</span>.hidden?(<span class="built_in">document</span>.title=<span class="string">"负雪明烛在这里等你"</span>,clearTimeout(st)):(<span class="built_in">document</span>.title=<span class="string">"Got ya~~"</span>+OriginTitile,st=setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">document</span>.title=OriginTitile&#125;,<span class="number">3e3</span>))&#125;)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined">var OriginTitile=document.title,st;document.addEventListener("visibilitychange",function()&#123;document.hidden?(document.title="负雪明烛在这里等你",clearTimeout(st)):(document.title="Got ya~~"+OriginTitile,st=setTimeout(function()&#123;document.title=OriginTitile&#125;,3e3))&#125;)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <h2 id="在Hexo中使用ECharts实现动态图表"><a href="#在Hexo中使用ECharts实现动态图表" class="headerlink" title="在Hexo中使用ECharts实现动态图表"></a>在Hexo中使用ECharts实现动态图表</h2><p>EChart图表库是百度推出的在线网络画图库。非常好用，比如下面这张图，注意，’利润’, ‘支出’, ‘收入’，这些标签是可以点击的哦！有交互效果！</p>
-<div id="echarts9294" style="width: 81%;height: 400px;margin: 0 auto"></div>
+<div id="echarts4079" style="width: 81%;height: 400px;margin: 0 auto"></div>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts9294'));
+        var myChart = echarts.init(document.getElementById('echarts4079'));
 
         // 指定图表的配置项和数据
         var option = {
