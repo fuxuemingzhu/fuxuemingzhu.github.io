@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="本文是校外下载北邮人BT资源系列文章的第一篇，目前打算将本系列分为2篇：  校外下载北邮人BT资源（一）——模拟登录 校外下载北邮人BT资源（二）——资源下载">
+<meta name="description" content="如果问大家离开北邮最不舍的东西是什么？很多人肯定会脱口而出：北邮人BT！显然，北邮人BT已经融为每个BYR生活的一部分了。那么就从这个网站下手，练一练Python的爬虫吧。 很早之前写这篇文章时，对下载北邮人BT的资源的理解是先通过模拟北邮人BT登录，然后用代码下载资源。现在觉得这么做太复杂了，所以这篇文章就改成用python模拟登录北邮人BT的教程吧。">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="校外下载北邮人BT资源（一）——模拟登录">
+<meta property="og:title" content="Python实现北邮人BT模拟登录">
 <meta property="og:url" content="http://fuxuemingzhu.me/2017/08/25/byrbt-login/index.html">
 <meta property="og:site_name" content="负雪明烛的博客">
-<meta property="og:description" content="本文是校外下载北邮人BT资源系列文章的第一篇，目前打算将本系列分为2篇：  校外下载北邮人BT资源（一）——模拟登录 校外下载北邮人BT资源（二）——资源下载">
+<meta property="og:description" content="如果问大家离开北邮最不舍的东西是什么？很多人肯定会脱口而出：北邮人BT！显然，北邮人BT已经融为每个BYR生活的一部分了。那么就从这个网站下手，练一练Python的爬虫吧。 很早之前写这篇文章时，对下载北邮人BT的资源的理解是先通过模拟北邮人BT登录，然后用代码下载资源。现在觉得这么做太复杂了，所以这篇文章就改成用python模拟登录北邮人BT的教程吧。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://fuxuemingzhu.me/2017/08/25/byrbt-login/head.jpg">
 <meta property="og:image" content="http://fuxuemingzhu.me/2017/08/25/byrbt-login/web.png">
@@ -95,10 +95,10 @@
 <meta property="og:image" content="http://fuxuemingzhu.me/2017/08/25/byrbt-login/imgtochar.png">
 <meta property="og:image" content="http://fuxuemingzhu.me/2017/08/25/byrbt-login/dologin.png">
 <meta property="og:image" content="http://fuxuemingzhu.me/drawing/index/caicai-drawing-dark2.jpg">
-<meta property="og:updated_time" content="2018-06-04T03:18:58.404Z">
+<meta property="og:updated_time" content="2018-06-10T13:34:14.544Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="校外下载北邮人BT资源（一）——模拟登录">
-<meta name="twitter:description" content="本文是校外下载北邮人BT资源系列文章的第一篇，目前打算将本系列分为2篇：  校外下载北邮人BT资源（一）——模拟登录 校外下载北邮人BT资源（二）——资源下载">
+<meta name="twitter:title" content="Python实现北邮人BT模拟登录">
+<meta name="twitter:description" content="如果问大家离开北邮最不舍的东西是什么？很多人肯定会脱口而出：北邮人BT！显然，北邮人BT已经融为每个BYR生活的一部分了。那么就从这个网站下手，练一练Python的爬虫吧。 很早之前写这篇文章时，对下载北邮人BT的资源的理解是先通过模拟北邮人BT登录，然后用代码下载资源。现在觉得这么做太复杂了，所以这篇文章就改成用python模拟登录北邮人BT的教程吧。">
 <meta name="twitter:image" content="http://fuxuemingzhu.me/2017/08/25/byrbt-login/head.jpg">
 
 
@@ -135,7 +135,7 @@
 
 
 
-  <title>校外下载北邮人BT资源（一）——模拟登录 | 负雪明烛的博客</title>
+  <title>Python实现北邮人BT模拟登录 | 负雪明烛的博客</title>
   
 
 
@@ -282,8 +282,7 @@
  </div>
     </header>
 
-<script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.common.min.js"></script>
-
+<script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
 
     <main id="main" class="main">
       <div class="main-inner">
@@ -322,7 +321,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">校外下载北邮人BT资源（一）——模拟登录</h2>
+          <h2 class="post-title" itemprop="name headline">Python实现北邮人BT模拟登录</h2>
         
 
         <div class="post-meta">
@@ -410,11 +409,8 @@
       
 
       
-        <p>本文是校外下载北邮人BT资源系列文章的第一篇，目前打算将本系列分为2篇：</p>
-<ol>
-<li><a href="http://fuxuemingzhu.me/2017/08/25/byrbt-login/">校外下载北邮人BT资源（一）——模拟登录</a></li>
-<li>校外下载北邮人BT资源（二）——资源下载</li>
-</ol>
+        <p>如果问大家离开北邮最不舍的东西是什么？很多人肯定会脱口而出：北邮人BT！显然，北邮人BT已经融为每个BYR生活的一部分了。那么就从这个网站下手，练一练Python的爬虫吧。</p>
+<p>很早之前写这篇文章时，对下载北邮人BT的资源的理解是先通过模拟北邮人BT登录，然后用代码下载资源。现在觉得这么做太复杂了，所以这篇文章就改成用python模拟登录北邮人BT的教程吧。</p>
 <img src="/2017/08/25/byrbt-login/head.jpg" alt="head.jpg" title="">
 <a id="more"></a>
 <h2 id="教程所需环境"><a href="#教程所需环境" class="headerlink" title="教程所需环境"></a>教程所需环境</h2><p>下面是本文核心的运行环境，没有在其他环境下运行和测试，推荐大家和我采用相同的环境。</p>
@@ -571,6 +567,7 @@
 
 
           </div>
+
           
 
 
@@ -924,7 +921,7 @@
         var disqus_config = function () {
           this.page.url = 'http://fuxuemingzhu.me/2017/08/25/byrbt-login/';
           this.page.identifier = '2017/08/25/byrbt-login/';
-          this.page.title = '校外下载北邮人BT资源（一）——模拟登录';
+          this.page.title = 'Python实现北邮人BT模拟登录';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://fuxuemingzhu.disqus.com/embed.js';

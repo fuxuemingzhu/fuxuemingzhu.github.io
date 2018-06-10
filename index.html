@@ -272,8 +272,7 @@
  </div>
     </header>
 
-<script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.common.min.js"></script>
-
+<script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
 
     <main id="main" class="main">
       <div class="main-inner">
@@ -314,7 +313,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/25/byrbt-login/" itemprop="url">校外下载北邮人BT资源（一）——模拟登录</a></h2>
+                <a class="post-title-link" href="/2017/08/25/byrbt-login/" itemprop="url">Python实现北邮人BT模拟登录</a></h2>
         
 
         <div class="post-meta">
@@ -398,11 +397,8 @@
 
       
         
-          <p>本文是校外下载北邮人BT资源系列文章的第一篇，目前打算将本系列分为2篇：</p>
-<ol>
-<li><a href="http://fuxuemingzhu.me/2017/08/25/byrbt-login/">校外下载北邮人BT资源（一）——模拟登录</a></li>
-<li>校外下载北邮人BT资源（二）——资源下载</li>
-</ol>
+          <p>如果问大家离开北邮最不舍的东西是什么？很多人肯定会脱口而出：北邮人BT！显然，北邮人BT已经融为每个BYR生活的一部分了。那么就从这个网站下手，练一练Python的爬虫吧。</p>
+<p>很早之前写这篇文章时，对下载北邮人BT的资源的理解是先通过模拟北邮人BT登录，然后用代码下载资源。现在觉得这么做太复杂了，所以这篇文章就改成用python模拟登录北邮人BT的教程吧。</p>
 <img src="/2017/08/25/byrbt-login/head.jpg" alt="head.jpg" title="">
           <!--noindex-->
           <div class="post-button text-center">
@@ -1044,10 +1040,10 @@
       
         
           <h2 id="ECharts简介"><a href="#ECharts简介" class="headerlink" title="ECharts简介"></a>ECharts简介</h2><p>最近在实习的时候用到了ECharts。最刚开始我以为这个只能在前端通过js调用，对于我用python画图没帮助。可是自从再一次刷Github的时候发现了一个神器，激动地我差点睡不着了！这个就是<a href="https://github.com/chenjiandongx/pyecharts" target="_blank" rel="external">pyecharts</a>！这简直是神器啊，可以通过python调用ECharts的js接口然后就返回了画好的图~而且这个是可以交互的，比如下图，你就可以感受一下~~（利润，支出，收入三个标签也是可以点击的哦~）</p>
-<div id="echarts1829" style="width: 81%;height: 400px;margin: 0 auto"></div>
+<div id="echarts9415" style="width: 81%;height: 400px;margin: 0 auto"></div>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts1829'));
+        var myChart = echarts.init(document.getElementById('echarts9415'));
 
         // 指定图表的配置项和数据
         var option = {
@@ -1962,6 +1958,7 @@
 
 
           </div>
+
           
 
 
