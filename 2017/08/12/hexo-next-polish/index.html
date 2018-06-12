@@ -432,10 +432,10 @@
 </ol>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"><span class="keyword">var</span> OriginTitile=<span class="built_in">document</span>.title,st;<span class="built_in">document</span>.addEventListener(<span class="string">"visibilitychange"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">document</span>.hidden?(<span class="built_in">document</span>.title=<span class="string">"负雪明烛在这里等你"</span>,clearTimeout(st)):(<span class="built_in">document</span>.title=<span class="string">"Got ya~~"</span>+OriginTitile,st=setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">document</span>.title=OriginTitile&#125;,<span class="number">3e3</span>))&#125;)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <h2 id="在Hexo中使用ECharts实现动态图表"><a href="#在Hexo中使用ECharts实现动态图表" class="headerlink" title="在Hexo中使用ECharts实现动态图表"></a>在Hexo中使用ECharts实现动态图表</h2><p>EChart图表库是百度推出的在线网络画图库。非常好用，比如下面这张图，注意，’利润’, ‘支出’, ‘收入’，这些标签是可以点击的哦！有交互效果！</p>
-<div id="echarts9309" style="width: 81%;height: 400px;margin: 0 auto"></div>
+<div id="echarts6535" style="width: 81%;height: 400px;margin: 0 auto"></div>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts9309'));
+        var myChart = echarts.init(document.getElementById('echarts6535'));
 
         // 指定图表的配置项和数据
         var option = {
@@ -537,21 +537,21 @@
         <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
   <div>如果满分10分，你会给这篇文章打几分？</div>
   <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>Donate</span>
+    <span>赞赏</span>
   </button>
-  <div id="QR" style="display: none;">
+  <div id="QR" style="display: block;">
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="负雪明烛 WeChat Pay"/>
-        <p>WeChat Pay</p>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="负雪明烛 微信"/>
+        <p>微信</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="负雪明烛 Alipay"/>
-        <p>Alipay</p>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="负雪明烛 支付宝"/>
+        <p>支付宝</p>
       </div>
     
 
@@ -563,6 +563,24 @@
       </div>
     
 
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    负雪明烛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://fuxuemingzhu.me/2017/08/12/hexo-next-polish/" title="让你的Hexo博客变得更酷炫">http://fuxuemingzhu.me/2017/08/12/hexo-next-polish/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
@@ -686,7 +704,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -708,7 +726,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
