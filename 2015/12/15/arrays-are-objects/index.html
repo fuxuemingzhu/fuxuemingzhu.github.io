@@ -1,8 +1,941 @@
-<!-- build time:Wed Jan 23 2019 11:42:49 GMT+0800 (CST) --><!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png?v=5.1.4"><link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=5.1.4"><link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=5.1.4"><link rel="mask-icon" href="/images/avatar.png?v=5.1.4" color="#222"><meta name="keywords" content="java,"><meta name="description" content="起源事件起源是论坛里的一篇帖子，关于数组的.lenth多次调用是否会影响效率，回帖中发现有人说数组是类，调用类的.lenth属性就是看一下值，速度不会慢，云云。然后我就非常不同意的问人家“数组是对象？”，其实有点故意挑毛病的味道，但正是我这句话引起了论坛里较真的同学们的批判，事实证明，我错了，数组就是对象。"><meta name="keywords" content="java"><meta property="og:type" content="article"><meta property="og:title" content="数组竟然是对象"><meta property="og:url" content="http://fuxuemingzhu.me/2015/12/15/arrays-are-objects/index.html"><meta property="og:site_name" content="负雪明烛的博客"><meta property="og:description" content="起源事件起源是论坛里的一篇帖子，关于数组的.lenth多次调用是否会影响效率，回帖中发现有人说数组是类，调用类的.lenth属性就是看一下值，速度不会慢，云云。然后我就非常不同意的问人家“数组是对象？”，其实有点故意挑毛病的味道，但正是我这句话引起了论坛里较真的同学们的批判，事实证明，我错了，数组就是对象。"><meta property="og:locale" content="zh-Hans"><meta property="og:image" content="http://bbs.byr.cn/att/Java/0/46465/361"><meta property="og:image" content="http://i.imgur.com/BLs4Bzk.jpg"><meta property="og:image" content="http://i.imgur.com/CDbujlN.jpg"><meta property="og:updated_time" content="2017-08-11T08:05:58.000Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="数组竟然是对象"><meta name="twitter:description" content="起源事件起源是论坛里的一篇帖子，关于数组的.lenth多次调用是否会影响效率，回帖中发现有人说数组是类，调用类的.lenth属性就是看一下值，速度不会慢，云云。然后我就非常不同意的问人家“数组是对象？”，其实有点故意挑毛病的味道，但正是我这句话引起了论坛里较真的同学们的批判，事实证明，我错了，数组就是对象。"><meta name="twitter:image" content="http://bbs.byr.cn/att/Java/0/46465/361"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",version:"5.1.4",sidebar:{position:"left",display:"post",offset:12,b2t:!1,scrollpercent:!1,onmobile:!1},fancybox:!0,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://fuxuemingzhu.me/2015/12/15/arrays-are-objects/"><title>数组竟然是对象 | 负雪明烛的博客</title><script type="text/javascript">var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?720cd3f4909308ad8a7cac68733c0a19";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">负雪明烛的博客</span> <span class="logo-line-after"><i></i></span></a></div><h1 class="site-subtitle" itemprop="description">好好学习，努力成为渣硕</h1></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于我</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签云</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-guestbook"><a href="/guestbook/" rel="section"><i class="menu-item-icon fa fa-fw fa-commenting"></i><br>留言板</a></li><li class="menu-item menu-item-drawing"><a href="/drawing/" rel="section"><i class="menu-item-icon fa fa-fw fa-picture-o"></i><br>菜菜手绘坊</a></li></ul></nav></div></header><script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2015/12/15/arrays-are-objects/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="负雪明烛"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.png"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="负雪明烛的博客"></span><header class="post-header"><h2 class="post-title" itemprop="name headline">数组竟然是对象</h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-15T18:58:11+08:00">2015-12-15 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">术业专攻</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/2015/12/15/arrays-are-objects/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/15/arrays-are-objects/" itemprop="commentCount"></span> </a></span><span class="post-meta-divider">|</span> <span class="page-pv">热度 <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>℃</span></div></header><div class="post-body" itemprop="articleBody"><h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>事件起源是论坛里的一篇帖子，关于数组的.lenth多次调用是否会影响效率，回帖中发现有人说数组是类，调用类的.lenth属性就是看一下值，速度不会慢，云云。然后我就非常不同意的问人家“数组是对象？”，其实有点故意挑毛病的味道，但正是我这句话引起了论坛里较真的同学们的批判，事实证明，我错了，数组就是对象。</p><a id="more"></a><h2 id="经过"><a href="#经过" class="headerlink" title="经过"></a>经过</h2><p>论坛里同学也给出了比较合理的反驳理由，就是下面这张图：</p><p><img src="http://bbs.byr.cn/att/Java/0/46465/361" alt=""></p><p>已经比较直观地说明数组是<strong>Object</strong>类的<strong>子类</strong>了，也就是说数组是对象。</p><p>但是我并不这么认为，因为我是从C,C++一步步学过来的，在我印象之中，C里面的数组就是内存中的连续的一段数据，数组的名称就是内存地址的开始位置的指针。后来这个想法就一直持续到C++里和java里。当然C里面并没有对象的说法，但是C++和java里面都有对象的说法。对于C++中，数组是不是对象我已经完全不知道了，我估计也是内存的物理地址，通过更改数组的下标就可以访问到数组的不同地址的元素。java里面我也理所当然的这么认为了。</p><p>当然，有很多机会都可以向我说明数组是对象，比如<code>array.length</code>，我在今天以前都认为这是java的一个为数组设计的简便获取数组长度的方式，并不认为是调用类的属性。更让我信以为真的是<code>length</code>后面没有<code>()</code>，说明不是方法。这种思维根深蒂固。</p><p>在上图中，数组通过<code>new</code>的方式构建出来，并没有类的声明，构造方法等，我和同学说，数组理论上来说不是类，只是JVM在处理的时候非常向一个类那样处理了。有较真的同学就更进一步指出，数组理论上来说就是一个类。</p><p>底下就完全暴露出我的不足与无知了，我反问同学：</p><blockquote><p>是对象就得有类吧？构建对象怎么构建？对象内存存放位置在哪？</p></blockquote><p>还是我太无知了，我仍然天真的以为，构建对象需要用类，声明对象需要用类来声明、构造方法来完成构建，而且更要命的是我认为数组存放位置在内存中的<strong>栈</strong>中，所以我认为这几个问题都说明数组不是一个类。</p><p>同学的回答非常有说服力：</p><blockquote><p>你的类难道就只是指硬盘上的.class文件？对象都是放堆上，一般是eden上，除非特别大，那就直接进老年代。hotspot虚拟机对象头元数据引用指向方法区的类元数据。类加载进来就放方法区。这种基础问题你就不用研究虚拟机了，多看看书</p></blockquote><p>我还想继续反驳，但是我先去百度了一下，几乎所有人都认为数组是对象，理由就是上面那张图。而且有<strong>一切皆对象</strong>的说法。</p><p>有个帖子的分类比较好，我认为一定程度上解决了我的困惑：</p><p>引用数据类型<br>java数据类型图：</p><pre><code>                 ┏数值型━┳━整数型：byte short int long
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/avatar.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="起源事件起源是论坛里的一篇帖子，关于数组的.lenth多次调用是否会影响效率，回帖中发现有人说数组是类，调用类的.lenth属性就是看一下值，速度不会慢，云云。然后我就非常不同意的问人家“数组是对象？”，其实有点故意挑毛病的味道，但正是我这句话引起了论坛里较真的同学们的批判，事实证明，我错了，数组就是对象。">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数组竟然是对象">
+<meta property="og:url" content="http://fuxuemingzhu.me/2015/12/15/arrays-are-objects/index.html">
+<meta property="og:site_name" content="负雪明烛的博客">
+<meta property="og:description" content="起源事件起源是论坛里的一篇帖子，关于数组的.lenth多次调用是否会影响效率，回帖中发现有人说数组是类，调用类的.lenth属性就是看一下值，速度不会慢，云云。然后我就非常不同意的问人家“数组是对象？”，其实有点故意挑毛病的味道，但正是我这句话引起了论坛里较真的同学们的批判，事实证明，我错了，数组就是对象。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://bbs.byr.cn/att/Java/0/46465/361">
+<meta property="og:image" content="http://i.imgur.com/BLs4Bzk.jpg">
+<meta property="og:image" content="http://i.imgur.com/CDbujlN.jpg">
+<meta property="og:updated_time" content="2017-08-11T08:05:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数组竟然是对象">
+<meta name="twitter:description" content="起源事件起源是论坛里的一篇帖子，关于数组的.lenth多次调用是否会影响效率，回帖中发现有人说数组是类，调用类的.lenth属性就是看一下值，速度不会慢，云云。然后我就非常不同意的问人家“数组是对象？”，其实有点故意挑毛病的味道，但正是我这句话引起了论坛里较真的同学们的批判，事实证明，我错了，数组就是对象。">
+<meta name="twitter:image" content="http://bbs.byr.cn/att/Java/0/46465/361">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://fuxuemingzhu.me/2015/12/15/arrays-are-objects/"/>
+
+
+
+
+
+  <title>数组竟然是对象 | 负雪明烛的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?720cd3f4909308ad8a7cac68733c0a19";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">负雪明烛的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">好好学习，努力成为渣硕</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签云
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br />
+            
+            留言板
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-drawing">
+          <a href="/drawing/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-picture-o"></i> <br />
+            
+            菜菜手绘坊
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+<script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2015/12/15/arrays-are-objects/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="负雪明烛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="负雪明烛的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">数组竟然是对象</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-15T18:58:11+08:00">
+                2015-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">术业专攻</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/12/15/arrays-are-objects/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/12/15/arrays-are-objects/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">热度
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>℃
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!-- build time:Wed Jan 23 2019 14:39:31 GMT+0800 (CST) --><h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>事件起源是论坛里的一篇帖子，关于数组的.lenth多次调用是否会影响效率，回帖中发现有人说数组是类，调用类的.lenth属性就是看一下值，速度不会慢，云云。然后我就非常不同意的问人家“数组是对象？”，其实有点故意挑毛病的味道，但正是我这句话引起了论坛里较真的同学们的批判，事实证明，我错了，数组就是对象。</p><a id="more"></a><h2 id="经过"><a href="#经过" class="headerlink" title="经过"></a>经过</h2><p>论坛里同学也给出了比较合理的反驳理由，就是下面这张图：</p><p><img src="http://bbs.byr.cn/att/Java/0/46465/361" alt=""></p><p>已经比较直观地说明数组是<strong>Object</strong>类的<strong>子类</strong>了，也就是说数组是对象。</p><p>但是我并不这么认为，因为我是从C,C++一步步学过来的，在我印象之中，C里面的数组就是内存中的连续的一段数据，数组的名称就是内存地址的开始位置的指针。后来这个想法就一直持续到C++里和java里。当然C里面并没有对象的说法，但是C++和java里面都有对象的说法。对于C++中，数组是不是对象我已经完全不知道了，我估计也是内存的物理地址，通过更改数组的下标就可以访问到数组的不同地址的元素。java里面我也理所当然的这么认为了。</p><p>当然，有很多机会都可以向我说明数组是对象，比如<code>array.length</code>，我在今天以前都认为这是java的一个为数组设计的简便获取数组长度的方式，并不认为是调用类的属性。更让我信以为真的是<code>length</code>后面没有<code>()</code>，说明不是方法。这种思维根深蒂固。</p><p>在上图中，数组通过<code>new</code>的方式构建出来，并没有类的声明，构造方法等，我和同学说，数组理论上来说不是类，只是JVM在处理的时候非常向一个类那样处理了。有较真的同学就更进一步指出，数组理论上来说就是一个类。</p><p>底下就完全暴露出我的不足与无知了，我反问同学：</p><blockquote><p>是对象就得有类吧？构建对象怎么构建？对象内存存放位置在哪？</p></blockquote><p>还是我太无知了，我仍然天真的以为，构建对象需要用类，声明对象需要用类来声明、构造方法来完成构建，而且更要命的是我认为数组存放位置在内存中的<strong>栈</strong>中，所以我认为这几个问题都说明数组不是一个类。</p><p>同学的回答非常有说服力：</p><blockquote><p>你的类难道就只是指硬盘上的.class文件？对象都是放堆上，一般是eden上，除非特别大，那就直接进老年代。hotspot虚拟机对象头元数据引用指向方法区的类元数据。类加载进来就放方法区。这种基础问题你就不用研究虚拟机了，多看看书</p></blockquote><p>我还想继续反驳，但是我先去百度了一下，几乎所有人都认为数组是对象，理由就是上面那张图。而且有<strong>一切皆对象</strong>的说法。</p><p>有个帖子的分类比较好，我认为一定程度上解决了我的困惑：</p><p>引用数据类型<br>java数据类型图：</p><pre><code>                 ┏数值型━┳━整数型：byte short int long
        ┏基本数据类型━━┫   ┗━浮点型：float do
        ┃         ┣字符型：char                                          
 数据类型╋         ┗布尔型：boolean             
        ┃         ┏类（class）
        ┗引用数据类型━━╋接口（interface）
                   ┗数组（array）
-</code></pre><p>其实如果看到这里，把数组当成引用数据类型就解决了我的困惑。</p><p>我不放心，又去Google.</p><blockquote><p>java arrays are objects?</p></blockquote><p>结果让我震惊，所有的人全部都在说是的。</p><p>甚至还放出了Oracal的文档，第一句就是：</p><blockquote><p>In the Java programming language, arrays are objects (§4.3.1), are dynamically created, and may be assigned to variables of type Object (§4.3.2). All methods of class Object may be invoked on an array.</p></blockquote><p>网址：<a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-10.html" target="_blank" rel="external">http://docs.oracle.com/javase/specs/jls/se7/html/jls-10.html</a></p><p>这就让我不淡定了。</p><p>同时还有这种说法：</p><blockquote><p>An object is a class instance or an array.</p></blockquote><p>这就说明了我的理解是错的，一个对象是一个类的实例后者是数组。</p><p>查阅更多资料后发现，数组属于特殊的类，是有JVM创建的，不像代码那样的天真。</p><p>在<a href="http://math.hws.edu/javanotes/c5/s1.html#OOP.1.4" target="_blank" rel="external">http://math.hws.edu/javanotes/c5/s1.html#OOP.1.4</a>网址的5.1.4中，有更详细的说明。</p><blockquote><p>As I noted in Subsection 3.8.1, arrays are objects. Like Strings they are special objects, with their own unique syntax. An array type such as int[] or String[] is actually a class, and arrays are created using a special version of the new operator. As in the case for other object variables, an array variable can never hold an actual array – only a reference to an array object. The array object itself exists in the heap. It is possible for an array variable to hold the value null, which means there is no actual array.</p></blockquote><p>数组也可以指向<code>null</code>,它就是一个对象。</p><p>下面这个代码说明数组里可以包含对象，默认的对象并没有初始化，这里的对象是null.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Student[] classlist;  <span class="comment">// Declare a variable of type Student[].</span></div><div class="line">classlist = <span class="keyword">new</span> Student[<span class="number">30</span>];  <span class="comment">// The variable now points to an array.</span></div></pre></td></tr></table></figure><blockquote><p>The array has 30 elements, classlist[0], classlist[1], … classlist[29]. When the array is created, it is filled with the default initial value, which for an object type is null.</p></blockquote><p>如果需要实例化每个对象，需要这么做：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Student[] classlist;</div><div class="line">classlist = <span class="keyword">new</span> Student[<span class="number">30</span>];</div><div class="line"><span class="keyword">for</span> ( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">30</span>; i++ ) &#123;</div><div class="line">    classlist[i] = <span class="keyword">new</span> Student();</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>所以，综合这些，我确实错了。JVM可以不通过常规的类的实例化的方式构建对象。</p><p>还有最后一个问题，数组的内存存放方式，我之前认为数组放的是基本的数据类型，或者是引用数据类型（对象的引用），所以数组的存放位置是在<code>栈</code>区。</p><p>还是太天真了。</p><p>据<a href="http://www.cnblogs.com/hmiinyu/archive/2012/10/22/2732781.html" target="_blank" rel="external">http://www.cnblogs.com/hmiinyu/archive/2012/10/22/2732781.html</a>文章说法，数组存放方式和普通对象的存放方式相同。</p><p><img src="http://i.imgur.com/BLs4Bzk.jpg" alt=""></p><p>堆内存生成数组内容，栈内存存放数组的引用。</p><p>多维数组的存放方式如下：</p><p><img src="http://i.imgur.com/CDbujlN.jpg" alt=""></p><p>这篇文章真是好文章，适合一看。</p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>有时候学习东西就是先入为主，并且根深蒂固想当然。另外，这也暴露了自己的不足，就是对java自己认为很熟的东西其实并不一定是对的，另外JVM的知识我简直就是小白。总而言之，自己水平还是非常有限，需要更一步的学习。</p></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>如果满分10分，你会给这篇文章打几分？</div><button id="rewardButton" disable="enable" onclick='var e=document.getElementById("QR");"none"===e.style.display?e.style.display="block":e.style.display="none"'><span>赞赏</span></button><div id="QR" style="display:block"><div id="wechat" style="display:inline-block"><img id="wechat_qr" src="/images/wechatpay.jpg" alt="负雪明烛 微信"><p>微信</p></div><div id="alipay" style="display:inline-block"><img id="alipay_qr" src="/images/alipay.jpg" alt="负雪明烛 支付宝"><p>支付宝</p></div></div></div></div><div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong> 负雪明烛</li><li class="post-copyright-link"><strong>本文链接：</strong> <a href="http://fuxuemingzhu.me/2015/12/15/arrays-are-objects/" title="数组竟然是对象">http://fuxuemingzhu.me/2015/12/15/arrays-are-objects/</a></li><li class="post-copyright-license"><strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！</li></ul></div><footer class="post-footer"><div class="post-tags"><a href="/tags/java/" rel="tag"># java</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2015/12/08/Hello-Hexo/" rel="next" title="Hello Hexo"><i class="fa fa-chevron-left"></i> Hello Hexo</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2015/12/18/Hello-LaTeX/" rel="prev" title="Hello LaTeX">Hello LaTeX <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"></div></div></div><div class="comments" id="comments"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview-wrap">站点概览</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="负雪明烛"><p class="site-author-name" itemprop="name">负雪明烛</p><p class="site-description motion-element" itemprop="description"></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">25</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">2</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">18</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/fuxuemingzhu" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a> </span><span class="links-of-author-item"><a href="http://blog.csdn.net/fuxuemingzhu" target="_blank" title="CSDN"><i class="fa fa-fw fa-link"></i>CSDN</a></span></div><div class="cc-license motion-element" itemprop="license"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a></div><div class="links-of-blogroll motion-element links-of-blogroll-inline"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-globe"></i> 友情链接</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="http://merrier.wang/" title="Merrier说" target="_blank">Merrier说</a></li></ul></div></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起源"><span class="nav-number">1.</span> <span class="nav-text">起源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经过"><span class="nav-number">2.</span> <span class="nav-text">经过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span> <span class="with-love"><i class="fa fa-user"></i> </span><span class="author" itemprop="copyrightHolder">负雪明烛</span></div><div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div><span class="post-meta-divider">|</span><div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div><div class="footer-custom">Hosted by <a href="https://pages.coding.me">Coding Pages</a></div><div class="busuanzi-count"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv">您是第 <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 个小伙伴 </span><span class="site-pv">本站总浏览 <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><script id="dsq-count-scr" src="https://fuxuemingzhu.disqus.com/count.js" async></script><script type="text/javascript">var disqus_config=function(){this.page.url="http://fuxuemingzhu.me/2015/12/15/arrays-are-objects/",this.page.identifier="2015/12/15/arrays-are-objects/",this.page.title="数组竟然是对象"},d=document,s=d.createElement("script");s.src="https://fuxuemingzhu.disqus.com/embed.js",s.setAttribute("data-timestamp",""+ +new Date),(d.head||d.body).appendChild(s)</script><script type="text/javascript" src="/js/src/love.js"></script><script type="text/javascript">var OriginTitile=document.title,st;document.addEventListener("visibilitychange",function(){document.hidden?(document.title="负雪明烛在这里等你",clearTimeout(st)):(document.title="Got ya~～(￣▽￣～)~",st=setTimeout(function(){document.title=OriginTitile},3e3))})</script></body></html><!-- rebuild by neat -->
+</code></pre><p>其实如果看到这里，把数组当成引用数据类型就解决了我的困惑。</p><p>我不放心，又去Google.</p><blockquote><p>java arrays are objects?</p></blockquote><p>结果让我震惊，所有的人全部都在说是的。</p><p>甚至还放出了Oracal的文档，第一句就是：</p><blockquote><p>In the Java programming language, arrays are objects (§4.3.1), are dynamically created, and may be assigned to variables of type Object (§4.3.2). All methods of class Object may be invoked on an array.</p></blockquote><p>网址：<a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-10.html" target="_blank" rel="external">http://docs.oracle.com/javase/specs/jls/se7/html/jls-10.html</a></p><p>这就让我不淡定了。</p><p>同时还有这种说法：</p><blockquote><p>An object is a class instance or an array.</p></blockquote><p>这就说明了我的理解是错的，一个对象是一个类的实例后者是数组。</p><p>查阅更多资料后发现，数组属于特殊的类，是有JVM创建的，不像代码那样的天真。</p><p>在<a href="http://math.hws.edu/javanotes/c5/s1.html#OOP.1.4" target="_blank" rel="external">http://math.hws.edu/javanotes/c5/s1.html#OOP.1.4</a>网址的5.1.4中，有更详细的说明。</p><blockquote><p>As I noted in Subsection 3.8.1, arrays are objects. Like Strings they are special objects, with their own unique syntax. An array type such as int[] or String[] is actually a class, and arrays are created using a special version of the new operator. As in the case for other object variables, an array variable can never hold an actual array – only a reference to an array object. The array object itself exists in the heap. It is possible for an array variable to hold the value null, which means there is no actual array.</p></blockquote><p>数组也可以指向<code>null</code>,它就是一个对象。</p><p>下面这个代码说明数组里可以包含对象，默认的对象并没有初始化，这里的对象是null.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Student[] classlist;  <span class="comment">// Declare a variable of type Student[].</span></div><div class="line">classlist = <span class="keyword">new</span> Student[<span class="number">30</span>];  <span class="comment">// The variable now points to an array.</span></div></pre></td></tr></table></figure><blockquote><p>The array has 30 elements, classlist[0], classlist[1], … classlist[29]. When the array is created, it is filled with the default initial value, which for an object type is null.</p></blockquote><p>如果需要实例化每个对象，需要这么做：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Student[] classlist;</div><div class="line">classlist = <span class="keyword">new</span> Student[<span class="number">30</span>];</div><div class="line"><span class="keyword">for</span> ( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">30</span>; i++ ) &#123;</div><div class="line">    classlist[i] = <span class="keyword">new</span> Student();</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>所以，综合这些，我确实错了。JVM可以不通过常规的类的实例化的方式构建对象。</p><p>还有最后一个问题，数组的内存存放方式，我之前认为数组放的是基本的数据类型，或者是引用数据类型（对象的引用），所以数组的存放位置是在<code>栈</code>区。</p><p>还是太天真了。</p><p>据<a href="http://www.cnblogs.com/hmiinyu/archive/2012/10/22/2732781.html" target="_blank" rel="external">http://www.cnblogs.com/hmiinyu/archive/2012/10/22/2732781.html</a>文章说法，数组存放方式和普通对象的存放方式相同。</p><p><img src="http://i.imgur.com/BLs4Bzk.jpg" alt=""></p><p>堆内存生成数组内容，栈内存存放数组的引用。</p><p>多维数组的存放方式如下：</p><p><img src="http://i.imgur.com/CDbujlN.jpg" alt=""></p><p>这篇文章真是好文章，适合一看。</p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>有时候学习东西就是先入为主，并且根深蒂固想当然。另外，这也暴露了自己的不足，就是对java自己认为很熟的东西其实并不一定是对的，另外JVM的知识我简直就是小白。总而言之，自己水平还是非常有限，需要更一步的学习。</p><!-- rebuild by neat -->
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果满分10分，你会给这篇文章打几分？</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赞赏</span>
+  </button>
+  <div id="QR" style="display: block;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="负雪明烛 微信"/>
+        <p>微信</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="负雪明烛 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    负雪明烛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://fuxuemingzhu.me/2015/12/15/arrays-are-objects/" title="数组竟然是对象">http://fuxuemingzhu.me/2015/12/15/arrays-are-objects/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/08/Hello-Hexo/" rel="next" title="Hello Hexo">
+                <i class="fa fa-chevron-left"></i> Hello Hexo
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/18/Hello-LaTeX/" rel="prev" title="Hello LaTeX">
+                Hello LaTeX <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="负雪明烛" />
+            
+              <p class="site-author-name" itemprop="name">负雪明烛</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fuxuemingzhu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://blog.csdn.net/fuxuemingzhu" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-link"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://merrier.wang/" title="Merrier说" target="_blank">Merrier说</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起源"><span class="nav-number">1.</span> <span class="nav-text">起源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经过"><span class="nav-number">2.</span> <span class="nav-text">经过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">负雪明烛</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+  <div class="footer-custom">Hosted by <a href="https://pages.coding.me">Coding Pages</a></div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      您是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      个小伙伴
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总浏览
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://fuxuemingzhu.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://fuxuemingzhu.me/2015/12/15/arrays-are-objects/';
+          this.page.identifier = '2015/12/15/arrays-are-objects/';
+          this.page.title = '数组竟然是对象';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://fuxuemingzhu.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<!-- 页面点击小心心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascript">var OriginTitile=document.title,st;document.addEventListener("visibilitychange",function(){document.hidden?(document.title="负雪明烛在这里等你",clearTimeout(st)):(document.title="Got ya~～(￣▽￣～)~",st=setTimeout(function(){document.title=OriginTitile},3e3))})</script>
+</body>
+</html>

@@ -1,1 +1,2198 @@
-<!-- build time:Wed Jan 23 2019 11:42:49 GMT+0800 (CST) --><!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png?v=5.1.4"><link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=5.1.4"><link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=5.1.4"><link rel="mask-icon" href="/images/avatar.png?v=5.1.4" color="#222"><meta name="keywords" content="负雪明烛,fuxuemingzhu,负雪明烛的博客"><meta name="description" content="苍山负雪，明烛天南"><meta property="og:type" content="website"><meta property="og:title" content="负雪明烛的博客"><meta property="og:url" content="http://fuxuemingzhu.me/index.html"><meta property="og:site_name" content="负雪明烛的博客"><meta property="og:description" content="苍山负雪，明烛天南"><meta property="og:locale" content="zh-Hans"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="负雪明烛的博客"><meta name="twitter:description" content="苍山负雪，明烛天南"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",version:"5.1.4",sidebar:{position:"left",display:"post",offset:12,b2t:!1,scrollpercent:!1,onmobile:!1},fancybox:!0,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://fuxuemingzhu.me/"><title>负雪明烛的博客</title><script type="text/javascript">var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?720cd3f4909308ad8a7cac68733c0a19";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-home"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">负雪明烛的博客</span> <span class="logo-line-after"><i></i></span></a></div><h1 class="site-subtitle" itemprop="description">好好学习，努力成为渣硕</h1></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于我</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签云</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-guestbook"><a href="/guestbook/" rel="section"><i class="menu-item-icon fa fa-fw fa-commenting"></i><br>留言板</a></li><li class="menu-item menu-item-drawing"><a href="/drawing/" rel="section"><i class="menu-item-icon fa fa-fw fa-picture-o"></i><br>菜菜手绘坊</a></li></ul></nav></div></header><script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><section id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2018/06/12/MovieLens-Recommender/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="负雪明烛"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.png"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="负雪明烛的博客"></span><header class="post-header"><h2 class="post-title" itemprop="name headline"><a class="post-title-link" href="/2018/06/12/MovieLens-Recommender/" itemprop="url">动手实现基于协同过滤的电影推荐系统</a></h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-12T18:34:59+08:00">2018-06-12 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">术业专攻</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/2018/06/12/MovieLens-Recommender/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/06/12/MovieLens-Recommender/" itemprop="commentCount"></span></a></span></div></header><div class="post-body" itemprop="articleBody"><p>项亮的《推荐系统实践》是一本面向推荐系统初学者的好书。这本书中间花了不少的篇幅去介绍了推荐系统中很重要的一个算法：协同过滤。囿于书中的篇幅限制，作者只给出了核心部分的代码。基于此书内容，我动手实现了基于用户的协同过滤算法和基于物品的协同过滤算法，并在MovieLens数据集上做了测试，效果令人满意。现在总结一下自己对协同过滤系统的理解和动手实践过程的经验。</p><p>本电影推荐系统已开源在：<a href="https://github.com/fuxuemingzhu/MovieLens-Recommender" target="_blank" rel="external">https://github.com/fuxuemingzhu/MovieLens-Recommender</a></p><img src="/2018/06/12/MovieLens-Recommender/2018/06/12/MovieLens-Recommender/head.jpg" alt="head.jpg"><div class="post-button text-center"><a class="btn" href="/2018/06/12/MovieLens-Recommender/" rel="contents">阅读全文 &raquo;</a></div></div><footer class="post-footer"><div class="post-eof"></div></footer></div></article><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2017/08/25/byrbt-login/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="负雪明烛"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.png"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="负雪明烛的博客"></span><header class="post-header"><h2 class="post-title" itemprop="name headline"><a class="post-title-link" href="/2017/08/25/byrbt-login/" itemprop="url">Python实现北邮人BT模拟登录</a></h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T14:53:14+08:00">2017-08-25 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">术业专攻</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/2017/08/25/byrbt-login/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/08/25/byrbt-login/" itemprop="commentCount"></span></a></span></div></header><div class="post-body" itemprop="articleBody"><p>如果问大家离开北邮最不舍的东西是什么？很多人肯定会脱口而出：北邮人BT！显然，北邮人BT已经融为每个BYR生活的一部分了。那么就从这个网站下手，练一练Python的爬虫吧。</p><p>很早之前写这篇文章时，对下载北邮人BT的资源的理解是先通过模拟北邮人BT登录，然后用代码下载资源。现在觉得这么做太复杂了，所以这篇文章就改成用python模拟登录北邮人BT的教程吧。</p><img src="/2017/08/25/byrbt-login/2017/08/25/byrbt-login/head.jpg" alt="head.jpg"><div class="post-button text-center"><a class="btn" href="/2017/08/25/byrbt-login/" rel="contents">阅读全文 &raquo;</a></div></div><footer class="post-footer"><div class="post-eof"></div></footer></div></article><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2017/08/12/hexo-next-polish/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="负雪明烛"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.png"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="负雪明烛的博客"></span><header class="post-header"><h2 class="post-title" itemprop="name headline"><a class="post-title-link" href="/2017/08/12/hexo-next-polish/" itemprop="url">让你的Hexo博客变得更酷炫</a></h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-12T20:42:32+08:00">2017-08-12 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">术业专攻</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/2017/08/12/hexo-next-polish/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/08/12/hexo-next-polish/" itemprop="commentCount"></span></a></span></div></header><div class="post-body" itemprop="articleBody"><p>最近有了审美强迫症，不仅让自己的Ubuntu变得很酷炫，还想把自己的博客变得更吸引眼球。调了两三天的博客，只为让博客变得更美。</p><p>记录一下我的调整的地方，也为了让大家更能看到我博客的亮点。</p><img src="/2017/08/12/hexo-next-polish/2017/08/12/hexo-next-polish/music.jpg" alt="music.jpg"><div class="post-button text-center"><a class="btn" href="/2017/08/12/hexo-next-polish/" rel="contents">阅读全文 &raquo;</a></div></div><footer class="post-footer"><div class="post-eof"></div></footer></div></article><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2017/08/12/byrbbs-login/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="负雪明烛"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.png"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="负雪明烛的博客"></span><header class="post-header"><h2 class="post-title" itemprop="name headline"><a class="post-title-link" href="/2017/08/12/byrbbs-login/" itemprop="url">Python实现北邮人论坛模拟登录</a></h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-12T14:29:48+08:00">2017-08-12 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">术业专攻</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/2017/08/12/byrbbs-login/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/08/12/byrbbs-login/" itemprop="commentCount"></span></a></span></div></header><div class="post-body" itemprop="articleBody"><p>模拟登录北邮人论坛可能是每个学着写爬虫的北邮人必备技能了。在网上和论坛上也有相关资料，但质量参差不齐，有些甚至不能实现模拟登录。因此，这里我使用requests库和urllib2库两种方法，分别实现了北邮人论坛的模拟登录。</p><p>教程所需环境：</p><ul><li>Python 2.x</li><li>requests 库</li></ul><img src="/2017/08/12/byrbbs-login/2017/08/12/byrbbs-login/laptop.jpg" alt="laptop.jpg"><div class="post-button text-center"><a class="btn" href="/2017/08/12/byrbbs-login/" rel="contents">阅读全文 &raquo;</a></div></div><footer class="post-footer"><div class="post-eof"></div></footer></div></article><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2017/08/11/hexo-wrong-I-found/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="负雪明烛"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.png"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="负雪明烛的博客"></span><header class="post-header"><h2 class="post-title" itemprop="name headline"><a class="post-title-link" href="/2017/08/11/hexo-wrong-I-found/" itemprop="url">在Hexo中我踩过的坑</a></h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-11T10:49:23+08:00">2017-08-11 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">术业专攻</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/2017/08/11/hexo-wrong-I-found/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/08/11/hexo-wrong-I-found/" itemprop="commentCount"></span></a></span></div></header><div class="post-body" itemprop="articleBody"><p>为什么要开这篇文章？就是因为我这两天已经被Hexo折腾得够呛！</p><p>诚然，Hexo一键部署博客给写作带来了很大的便利，但是不可否认的是，Hexo的错误让人摸不到头脑，只有反复尝试才能得出正确结果。</p><p>因此，奉劝大家，不要瞎升级Hexo！不要瞎改动Hexo！不要瞎折腾Hexo！</p><p>这里记录下我踩过的各种坑，留给大家排坑，也方便自己以后查找问题。</p><img src="/2017/08/11/hexo-wrong-I-found/2017/08/11/hexo-wrong-I-found/nature.jpg" alt="nature.jpg"><div class="post-button text-center"><a class="btn" href="/2017/08/11/hexo-wrong-I-found/" rel="contents">阅读全文 &raquo;</a></div></div><footer class="post-footer"><div class="post-eof"></div></footer></div></article><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2017/08/10/echarts-hexo/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="负雪明烛"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.png"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="负雪明烛的博客"></span><header class="post-header"><h2 class="post-title" itemprop="name headline"><a class="post-title-link" href="/2017/08/10/echarts-hexo/" itemprop="url">在Hexo的Next主题中使用ECharts画图工具</a></h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T10:49:23+08:00">2017-08-10 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">术业专攻</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/2017/08/10/echarts-hexo/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/08/10/echarts-hexo/" itemprop="commentCount"></span></a></span></div></header><div class="post-body" itemprop="articleBody"><h2 id="ECharts简介"><a href="#ECharts简介" class="headerlink" title="ECharts简介"></a>ECharts简介</h2><p>最近在实习的时候用到了ECharts。最刚开始我以为这个只能在前端通过js调用，对于我用python画图没帮助。可是自从再一次刷Github的时候发现了一个神器，激动地我差点睡不着了！这个就是<a href="https://github.com/chenjiandongx/pyecharts" target="_blank" rel="external">pyecharts</a>！这简直是神器啊，可以通过python调用ECharts的js接口然后就返回了画好的图~而且这个是可以交互的，比如下图，你就可以感受一下~~（利润，支出，收入三个标签也是可以点击的哦~）</p><div id="echarts3091" style="width:81%;height:400px;margin:0 auto"></div><script type="text/javascript">var myChart=echarts.init(document.getElementById("echarts3091")),option={tooltip:{trigger:"axis",axisPointer:{type:"shadow"}},legend:{data:["利润","支出","收入"]},grid:{left:"3%",right:"4%",bottom:"3%",containLabel:!0},xAxis:[{type:"value"}],yAxis:[{type:"category",axisTick:{show:!1},data:["周一","周二","周三","周四","周五","周六","周日"]}],series:[{name:"利润",type:"bar",itemStyle:{normal:{label:{show:!0,position:"inside"}}},data:[200,170,240,244,200,220,210]},{name:"收入",type:"bar",stack:"总量",itemStyle:{normal:{label:{show:!0}}},data:[320,302,341,374,390,450,420]},{name:"支出",type:"bar",stack:"总量",itemStyle:{normal:{label:{show:!0,position:"left"}}},data:[-120,-132,-101,-134,-190,-230,-210]}]};myChart.setOption(option)</script><div class="post-button text-center"><a class="btn" href="/2017/08/10/echarts-hexo/" rel="contents">阅读全文 &raquo;</a></div></div><footer class="post-footer"><div class="post-eof"></div></footer></div></article><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2017/07/20/welcome-back/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="负雪明烛"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.png"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="负雪明烛的博客"></span><header class="post-header"><h2 class="post-title" itemprop="name headline"><a class="post-title-link" href="/2017/07/20/welcome-back/" itemprop="url">阔别许久，欢迎回来~~</a></h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-20T19:46:05+08:00">2017-07-20 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/life/" itemprop="url" rel="index"><span itemprop="name">生活随笔</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/2017/07/20/welcome-back/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/07/20/welcome-back/" itemprop="commentCount"></span></a></span></div></header><div class="post-body" itemprop="articleBody"><p>不知不觉已经离开一年多了，现在的我已经是准研究生一枚了，于是重新拾起了这个博客~~</p><p>原来我去年就已经申请到了GitHub的student pack，这样的话我就能用了Digital Ocean的服务器50元的代金券，还有免费一年的fuxuemingzhu.me的域名了。哈哈哈哈~~</p><p>租了一台Digtial Ocean的服务器，成功的搭建了ss，现在通过ipv6访问外网的速度达到了12M/s，看国外视频都是1080p还不卡的，果然还是自己做来的比较爽呀，中间还学到了很多故障处理的方式。</p><p>之前租过两台服务器，分别是阿里云和腾讯云，但我都没用过……就在那里闲着感觉很浪费啊，这个DO服务器已经开始用来走ss啦，还是挺有用的，另外这个博客也是搭建在上面的。</p><p>顺便做个小广告吧，欢迎大家使用我的推荐码注册DO啊，这样你可以得到10美元的代金券，我也能赚到一点，嘻嘻，就是这个链接：<a href="https://m.do.co/c/86d4e56f6c7a" target="_blank" rel="external">https://m.do.co/c/86d4e56f6c7a</a></p><p>凡是使用上面这个链接注册DO服务器的，我教你怎么搭建SS科学上网~~</p><p>喔喔，如果不想自己购买服务器还想畅快的科学上网的，直接给我发邮件，我给你开个账号也就行啦，费用好说好说~~</p><p>欢迎大家来我的博客里赏光哈，如果想联系我，可以从导航栏里看到“关于我”就行啦~</p></div><footer class="post-footer"><div class="post-eof"></div></footer></div></article><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2016/04/19/lianjia-interview-experience/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="负雪明烛"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.png"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="负雪明烛的博客"></span><header class="post-header"><h2 class="post-title" itemprop="name headline"><a class="post-title-link" href="/2016/04/19/lianjia-interview-experience/" itemprop="url">首次面试经验总结</a></h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-19T22:31:59+08:00">2016-04-19 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">术业专攻</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/2016/04/19/lianjia-interview-experience/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/19/lianjia-interview-experience/" itemprop="commentCount"></span></a></span></div></header><div class="post-body" itemprop="articleBody"><p>参加了一个面试，之后发现我的技术基本功完全就是渣！而且以前学过的都忘完了！回答的效果自己都感觉看不下去了。</p><p>不过还是感谢两位面试官能够花这么多时间和我交流。让我学习了很多。</p><p>别忘了，Show me the code!</p><p>下面就技术和知识两个方面进行分析。</p><div class="post-button text-center"><a class="btn" href="/2016/04/19/lianjia-interview-experience/" rel="contents">阅读全文 &raquo;</a></div></div><footer class="post-footer"><div class="post-eof"></div></footer></div></article><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2016/04/15/parter-end/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="负雪明烛"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.png"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="负雪明烛的博客"></span><header class="post-header"><h2 class="post-title" itemprop="name headline"><a class="post-title-link" href="/2016/04/15/parter-end/" itemprop="url">2016.04 阶段性总结</a></h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-15T23:25:54+08:00">2016-04-15 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/life/" itemprop="url" rel="index"><span itemprop="name">生活随笔</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/2016/04/15/parter-end/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/15/parter-end/" itemprop="commentCount"></span></a></span></div></header><div class="post-body" itemprop="articleBody"><p>这是一份阶段性总结。虽然并没有明显的分界线，但我感觉过了这么久，总该写点什么吧，给以后的自己看。碰巧也遇到不少烦心事，闲着也是闲着，趁这种干不了其他事的时候自己反思一下自己罢。</p><p>这是篇给自己看的保留文章，完全是想到哪写到哪，特别没意思，游客止步吧。</p><img src="/2016/04/15/parter-end/2016/04/15/parter-end/pic.jpg" alt="pic.jpg"><div class="post-button text-center"><a class="btn" href="/2016/04/15/parter-end/" rel="contents">阅读全文 &raquo;</a></div></div><footer class="post-footer"><div class="post-eof"></div></footer></div></article><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2016/03/29/java-read-book-notes/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="负雪明烛"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.png"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="负雪明烛的博客"></span><header class="post-header"><h2 class="post-title" itemprop="name headline"><a class="post-title-link" href="/2016/03/29/java-read-book-notes/" itemprop="url">Java读书笔记</a></h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-29T16:34:25+08:00">2016-03-29 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">术业专攻</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/2016/03/29/java-read-book-notes/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/29/java-read-book-notes/" itemprop="commentCount"></span></a></span></div></header><div class="post-body" itemprop="articleBody"><h1 id="Java必须知道的300个问题"><a href="#Java必须知道的300个问题" class="headerlink" title="Java必须知道的300个问题"></a>Java必须知道的300个问题</h1><p>这本书是在图书馆随便逛的时候找到的书。花了一下午看完了，感觉有用的地方不是很多，大部分都是些概念，并没有太大用途。里边有些东西还是可以看一看的，总结如下。</p><img src="/2016/03/29/java-read-book-notes/2016/03/29/java-read-book-notes/300-questions.jpg" alt="Java必须知道的300个问题" title="Java必须知道的300个问题"><p>当前写完这本书笔记的时间是：2016/3/29 19:52:26</p><div class="post-button text-center"><a class="btn" href="/2016/03/29/java-read-book-notes/" rel="contents">阅读全文 &raquo;</a></div></div><footer class="post-footer"><div class="post-eof"></div></footer></div></article></section><nav class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a></nav></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><section class="site-overview-wrap sidebar-panel sidebar-panel-active"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="负雪明烛"><p class="site-author-name" itemprop="name">负雪明烛</p><p class="site-description motion-element" itemprop="description"></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">25</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">2</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">18</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/fuxuemingzhu" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a> </span><span class="links-of-author-item"><a href="http://blog.csdn.net/fuxuemingzhu" target="_blank" title="CSDN"><i class="fa fa-fw fa-link"></i>CSDN</a></span></div><div class="cc-license motion-element" itemprop="license"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a></div><div class="links-of-blogroll motion-element links-of-blogroll-inline"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-globe"></i> 友情链接</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="http://merrier.wang/" title="Merrier说" target="_blank">Merrier说</a></li></ul></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span> <span class="with-love"><i class="fa fa-user"></i> </span><span class="author" itemprop="copyrightHolder">负雪明烛</span></div><div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div><span class="post-meta-divider">|</span><div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div><div class="footer-custom">Hosted by <a href="https://pages.coding.me">Coding Pages</a></div><div class="busuanzi-count"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv">您是第 <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 个小伙伴 </span><span class="site-pv">本站总浏览 <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><script id="dsq-count-scr" src="https://fuxuemingzhu.disqus.com/count.js" async></script><script type="text/javascript" src="/js/src/love.js"></script><script type="text/javascript">var OriginTitile=document.title,st;document.addEventListener("visibilitychange",function(){document.hidden?(document.title="负雪明烛在这里等你",clearTimeout(st)):(document.title="Got ya~～(￣▽￣～)~",st=setTimeout(function(){document.title=OriginTitile},3e3))})</script></body></html><!-- rebuild by neat -->
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/avatar.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="负雪明烛,fuxuemingzhu,负雪明烛的博客" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="苍山负雪，明烛天南">
+<meta property="og:type" content="website">
+<meta property="og:title" content="负雪明烛的博客">
+<meta property="og:url" content="http://fuxuemingzhu.me/index.html">
+<meta property="og:site_name" content="负雪明烛的博客">
+<meta property="og:description" content="苍山负雪，明烛天南">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="负雪明烛的博客">
+<meta name="twitter:description" content="苍山负雪，明烛天南">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://fuxuemingzhu.me/"/>
+
+
+
+
+
+  <title>负雪明烛的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?720cd3f4909308ad8a7cac68733c0a19";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">负雪明烛的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">好好学习，努力成为渣硕</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签云
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br />
+            
+            留言板
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-drawing">
+          <a href="/drawing/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-picture-o"></i> <br />
+            
+            菜菜手绘坊
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+<script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2018/06/12/MovieLens-Recommender/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="负雪明烛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="负雪明烛的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/MovieLens-Recommender/" itemprop="url">动手实现基于协同过滤的电影推荐系统</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-12T18:34:59+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">术业专攻</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/12/MovieLens-Recommender/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/12/MovieLens-Recommender/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <!-- build time:Wed Jan 23 2019 14:39:31 GMT+0800 (CST) --><p>项亮的《推荐系统实践》是一本面向推荐系统初学者的好书。这本书中间花了不少的篇幅去介绍了推荐系统中很重要的一个算法：协同过滤。囿于书中的篇幅限制，作者只给出了核心部分的代码。基于此书内容，我动手实现了基于用户的协同过滤算法和基于物品的协同过滤算法，并在MovieLens数据集上做了测试，效果令人满意。现在总结一下自己对协同过滤系统的理解和动手实践过程的经验。</p><p>本电影推荐系统已开源在：<a href="https://github.com/fuxuemingzhu/MovieLens-Recommender" target="_blank" rel="external">https://github.com/fuxuemingzhu/MovieLens-Recommender</a></p><img src="/2018/06/12/MovieLens-Recommender/head.jpg" alt="head.jpg">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/12/MovieLens-Recommender/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2017/08/25/byrbt-login/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="负雪明烛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="负雪明烛的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/25/byrbt-login/" itemprop="url">Python实现北邮人BT模拟登录</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T14:53:14+08:00">
+                2017-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">术业专攻</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/25/byrbt-login/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/25/byrbt-login/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <!-- build time:Wed Jan 23 2019 14:39:31 GMT+0800 (CST) --><p>如果问大家离开北邮最不舍的东西是什么？很多人肯定会脱口而出：北邮人BT！显然，北邮人BT已经融为每个BYR生活的一部分了。那么就从这个网站下手，练一练Python的爬虫吧。</p><p>很早之前写这篇文章时，对下载北邮人BT的资源的理解是先通过模拟北邮人BT登录，然后用代码下载资源。现在觉得这么做太复杂了，所以这篇文章就改成用python模拟登录北邮人BT的教程吧。</p><img src="/2017/08/25/byrbt-login/head.jpg" alt="head.jpg">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/25/byrbt-login/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2017/08/12/hexo-next-polish/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="负雪明烛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="负雪明烛的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/12/hexo-next-polish/" itemprop="url">让你的Hexo博客变得更酷炫</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-12T20:42:32+08:00">
+                2017-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">术业专攻</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/12/hexo-next-polish/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/12/hexo-next-polish/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!-- build time:Wed Jan 23 2019 14:39:31 GMT+0800 (CST) --><p>最近有了审美强迫症，不仅让自己的Ubuntu变得很酷炫，还想把自己的博客变得更吸引眼球。调了两三天的博客，只为让博客变得更美。</p><p>记录一下我的调整的地方，也为了让大家更能看到我博客的亮点。</p><img src="/2017/08/12/hexo-next-polish/music.jpg" alt="music.jpg"><p>由于本博客使用的是Next主题，不同主题的调整方式可能略有不同。大家可以根据自己的主题进行模仿调整。</p><h2 id="鼠标点击出现小心心"><a href="#鼠标点击出现小心心" class="headerlink" title="鼠标点击出现小心心"></a>鼠标点击出现小心心</h2><ol><li><p>把<a href="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/js/src/love.js" target="_blank" rel="external">love.js</a>放到 <code>\themes\next\source\js\src</code> 文件目录下。</p></li><li><p>找到 <code>\themes\next\layout\_layout.swig</code> 文件， 在文件的后面，<code>&lt;/body&gt;</code> 标签之前 添加以下代码：</p></li></ol><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 页面点击小心心 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"/js/src/love.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure><h2 id="漂浮的颗粒背景"><a href="#漂浮的颗粒背景" class="headerlink" title="漂浮的颗粒背景"></a>漂浮的颗粒背景</h2><p>你注意到了吗？你现在正在看的博客的的背景是很多漂浮的小颗粒。更重要的是，当你鼠标放到空白位置时，小颗粒会吸附到你的鼠标位置！特别有意思~</p><ol><li>将 <a href="https://github.com/fuxuemingzhu/fuxuemingzhu.github.io/blob/master/js/src/particle.js" target="_blank" rel="external">particle.js</a> 文件添加到 <code>\themes\next\source\js\src</code> 文件目录下。</li><li>找到 <code>\themes\next\layout\_layout.swig</code> 文件， 在文件的后面，<code>&lt;/body&gt;</code>标签之前 添加以下代码：<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 颗粒漂浮背景 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"/js/src/particle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></li></ol><p>颗粒效果因为特别耗性能，故已关。如果想玩，可以点击：<a href="https://neveryu.github.io/" target="_blank" rel="external">https://neveryu.github.io/</a></p><h2 id="关于添加居中模块"><a href="#关于添加居中模块" class="headerlink" title="关于添加居中模块"></a>关于添加居中模块</h2><blockquote class="blockquote-center"><p>A head full of fears has no space for dreams.</p></blockquote><p>不需要使用html，在Hexo3中可以使用下面语句实现。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% cq %&#125; A head full of fears has no space for dreams. &#123;% endcq %&#125;</div></pre></td></tr></table></figure><h2 id="根据是否是当前页面并修改浏览器标题栏"><a href="#根据是否是当前页面并修改浏览器标题栏" class="headerlink" title="根据是否是当前页面并修改浏览器标题栏"></a>根据是否是当前页面并修改浏览器标题栏</h2><p>当页面切换到其他网页的时候，浏览器会有改变哦！切换回来也会有变化~去试试吧~~</p><ol><li>找到 <code>\themes\next\layout\_layout.swig</code> 文件， 在文件的后面，<code>&lt;/body&gt;</code>标签之前 添加以下代码：</li></ol><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined">var OriginTitile=document.title,st;document.addEventListener("visibilitychange",function()&#123;document.hidden?(document.title="负雪明烛在这里等你",clearTimeout(st)):(document.title="Got ya~~"+OriginTitile,st=setTimeout(function()&#123;document.title=OriginTitile&#125;,3e3))&#125;)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure><h2 id="在Hexo中使用ECharts实现动态图表"><a href="#在Hexo中使用ECharts实现动态图表" class="headerlink" title="在Hexo中使用ECharts实现动态图表"></a>在Hexo中使用ECharts实现动态图表</h2><p>EChart图表库是百度推出的在线网络画图库。非常好用，比如下面这张图，注意，’利润’, ‘支出’, ‘收入’，这些标签是可以点击的哦！有交互效果！</p><div id="echarts7538" style="width:81%;height:400px;margin:0 auto"></div><script type="text/javascript">var myChart=echarts.init(document.getElementById("echarts7538")),option={tooltip:{trigger:"axis",axisPointer:{type:"shadow"}},legend:{data:["利润","支出","收入"]},grid:{left:"3%",right:"4%",bottom:"3%",containLabel:!0},xAxis:[{type:"value"}],yAxis:[{type:"category",axisTick:{show:!1},data:["周一","周二","周三","周四","周五","周六","周日"]}],series:[{name:"利润",type:"bar",itemStyle:{normal:{label:{show:!0,position:"inside"}}},data:[200,170,240,244,200,220,210]},{name:"收入",type:"bar",stack:"总量",itemStyle:{normal:{label:{show:!0}}},data:[320,302,341,374,390,450,420]},{name:"支出",type:"bar",stack:"总量",itemStyle:{normal:{label:{show:!0,position:"left"}}},data:[-120,-132,-101,-134,-190,-230,-210]}]};myChart.setOption(option)</script><p>如何在Hexo中使用ECharts请看我的另外一篇博客，讲的更详细：<br><a href="http://fuxuemingzhu.me/2017/08/10/echarts-hexo/">http://fuxuemingzhu.me/2017/08/10/echarts-hexo/</a></p><h2 id="后续补充中……"><a href="#后续补充中……" class="headerlink" title="后续补充中……"></a>后续补充中……</h2><h2 id="走心推广"><a href="#走心推广" class="headerlink" title="走心推广"></a>走心推广</h2><p>因为本博客部署在Digital Ocean 服务器上，每个月都要有5美元的成本，对于学生党来说也是不小开支。所以既然你能看到这篇博客的话，希望你能帮助我一下，鼓励我写出更好的文章。</p><h3 id="Digital-Ocean-服务器购买"><a href="#Digital-Ocean-服务器购买" class="headerlink" title="Digital Ocean 服务器购买"></a>Digital Ocean 服务器购买</h3><p>如果你也需要购买服务器，强烈推荐Digital Ocean，推荐原因如下：</p><ul><li>基础套餐很便宜，每月最低5美元</li><li>服务器资源很给力，基础套餐配置是512MB内存，20GB的SSD硬盘，<strong>带宽不限制</strong></li><li>可以搭建ShadowSocks，实现科学上网（特别实用！！）</li><li>支持ipv6，轻松解决校园网流量不够用的问题</li></ul><p>我使用的是san francisco节点，搭建好ss之后，看油管1080p视频轻松无压力！！</p><p>你如果使用我的这个网址注册Digital Ocean，<strong>你可以得到10美元的代金券</strong>，我也能赚到一点，就是这个链接：<a href="https://m.do.co/c/86d4e56f6c7a" target="_blank" rel="external">https://m.do.co/c/86d4e56f6c7a</a>。</p><p>另外，如果你也是学生，有校园网邮箱，即可申请GitHub的Student Pack，免费送你50美刀的Digital Ocean代金券！地址是：<a href="https://education.github.com/pack/offers" target="_blank" rel="external">https://education.github.com/pack/offers</a>。</p><h3 id="菜菜手绘坊"><a href="#菜菜手绘坊" class="headerlink" title="菜菜手绘坊"></a>菜菜手绘坊</h3><p>菜菜手绘坊是我的姐姐在经营的一个手绘店铺，每一笔都是我的姐姐亲自画出来的。手绘坊里有很多风格可以选择，特别适合做头像，屏保，聊天背景等等！！甚至可以画好图之后做成手机壳，情侣T恤都是可以的！价格真的很便宜，可以加微信具体聊价格，绝对会让你惊喜！</p><p>更详细的宣传可以看我的这篇文章：<a href="http://fuxuemingzhu.me/drawing/">http://fuxuemingzhu.me/drawing/</a></p><p><strong>店主微信和QQ：290885604</strong></p><p>下面是黑白风格的，看看有没有心动：</p><p>黑白风格：<br><img src="http://fuxuemingzhu.me/drawing/index/caicai-drawing-simple2.jpg" alt="黑白风"></p><blockquote><p>参考资料：<br><a href="https://neveryu.github.io/2016/09/30/hexo-next-two/" target="_blank" rel="external">Hexo-NexT搭建个人博客（二）</a></p></blockquote><!-- rebuild by neat -->
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2017/08/12/byrbbs-login/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="负雪明烛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="负雪明烛的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/12/byrbbs-login/" itemprop="url">Python实现北邮人论坛模拟登录</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-12T14:29:48+08:00">
+                2017-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">术业专攻</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/12/byrbbs-login/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/12/byrbbs-login/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!-- build time:Wed Jan 23 2019 14:39:31 GMT+0800 (CST) --><p>模拟登录北邮人论坛可能是每个学着写爬虫的北邮人必备技能了。在网上和论坛上也有相关资料，但质量参差不齐，有些甚至不能实现模拟登录。因此，这里我使用requests库和urllib2库两种方法，分别实现了北邮人论坛的模拟登录。</p><p>教程所需环境：</p><ul><li>Python 2.x</li><li>requests 库</li></ul><img src="/2017/08/12/byrbbs-login/laptop.jpg" alt="laptop.jpg"><h2 id="requests库模拟登录北邮人论坛"><a href="#requests库模拟登录北邮人论坛" class="headerlink" title="requests库模拟登录北邮人论坛"></a>requests库模拟登录北邮人论坛</h2><p>教程的刚开始我们先优先使用最为方便的库:requests。</p><p>requests库的宣言是：</p><blockquote><p>HTTP for Humans （给人用的 HTTP 库）</p></blockquote><p>通过使用可以看出，requests库确实是当前Python处理网络请求最好用的库！强力推荐大家放弃urllib2库！</p><p>安装方式很简单：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install requests</div></pre></td></tr></table></figure><p>安装完成之后，可以用下面的代码测试是否安装成功：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div></pre></td></tr></table></figure><p>如果Python环境没有报错就说明安装成功，可以使用这个最方便的网络请求库了~</p><p>下面我们开始分析模拟登录的逻辑。</p><p>首先，打开论坛首页<a href="https://bbs.byr.cn/#!default" target="_blank" rel="external">https://bbs.byr.cn/#!default</a>，并且退出登录。</p><p>然后，按F12键审查元素，并且切换到Network选项卡，并且勾选上preserve log选项。现在的状态如下：</p><img src="/2017/08/12/byrbbs-login/pre.png" alt="初始状态" title="初始状态"><p>重点来了，输入用户名密码后点击登录，你应该能看到下面的信息：</p><img src="/2017/08/12/byrbbs-login/log.png" alt="登录状态" title="登录状态"><p>可以看出向<em><a href="https://bbs.byr.cn/user/ajax_login.json" target="_blank" rel="external">https://bbs.byr.cn/user/ajax_login.json</a></em>发送了一个post请求，发送了正确的用户名密码之后，就能登录成功。</p><p>另外，经过测试得到，如果请求的头部不正确，论坛会拒绝登录，正确的方式是添加头部。必须添加下面的头部。</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">'x-requested-with': 'XMLHttpRequest'</div></pre></td></tr></table></figure><p>下面是完整的登录代码，请输入自己的用户名和密码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"></div><div class="line">r_url = <span class="string">'https://bbs.byr.cn/user/ajax_login.json'</span></div><div class="line">my_header = &#123;<span class="string">'x-requested-with'</span>: <span class="string">'XMLHttpRequest'</span>&#125;</div><div class="line">byr_data = &#123;<span class="string">'id'</span>: <span class="string">'fuxuemingzhu'</span>, <span class="string">'passwd'</span>: <span class="string">'********'</span>&#125;</div><div class="line">session = requests.Session()</div><div class="line">req = session.post(r_url, data=byr_data, headers=my_header)</div><div class="line">print(req.text)</div></pre></td></tr></table></figure><p>运行结果，这说明运行代码执行成功：</p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"id"</span>: <span class="string">"fuxuemingzhu"</span>,</div><div class="line">    <span class="attr">"user_name"</span>: <span class="string">"意涵团·负雪明烛 http://fuxuemingzhu.me"</span>,</div><div class="line">    <span class="attr">"face_url"</span>: <span class="string">"https://static.byr.cn/uploadFace/F/fuxuemingzhu.120.jpg"</span>,</div><div class="line">    <span class="attr">"face_width"</span>: <span class="number">120</span>,</div><div class="line">    <span class="attr">"face_height"</span>: <span class="number">120</span>,</div><div class="line">    <span class="attr">"gender"</span>: <span class="string">"m"</span>,</div><div class="line">    <span class="attr">"astro"</span>: <span class="string">"未知"</span>,</div><div class="line">    <span class="attr">"life"</span>: <span class="number">365</span>,</div><div class="line">    <span class="attr">"qq"</span>: <span class="string">""</span>,</div><div class="line">    <span class="attr">"msn"</span>: <span class="string">""</span>,</div><div class="line">    <span class="attr">"home_page"</span>: <span class="string">"http://fuxuemingzhu.me/"</span>,</div><div class="line">    <span class="attr">"level"</span>: <span class="string">"版主"</span>,</div><div class="line">    <span class="attr">"is_online"</span>: <span class="literal">true</span>,</div><div class="line">    ......</div><div class="line">    "ajax_code": "0005",</div><div class="line">    "ajax_msg": "操作成功"</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>这里有必要讲一下为什么使用了Session()的方式，这样可以使用时requests库能自动保存cookies到Session中，也就是说只要程序没关闭，就可以访问其他数据！</p><p>比如，我们查一下超神的信息：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">quer = session.get(<span class="string">"https://bbs.byr.cn/user/query/zc199102.json"</span>, headers=my_header)</div><div class="line">print(quer.text)</div></pre></td></tr></table></figure><p>返回结果如下：</p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"id"</span>: <span class="string">"zc199102"</span>,</div><div class="line">    <span class="attr">"user_name"</span>: <span class="string">"超byr||呐，你们的小企鹅~"</span>,</div><div class="line">    <span class="attr">"face_url"</span>: <span class="string">"https://static.byr.cn/uploadFace/Z/zc199102.502.gif"</span>,</div><div class="line">    <span class="attr">"face_width"</span>: <span class="number">100</span>,</div><div class="line">    <span class="attr">"face_height"</span>: <span class="number">75</span>,</div><div class="line">    <span class="attr">"gender"</span>: <span class="string">"m"</span>,</div><div class="line">    <span class="attr">"astro"</span>: <span class="string">"未知"</span>,</div><div class="line">    <span class="attr">"life"</span>: <span class="number">365</span>,</div><div class="line">    <span class="attr">"qq"</span>: <span class="string">""</span>,</div><div class="line">    <span class="attr">"msn"</span>: <span class="string">""</span>,</div><div class="line">    <span class="attr">"home_page"</span>: <span class="string">""</span>,</div><div class="line">    <span class="attr">"level"</span>: <span class="string">"用户"</span>,</div><div class="line">    <span class="attr">"is_online"</span>: <span class="literal">true</span>,</div><div class="line">    ......</div><div class="line">    "ajax_code": "0005",</div><div class="line">    "ajax_msg": "操作成功"</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>根据这个原理你可以查看任意用户的公开信息，或者把整个论坛爬下来。</p><h2 id="urllib2库模拟登录北邮人论坛"><a href="#urllib2库模拟登录北邮人论坛" class="headerlink" title="urllib2库模拟登录北邮人论坛"></a>urllib2库模拟登录北邮人论坛</h2><p>urllib2库是Python自带的库，并且已经在Python3中取消。这就是我不再推荐的原因，另外下面冗长的代码也可以看出，这个库不好用。</p><p>urllib2库不支持自动管理cookies，需要导入cookielib包进行管理。因为登录的逻辑上文已经分析过，所以，这里直接贴上代码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cookielib</div><div class="line"><span class="keyword">import</span> urllib2</div><div class="line"><span class="keyword">import</span> urllib</div><div class="line"></div><div class="line">auth_url = <span class="string">'https://bbs.byr.cn/user/ajax_login.json'</span></div><div class="line">data = &#123;<span class="string">'id'</span>: <span class="string">'*********'</span>, <span class="string">'passwd'</span>: <span class="string">'*********'</span>, &#125;</div><div class="line">post_data = urllib.urlencode(data)</div><div class="line">my_header = &#123;<span class="string">'x-requested-with'</span>: <span class="string">'XMLHttpRequest'</span>&#125;</div><div class="line"></div><div class="line">cookieJar = cookielib.CookieJar()</div><div class="line">opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookieJar))</div><div class="line">urllib2.install_opener(opener)</div><div class="line">req = urllib2.Request(auth_url, post_data, headers=my_header)</div><div class="line">b = opener.open(req)</div><div class="line">print(str(b.read()).encode(<span class="string">'utf-8'</span>))</div><div class="line">user_url = <span class="string">"https://bbs.byr.cn/user/query/zc199102.json"</span></div><div class="line">req_user = urllib2.Request(user_url, headers=my_header)</div><div class="line">a = opener.open(req_user)</div><div class="line">print(str(a.read()).encode(<span class="string">'utf-8'</span>))</div></pre></td></tr></table></figure><p>执行后应该有和requests库同样的结果。</p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>刚开始写这个模拟登录的时候还是个Python的小白，当时只会使用urllib2库，因为reqeusts库需要安装，所以就特别害怕去尝试新东西。</p><p>但是，尝试之后简直发现了新世界。requests库同时支持python2和3，这点就比urllib2方便。从上文的代码对比也能更加看出requests库的强大。</p><p>如果你没用过requests库，那么我强烈推荐你尝试，你会彻底抛弃urllib2的。</p><p>人生苦短，我用Python。如果你也在用Python，那么肯定像我一样希望节省更多的时间，因此，有更好用的东西就去尝试吧！不要害怕折腾。</p><h2 id="走心推广"><a href="#走心推广" class="headerlink" title="走心推广"></a>走心推广</h2><p>因为本博客部署在Digital Ocean 服务器上，每个月都要有5美元的成本，对于学生党来说也是不小开支。所以既然你能看到这篇博客的话，希望你能帮助我一下，鼓励我写出更好的文章。</p><h3 id="Digital-Ocean-服务器购买"><a href="#Digital-Ocean-服务器购买" class="headerlink" title="Digital Ocean 服务器购买"></a>Digital Ocean 服务器购买</h3><p>如果你也需要购买服务器，强烈推荐Digital Ocean，推荐原因如下：</p><ul><li>基础套餐很便宜，每月最低5美元</li><li>服务器资源很给力，基础套餐配置是512MB内存，20GB的SSD硬盘，<strong>带宽不限制</strong></li><li>可以搭建ShadowSocks，实现科学上网（特别实用！！）</li><li>支持ipv6，轻松解决校园网流量不够用的问题</li></ul><p>我使用的是san francisco节点，搭建好ss之后，看油管1080p视频轻松无压力！！</p><p>你如果使用我的这个网址注册Digital Ocean，<strong>你可以得到10美元的代金券</strong>，我也能赚到一点，就是这个链接：<a href="https://m.do.co/c/86d4e56f6c7a" target="_blank" rel="external">https://m.do.co/c/86d4e56f6c7a</a>。</p><p>另外，如果你也是学生，有校园网邮箱，即可申请GitHub的Student Pack，免费送你50美刀的Digital Ocean代金券！地址是：<a href="https://education.github.com/pack/offers" target="_blank" rel="external">https://education.github.com/pack/offers</a>。</p><h3 id="菜菜手绘坊"><a href="#菜菜手绘坊" class="headerlink" title="菜菜手绘坊"></a>菜菜手绘坊</h3><p>菜菜手绘坊是我的姐姐在经营的一个手绘店铺，每一笔都是我的姐姐亲自画出来的。手绘坊里有很多风格可以选择，特别适合做头像，屏保，聊天背景等等！！甚至可以画好图之后做成手机壳，情侣T恤都是可以的！价格真的很便宜，可以加微信具体聊价格，绝对会让你惊喜！</p><p>更详细的宣传可以看我的这篇文章：<a href="http://fuxuemingzhu.me/drawing/">http://fuxuemingzhu.me/drawing/</a></p><p><strong>店主微信和QQ：290885604</strong></p><p>下面是唯美风格的，看看有没有心动：</p><p>唯美风格：<br><img src="http://fuxuemingzhu.me/drawing/index/caicai-drawing-beauty2.jpg" alt="唯美"></p><!-- rebuild by neat -->
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2017/08/11/hexo-wrong-I-found/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="负雪明烛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="负雪明烛的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/11/hexo-wrong-I-found/" itemprop="url">在Hexo中我踩过的坑</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-11T10:49:23+08:00">
+                2017-08-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">术业专攻</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/11/hexo-wrong-I-found/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/11/hexo-wrong-I-found/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!-- build time:Wed Jan 23 2019 14:39:31 GMT+0800 (CST) --><p>为什么要开这篇文章？就是因为我这两天已经被Hexo折腾得够呛！</p><p>诚然，Hexo一键部署博客给写作带来了很大的便利，但是不可否认的是，Hexo的错误让人摸不到头脑，只有反复尝试才能得出正确结果。</p><p>因此，奉劝大家，不要瞎升级Hexo！不要瞎改动Hexo！不要瞎折腾Hexo！</p><p>这里记录下我踩过的各种坑，留给大家排坑，也方便自己以后查找问题。</p><img src="/2017/08/11/hexo-wrong-I-found/nature.jpg" alt="nature.jpg"><h2 id="Hexo升级3-0版本"><a href="#Hexo升级3-0版本" class="headerlink" title="Hexo升级3.0版本"></a>Hexo升级3.0版本</h2><p>如果你现在用的是2.x版本，我强烈建议不要升级！因为大家用到的Hexo功能肯定都是简单的那几个命令，Hexo的2.x版本完全够用，升级很容易出问题！别问我为什么知道！</p><p>如果你一定要升级的话，记住Hexo的3.x版本的安装命令是：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo-cli</div></pre></td></tr></table></figure><p>昨天因为折腾，安装速度还很快，今天不知道为什么了，速度非常之慢，用了Hexo淘宝镜像也很慢。需要镜像的可以参考这个文章：<a href="http://www.tuicool.com/articles/UVR3qqA" target="_blank" rel="external">修改npm包管理器的registry为淘宝镜像(npm.taobao.org)</a>。</p><h2 id="Hexo同时部署到多个Git仓库"><a href="#Hexo同时部署到多个Git仓库" class="headerlink" title="Hexo同时部署到多个Git仓库"></a>Hexo同时部署到多个Git仓库</h2><p>网上的教程很多，但是试了之后感觉都不行，会报错！亲测下面的方法可以用！</p><p>在_config.yml中的deploy中这么写：</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line">	<span class="bullet">-</span> <span class="attr">type:</span> <span class="string">git</span> </div><div class="line">	  <span class="attr">repo:</span> <span class="string">cfg@165.227.00.000:/var/repo/hexo_static</span></div><div class="line">	  <span class="attr">branch:</span> <span class="string">master</span></div><div class="line">	<span class="bullet">-</span> <span class="attr">type:</span> <span class="string">git</span> </div><div class="line">	  <span class="attr">repo:</span> <span class="string">git@github.com:fuxuemingzhu/fuxuemingzhu.github.io.git</span></div><div class="line">	  <span class="attr">branch:</span> <span class="string">master</span></div></pre></td></tr></table></figure><p>把仓库的地址修改成你的Git地址。</p><p>如果你使用的是Github的仓库，查看仓库地址的方式是在这里，记得切换成ssh模式查看。</p><img src="/2017/08/11/hexo-wrong-I-found/github.png" alt="github仓库地址" title="github仓库地址"><h2 id="Hexo文章中用相对路径方式插入图片"><a href="#Hexo文章中用相对路径方式插入图片" class="headerlink" title="Hexo文章中用相对路径方式插入图片"></a>Hexo文章中用相对路径方式插入图片</h2><p>这个坑大家可能都感觉遇到过，其实这不是个坑。</p><p>因为大家写博客就是公开的，完全可以把图片放到一个公开的图片网站再引用即可。但是我感觉不太好。</p><p>这种方式莫名其妙地把图片放到了一个你可能完全不会去访问的网站，很难管理，如果想删除图片也比较麻烦，甚至无法删除。</p><p>我之前的做法是放到自己的Github仓库中，然后引用自己仓库的图片的网址。这样不错，只不过图片要先上传一次，然后才能在博客里使用。</p><p>正确做法是在Hexo中采用相对路径方式插入图片。步骤如下。</p><ol><li>首先在hexo目录下安装插件：</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</div></pre></td></tr></table></figure><ol start="2"><li>然后，把打开_config.yml开关。这样新建每个文章都建一个同名的图片的文件夹，用于管理。</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_config.yml</div><div class="line">post_asset_folder: true</div></pre></td></tr></table></figure><ol start="3"><li>把图片放到文章的同名文件夹之下，在博客中用以下的hexo命令插入图片，注意不用填写路径，直接写图片名字！</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% asset_img github.png github仓库地址 %&#125;</div></pre></td></tr></table></figure><p>上面这个代码的结果就是上一节中github仓库的那张图片的代码。</p><p>这个是图片放的位置：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% asset_img posts.png  图片放的位置 %&#125;</div></pre></td></tr></table></figure><img src="/2017/08/11/hexo-wrong-I-found/posts.png" alt="图片放的位置" title="图片放的位置"><p>在public文件夹下会生成对应资源图片：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% asset_img public.png  生成的图片 %&#125;</div></pre></td></tr></table></figure><img src="/2017/08/11/hexo-wrong-I-found/public.png" alt="生成的图片" title="生成的图片"><p>使用以上的代码就能看到效果了~</p><p>更多信息可以看官方文档：<a href="https://hexo.io/zh-cn/docs/asset-folders.html" target="_blank" rel="external">资源文件夹</a></p><p>有得有失，这样做的时候就不能再markdown源文件中查看到图片了。</p><h2 id="page页面图片不能采用相对路径"><a href="#page页面图片不能采用相对路径" class="headerlink" title="page页面图片不能采用相对路径"></a>page页面图片不能采用相对路径</h2><p>博客的文章页面是可以采用相对路径寻找图片的，正如上文所述。可是，今天发现如果是一个page页面（可以通过侧边栏直接访问的），相对路径就不起作用了。。不是找不到图片的问题，而是如果是page页面采用asset_img的方式根本就不会识别出这里要插入图片。。</p><p>因此，解决的办法是直接采用markdown方式插入图片就好了，虽然有点不那么优雅……</p><h2 id="后续补充"><a href="#后续补充" class="headerlink" title="后续补充"></a>后续补充</h2><p>……</p><blockquote><p>参考资料：</p><ul><li><a href="http://www.jianshu.com/p/c2ba9533088a" target="_blank" rel="external">hexo博客图片问题</a></li></ul></blockquote><!-- rebuild by neat -->
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2017/08/10/echarts-hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="负雪明烛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="负雪明烛的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/10/echarts-hexo/" itemprop="url">在Hexo的Next主题中使用ECharts画图工具</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T10:49:23+08:00">
+                2017-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">术业专攻</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/10/echarts-hexo/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/10/echarts-hexo/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!-- build time:Wed Jan 23 2019 14:39:31 GMT+0800 (CST) --><h2 id="ECharts简介"><a href="#ECharts简介" class="headerlink" title="ECharts简介"></a>ECharts简介</h2><p>最近在实习的时候用到了ECharts。最刚开始我以为这个只能在前端通过js调用，对于我用python画图没帮助。可是自从再一次刷Github的时候发现了一个神器，激动地我差点睡不着了！这个就是<a href="https://github.com/chenjiandongx/pyecharts" target="_blank" rel="external">pyecharts</a>！这简直是神器啊，可以通过python调用ECharts的js接口然后就返回了画好的图~而且这个是可以交互的，比如下图，你就可以感受一下~~（利润，支出，收入三个标签也是可以点击的哦~）</p><div id="echarts2103" style="width:81%;height:400px;margin:0 auto"></div><script type="text/javascript">var myChart=echarts.init(document.getElementById("echarts2103")),option={tooltip:{trigger:"axis",axisPointer:{type:"shadow"}},legend:{data:["利润","支出","收入"]},grid:{left:"3%",right:"4%",bottom:"3%",containLabel:!0},xAxis:[{type:"value"}],yAxis:[{type:"category",axisTick:{show:!1},data:["周一","周二","周三","周四","周五","周六","周日"]}],series:[{name:"利润",type:"bar",itemStyle:{normal:{label:{show:!0,position:"inside"}}},data:[200,170,240,244,200,220,210]},{name:"收入",type:"bar",stack:"总量",itemStyle:{normal:{label:{show:!0}}},data:[320,302,341,374,390,450,420]},{name:"支出",type:"bar",stack:"总量",itemStyle:{normal:{label:{show:!0,position:"left"}}},data:[-120,-132,-101,-134,-190,-230,-210]}]};myChart.setOption(option)</script><h2 id="常规做法"><a href="#常规做法" class="headerlink" title="常规做法"></a>常规做法</h2><p>你可能也看到了，上面的图表在我的hexo搭建的博客中可以完美展示。这个是怎么做到的呢？</p><p>首先，如果你用的是Yelee或者类似的主题，你应该可以很简单地直接参照<a href="http://blog.ursb.me/2016/04/06/Hexo%E9%A9%B1%E5%8A%A8%E5%8D%9A%E5%AE%A2%E4%B8%AD%E4%BD%BF%E7%94%A8Echarts%E5%8A%A8%E6%80%81%E5%9B%BE%E8%A1%A8/" target="_blank" rel="external">这个博客</a>去做。</p><p>我也是在看上面的博客的时候遇到了问题，如果我用Yelee主题的话是很简单的可以实现上面的效果的，但是我现在更喜欢的是现在的Next主题。这两个主题的结构不一样。</p><p>安装上文说的在所用主题目录下layout\_partial文件夹中不存在，更不存在head.ejs</p><p>Next目录：<br><img src="/2017/08/10/echarts-hexo/next.png" alt="Next下的目录" title="Next下的目录"><br>Yelee目录：<br><img src="/2017/08/10/echarts-hexo/yelee.png" alt="Yelee下的目录" title="Yelee下的目录"></p><h2 id="Next主题做法"><a href="#Next主题做法" class="headerlink" title="Next主题做法"></a>Next主题做法</h2><p>由此看出，如果你和我一样使用Next主题的话上面的教程不能用。需要像我这样做：</p><h3 id="下载js"><a href="#下载js" class="headerlink" title="下载js"></a>下载js</h3><p>首先下载ECharts的js文件：<a href="http://echarts.baidu.com/download.html" target="_blank" rel="external">ECharts</a></p><p>把js文件放到next主题的\source\js\src目录下：</p><img src="/2017/08/10/echarts-hexo/echarts.png" alt="js位置" title="js位置"><h3 id="js文件的引用"><a href="#js文件的引用" class="headerlink" title="js文件的引用"></a>js文件的引用</h3><p>然后在next\layout\文件夹下，找到_layout.swig文件，并用文本查看器打开，在下面代码:</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">main</span> <span class="attr">id</span>=<span class="string">"main"</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main-inner"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content-wrap"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content"</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span></div><div class="line">        &#123;% block content %&#125;&#123;% endblock %&#125;</div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      &#123;% include '_third-party/duoshuo-hot-articles.swig' %&#125;</div><div class="line">      &#123;% include '_partials/comments.swig' %&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    &#123;% if theme.sidebar.display !== 'remove' %&#125;</div><div class="line">      &#123;% block sidebar %&#125;&#123;% endblock %&#125;</div><div class="line">    &#123;% endif %&#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">main</span>&gt;</span></div></pre></td></tr></table></figure><p>的前面添加：</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- echarts --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"/js/src/echarts.common.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure><p>保存退出。</p><h3 id="安装hexo-tag-echarts插件"><a href="#安装hexo-tag-echarts插件" class="headerlink" title="安装hexo-tag-echarts插件"></a>安装hexo-tag-echarts插件</h3><p>在博客站点目录下执行<code>npm install hexo-tag-echarts --save</code>。</p><h2 id="使用范例"><a href="#使用范例" class="headerlink" title="使用范例"></a>使用范例</h2><p>可以简单的找个例子试下，把下面代码放到一个博客的markdown文件中即可。注意不要使用代码块！！</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">&#123;% echarts <span class="number">400</span> <span class="string">'81%'</span> %&#125;</div><div class="line">&#123;</div><div class="line">    tooltip : &#123;</div><div class="line">        trigger: <span class="string">'axis'</span>,</div><div class="line">        axisPointer : &#123;            <span class="comment">// 坐标轴指示器，坐标轴触发有效</span></div><div class="line">            type : <span class="string">'shadow'</span>        <span class="comment">// 默认为直线，可选为：'line' | 'shadow'</span></div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    legend: &#123;</div><div class="line">        data:[<span class="string">'利润'</span>, <span class="string">'支出'</span>, <span class="string">'收入'</span>]</div><div class="line">    &#125;,</div><div class="line">    grid: &#123;</div><div class="line">        left: <span class="string">'3%'</span>,</div><div class="line">        right: <span class="string">'4%'</span>,</div><div class="line">        bottom: <span class="string">'3%'</span>,</div><div class="line">        containLabel: <span class="literal">true</span></div><div class="line">    &#125;,</div><div class="line">    xAxis : [</div><div class="line">        &#123;</div><div class="line">            type : <span class="string">'value'</span></div><div class="line">        &#125;</div><div class="line">    ],</div><div class="line">    yAxis : [</div><div class="line">        &#123;</div><div class="line">            type : <span class="string">'category'</span>,</div><div class="line">            axisTick : &#123;<span class="attr">show</span>: <span class="literal">false</span>&#125;,</div><div class="line">            data : [<span class="string">'周一'</span>,<span class="string">'周二'</span>,<span class="string">'周三'</span>,<span class="string">'周四'</span>,<span class="string">'周五'</span>,<span class="string">'周六'</span>,<span class="string">'周日'</span>]</div><div class="line">        &#125;</div><div class="line">    ],</div><div class="line">    series : [</div><div class="line">        &#123;</div><div class="line">            name:<span class="string">'利润'</span>,</div><div class="line">            type:<span class="string">'bar'</span>,</div><div class="line">            itemStyle : &#123;</div><div class="line">                normal: &#123;</div><div class="line">                    label: &#123;<span class="attr">show</span>: <span class="literal">true</span>, <span class="attr">position</span>: <span class="string">'inside'</span>&#125;</div><div class="line">                &#125;</div><div class="line">            &#125;,</div><div class="line">            data:[<span class="number">200</span>, <span class="number">170</span>, <span class="number">240</span>, <span class="number">244</span>, <span class="number">200</span>, <span class="number">220</span>, <span class="number">210</span>]</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            name:<span class="string">'收入'</span>,</div><div class="line">            type:<span class="string">'bar'</span>,</div><div class="line">            stack: <span class="string">'总量'</span>,</div><div class="line">            itemStyle: &#123;</div><div class="line">                normal: &#123;</div><div class="line">                    label : &#123;<span class="attr">show</span>: <span class="literal">true</span>&#125;</div><div class="line">                &#125;</div><div class="line">            &#125;,</div><div class="line">            data:[<span class="number">320</span>, <span class="number">302</span>, <span class="number">341</span>, <span class="number">374</span>, <span class="number">390</span>, <span class="number">450</span>, <span class="number">420</span>]</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            name:<span class="string">'支出'</span>,</div><div class="line">            type:<span class="string">'bar'</span>,</div><div class="line">            stack: <span class="string">'总量'</span>,</div><div class="line">            itemStyle: &#123;<span class="attr">normal</span>: &#123;</div><div class="line">                label : &#123;<span class="attr">show</span>: <span class="literal">true</span>, <span class="attr">position</span>: <span class="string">'left'</span>&#125;</div><div class="line">            &#125;&#125;,</div><div class="line">            data:[<span class="number">-120</span>, <span class="number">-132</span>, <span class="number">-101</span>, <span class="number">-134</span>, <span class="number">-190</span>, <span class="number">-230</span>, <span class="number">-210</span>]</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;;</div><div class="line">&#123;% endecharts %&#125;</div></pre></td></tr></table></figure><p>之后你就应该能看到我的上面的ECharts图了。</p><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>上面的这个做法纯属我自己尝试得出来的，可能有更好的做法，可以在下面留言~~</p><p>为了找到这个方法，我把自己的博客环境都搞坏了……现在在重装hexo……觉得我解决了你的问题的话就给我打个赏吧！</p><blockquote><p>参考文献：<br>· echarts官网：<a href="http://echarts.baidu.com/" target="_blank" rel="external">http://echarts.baidu.com/</a><br>· Airing博客： <a href="http://blog.ursb.me/2016/04/06/Hexo%E9%A9%B1%E5%8A%A8%E5%8D%9A%E5%AE%A2%E4%B8%AD%E4%BD%BF%E7%94%A8Echarts%E5%8A%A8%E6%80%81%E5%9B%BE%E8%A1%A8/" target="_blank" rel="external">http://blog.ursb.me/2016/04/06/Hexo%E9%A9%B1%E5%8A%A8%E5%8D%9A%E5%AE%A2%E4%B8%AD%E4%BD%BF%E7%94%A8Echarts%E5%8A%A8%E6%80%81%E5%9B%BE%E8%A1%A8/</a><br>· NeverYu博客： <a href="https://neveryu.github.io/2016/09/30/hexo-next-two/" target="_blank" rel="external">https://neveryu.github.io/2016/09/30/hexo-next-two/</a></p></blockquote><!-- rebuild by neat -->
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2017/07/20/welcome-back/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="负雪明烛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="负雪明烛的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/20/welcome-back/" itemprop="url">阔别许久，欢迎回来~~</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-20T19:46:05+08:00">
+                2017-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/life/" itemprop="url" rel="index">
+                    <span itemprop="name">生活随笔</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/20/welcome-back/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/20/welcome-back/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!-- build time:Wed Jan 23 2019 14:39:31 GMT+0800 (CST) --><p>不知不觉已经离开一年多了，现在的我已经是准研究生一枚了，于是重新拾起了这个博客~~</p><p>原来我去年就已经申请到了GitHub的student pack，这样的话我就能用了Digital Ocean的服务器50元的代金券，还有免费一年的fuxuemingzhu.me的域名了。哈哈哈哈~~</p><p>租了一台Digtial Ocean的服务器，成功的搭建了ss，现在通过ipv6访问外网的速度达到了12M/s，看国外视频都是1080p还不卡的，果然还是自己做来的比较爽呀，中间还学到了很多故障处理的方式。</p><p>之前租过两台服务器，分别是阿里云和腾讯云，但我都没用过……就在那里闲着感觉很浪费啊，这个DO服务器已经开始用来走ss啦，还是挺有用的，另外这个博客也是搭建在上面的。</p><p>顺便做个小广告吧，欢迎大家使用我的推荐码注册DO啊，这样你可以得到10美元的代金券，我也能赚到一点，嘻嘻，就是这个链接：<a href="https://m.do.co/c/86d4e56f6c7a" target="_blank" rel="external">https://m.do.co/c/86d4e56f6c7a</a></p><p>凡是使用上面这个链接注册DO服务器的，我教你怎么搭建SS科学上网~~</p><p>喔喔，如果不想自己购买服务器还想畅快的科学上网的，直接给我发邮件，我给你开个账号也就行啦，费用好说好说~~</p><p>欢迎大家来我的博客里赏光哈，如果想联系我，可以从导航栏里看到“关于我”就行啦~</p><!-- rebuild by neat -->
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2016/04/19/lianjia-interview-experience/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="负雪明烛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="负雪明烛的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/04/19/lianjia-interview-experience/" itemprop="url">首次面试经验总结</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-19T22:31:59+08:00">
+                2016-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">术业专攻</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/04/19/lianjia-interview-experience/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/04/19/lianjia-interview-experience/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <!-- build time:Wed Jan 23 2019 14:39:31 GMT+0800 (CST) --><p>参加了一个面试，之后发现我的技术基本功完全就是渣！而且以前学过的都忘完了！回答的效果自己都感觉看不下去了。</p><p>不过还是感谢两位面试官能够花这么多时间和我交流。让我学习了很多。</p><p>别忘了，Show me the code!</p><p>下面就技术和知识两个方面进行分析。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/04/19/lianjia-interview-experience/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2016/04/15/parter-end/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="负雪明烛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="负雪明烛的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/04/15/parter-end/" itemprop="url">2016.04 阶段性总结</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-15T23:25:54+08:00">
+                2016-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/life/" itemprop="url" rel="index">
+                    <span itemprop="name">生活随笔</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/04/15/parter-end/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/04/15/parter-end/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <!-- build time:Wed Jan 23 2019 14:39:31 GMT+0800 (CST) --><p>这是一份阶段性总结。虽然并没有明显的分界线，但我感觉过了这么久，总该写点什么吧，给以后的自己看。碰巧也遇到不少烦心事，闲着也是闲着，趁这种干不了其他事的时候自己反思一下自己罢。</p><p>这是篇给自己看的保留文章，完全是想到哪写到哪，特别没意思，游客止步吧。</p><img src="/2016/04/15/parter-end/pic.jpg" alt="pic.jpg">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/04/15/parter-end/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2016/03/29/java-read-book-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="负雪明烛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="负雪明烛的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/03/29/java-read-book-notes/" itemprop="url">Java读书笔记</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-29T16:34:25+08:00">
+                2016-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">术业专攻</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/03/29/java-read-book-notes/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/03/29/java-read-book-notes/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <!-- build time:Wed Jan 23 2019 14:39:31 GMT+0800 (CST) --><h1 id="Java必须知道的300个问题"><a href="#Java必须知道的300个问题" class="headerlink" title="Java必须知道的300个问题"></a>Java必须知道的300个问题</h1><p>这本书是在图书馆随便逛的时候找到的书。花了一下午看完了，感觉有用的地方不是很多，大部分都是些概念，并没有太大用途。里边有些东西还是可以看一看的，总结如下。</p><img src="/2016/03/29/java-read-book-notes/300-questions.jpg" alt="Java必须知道的300个问题" title="Java必须知道的300个问题"><p>当前写完这本书笔记的时间是：2016/3/29 19:52:26</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/03/29/java-read-book-notes/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="负雪明烛" />
+            
+              <p class="site-author-name" itemprop="name">负雪明烛</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fuxuemingzhu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://blog.csdn.net/fuxuemingzhu" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-link"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://merrier.wang/" title="Merrier说" target="_blank">Merrier说</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">负雪明烛</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+  <div class="footer-custom">Hosted by <a href="https://pages.coding.me">Coding Pages</a></div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      您是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      个小伙伴
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总浏览
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://fuxuemingzhu.disqus.com/count.js" async></script>
+    
+
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<!-- 页面点击小心心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascript">var OriginTitile=document.title,st;document.addEventListener("visibilitychange",function(){document.hidden?(document.title="负雪明烛在这里等你",clearTimeout(st)):(document.title="Got ya~～(￣▽￣～)~",st=setTimeout(function(){document.title=OriginTitile},3e3))})</script>
+</body>
+</html>

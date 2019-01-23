@@ -1,3 +1,944 @@
-<!-- build time:Wed Jan 23 2019 11:42:49 GMT+0800 (CST) --><!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png?v=5.1.4"><link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=5.1.4"><link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=5.1.4"><link rel="mask-icon" href="/images/avatar.png?v=5.1.4" color="#222"><meta name="keywords" content="服务器,"><meta name="description" content="起因最近老师让我做一个众筹系统，可以在微信公众号上展示运行的。虽然说着简单，但是实现起来却完全不是那么回事，并且我一个做安卓开发的，对服务器和前端完全不懂，这个对我来说一路坎坷，最终上线，这里记录一下我的辛酸历程。 最终效果是在自己的网站服务器网页中运行以下网站："><meta name="keywords" content="服务器"><meta property="og:type" content="article"><meta property="og:title" content="基于阿里云 Ubuntu 的 LAMP 网站搭建及配置完全教程"><meta property="og:url" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/index.html"><meta property="og:site_name" content="负雪明烛的博客"><meta property="og:description" content="起因最近老师让我做一个众筹系统，可以在微信公众号上展示运行的。虽然说着简单，但是实现起来却完全不是那么回事，并且我一个做安卓开发的，对服务器和前端完全不懂，这个对我来说一路坎坷，最终上线，这里记录一下我的辛酸历程。 最终效果是在自己的网站服务器网页中运行以下网站："><meta property="og:locale" content="zh-Hans"><meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/1.JPG"><meta property="og:image" content="http://i.imgur.com/6fcMruh.png"><meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/2.png"><meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/3.png"><meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/4.png"><meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/5.png"><meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/6.png"><meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/7.png"><meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/9.png"><meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/8.png"><meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/10.png"><meta property="og:updated_time" content="2017-08-11T08:02:00.000Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="基于阿里云 Ubuntu 的 LAMP 网站搭建及配置完全教程"><meta name="twitter:description" content="起因最近老师让我做一个众筹系统，可以在微信公众号上展示运行的。虽然说着简单，但是实现起来却完全不是那么回事，并且我一个做安卓开发的，对服务器和前端完全不懂，这个对我来说一路坎坷，最终上线，这里记录一下我的辛酸历程。 最终效果是在自己的网站服务器网页中运行以下网站："><meta name="twitter:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/1.JPG"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",version:"5.1.4",sidebar:{position:"left",display:"post",offset:12,b2t:!1,scrollpercent:!1,onmobile:!1},fancybox:!0,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/"><title>基于阿里云 Ubuntu 的 LAMP 网站搭建及配置完全教程 | 负雪明烛的博客</title><script type="text/javascript">var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?720cd3f4909308ad8a7cac68733c0a19";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">负雪明烛的博客</span> <span class="logo-line-after"><i></i></span></a></div><h1 class="site-subtitle" itemprop="description">好好学习，努力成为渣硕</h1></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于我</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签云</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-guestbook"><a href="/guestbook/" rel="section"><i class="menu-item-icon fa fa-fw fa-commenting"></i><br>留言板</a></li><li class="menu-item menu-item-drawing"><a href="/drawing/" rel="section"><i class="menu-item-icon fa fa-fw fa-picture-o"></i><br>菜菜手绘坊</a></li></ul></nav></div></header><script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="负雪明烛"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.png"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="负雪明烛的博客"></span><header class="post-header"><h2 class="post-title" itemprop="name headline">基于阿里云 Ubuntu 的 LAMP 网站搭建及配置完全教程</h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-02T14:06:33+08:00">2016-03-02 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">术业专攻</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/2016/03/02/My-Aliyun-Server-Setting/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/02/My-Aliyun-Server-Setting/" itemprop="commentCount"></span> </a></span><span class="post-meta-divider">|</span> <span class="page-pv">热度 <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>℃</span></div></header><div class="post-body" itemprop="articleBody"><h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>最近老师让我做一个众筹系统，可以在微信公众号上展示运行的。虽然说着简单，但是实现起来却完全不是那么回事，并且我一个做安卓开发的，对服务器和前端完全不懂，这个对我来说一路坎坷，最终上线，这里记录一下我的辛酸历程。</p><p>最终效果是在自己的网站服务器网页中运行以下网站：</p><img src="/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/1.JPG" alt="1.JPG"> <a id="more"></a><h1 id="经过"><a href="#经过" class="headerlink" title="经过"></a>经过</h1><h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><p>首先，当然要有一台云服务器，在腾讯云和阿里云当中，学生包的价格分别是1元每月和9.9元每月，这里我选择了阿里云，因为我感觉阿里云用的更多，应该更可靠点（想太多了，我这种小白用户感觉不到差别好么）。在使用阿里云的过程中还是感到了使用阿里云是更简单的，首先实名认证部分只需要绑定支付宝就能完成，学生认证需要输入学号和身份证号和学信网信息一致即可。腾讯云需要本人手持学生证拍照上传，这些略去不提。</p><h2 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h2><p>再者，需要一个域名。当然这个不是必须的，因为只有云服务器ip也能访问服务器上运行的网站。当然我还是买了一个<a href="http://www.fuxuemingzhu.com/" target="_blank" rel="external">http://www.fuxuemingzhu.com/</a>,这个域名现在是我的博客站点，并不是用来给服务器用，因为我的博客是存储在github.io的，这样写博客的时候还能增加github的contributions……这个域名需要备案和审核，采用的是阿里旗下的万网备案，如实填写，提交各种信息之后有个人工电话审核，接听了之后也只是有个住址信息不完整，帮我完善了下信息，最后阿里送了块幕布，拍照上传之后给工信部备案，总共大概20天左右域名到手。</p><h2 id="前端和后台"><a href="#前端和后台" class="headerlink" title="前端和后台"></a>前端和后台</h2><h3 id="系统选择"><a href="#系统选择" class="headerlink" title="系统选择"></a>系统选择</h3><p>这两个完成之后，我也就啥都不会了……咳咳，但不能放弃不是，我知道需要前端和服务器配合，本来想按照学姐画的草图用DreamWeaver慢慢画吧，可惜自己水平不是一般的差，完全不会弄。经学姐提醒，可以搜类似网站代码啊，在搜的过程中，我找到了一个RaiseDreams的开源众筹系统！对呀，直接用开源写系统不就完了！看来程序员一般都是想着自己动手，没想到人家已经有免费的直接用就完了。</p><p>几经对比，我最终选择了<strong>芝麻乐开源众筹系统</strong><a href="https://www.zhimale.com/" target="_blank" rel="external">https://www.zhimale.com/</a>，开源版本，永久免费，顺便也给人家打一个广告。我感觉这个系统唯一的不足就是帮助文档太少，可能对于我一个新手帮助不够吧。</p><h2 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h2><p>我的阿里云服务器运行的是Ubuntu，正好我的电脑也有Ubuntu，所以，就先在本地搭建服务器试用吧。下面进入正式讲解。</p><p>首先，需要安装一个Apache，在放狗搜的时候发现了LAMP(Linux-Apache-MySQL-PHP)这个东西。对呀，一次性安装齐全多好！在Ubuntu的官方网站上有教程<a href="https://help.ubuntu.com/community/ApacheMySQLPHP" target="_blank" rel="external">https://help.ubuntu.com/community/ApacheMySQLPHP</a>。对我来说只需要一行命令（软件更新速度慢，没用）：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> sudo apt-get install lamp-server^</div></pre></td></tr></table></figure><p>不要忘记最后的 ^ 号。</p><p>Ubuntu好啊，一行命令就完成了所有的安装，这在Windows下不可想象。中间有一个对MySQL的密码的设置，设置好一定要记住！</p><p><img src="http://i.imgur.com/6fcMruh.png" alt=""></p><p>等运行结束之后就全部完成了！</p><p>测试Apache，在浏览器输入 127.0.0.1 或者 <a href="http://localhost/" target="_blank" rel="external">http://localhost/</a> ,这个时候不能挂代理。如果出现 It works! 的画面，说明Apache安装成功。</p><img src="/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/2.png" alt="2.png"><p>下面检验PHP是否安装成功。在 /var/www/html 文件夹之下新建 testphp.php，打开写入以下内容：</p><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> <span class="meta">&lt;?php</span>  </div><div class="line">    phpinfo();  </div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure><p>如果用gedit无法编辑保存 testphp.php ，说明该文件为只读模式，请安装vim，并使用以下命令：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo vim /var/www/html/testphp.php</div></pre></td></tr></table></figure><p>在vim模式编辑模式下编写，关闭时要使用强制执行：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:wq!</div></pre></td></tr></table></figure><p>应该就可以了。如果还是不行可以采用 chmod 改变文章读写权限再试。（我忘记了我用哪种方法成功的了）</p><p>然后再在浏览器地址栏输入：<a href="http://localhost/testphp.php，出现如图所示内容表示PHP安装成功！" target="_blank" rel="external">http://localhost/testphp.php，出现如图所示内容表示PHP安装成功！</a></p><img src="/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/3.png" alt="3.png"><p>因为芝麻乐系统需要用到php-gd，所以采用以下命令安装。不需要的请不要安装。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> apt-get install php5-gd</div><div class="line">```java</div><div class="line"></div><div class="line">或者</div><div class="line"></div><div class="line">```shell</div><div class="line"><span class="meta">$</span> sudo apt-get install php5-gd</div></pre></td></tr></table></figure><p>并且重启狗帕琪。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> sudo /etc/init.d/apache2 restart</div></pre></td></tr></table></figure><p>至此，所有软件的安装已经结束。还是很简单的吧？</p><h2 id="软件配置"><a href="#软件配置" class="headerlink" title="软件配置"></a>软件配置</h2><p>软件安装过程中会自动生成 /etc/apache2/ 和 /var/www/ 文件夹，这两个基本是我们最重要的设置地方。其中 /etc/apache2/ 是apache的自身设置文件夹， /var/www/ 是要展示的网站的文件夹。其中 /etc/apache2/ 的文件夹目录如下：</p><img src="/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/4.png" alt="4.png"><p>可以看到 /var/www/ 只有一个被锁定的只读的文件夹 /html ，这里的文件必须用 sudo 命令打开，vim 编辑退出时使用 :wq! 命令。</p><img src="/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/5.png" alt="5.png"><p>下面设置自己的服务站点，并让其能在自己的网页上显示出来。</p><p>在 /var/www/ 文件夹下新建www.test.net的文件夹，并将开源网站所有代码和文件放入到其中，效果如图。</p><img src="/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/6.png" alt="6.png"><p>下面修改apache的路径指向www.test.net的文件夹。使用以下命令进行编辑。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> sudo vim /etc/apache2/sites-available/000-default.conf</div></pre></td></tr></table></figure><p>将其中的ServerName取消注释，并将DocumentRoot修改为 /var/www/www.test.net，并使用 :wq! 命令保存关闭vim.</p><img src="/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/7.png" alt="7.png"><p>重启Apache:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> sudo /etc/init.d/apache2 restart</div></pre></td></tr></table></figure><p>如果没有问题的话就已经进入了芝麻乐重酬平台开源系统的安装界面了。按照芝麻乐的官方教程来做，应该很快就能安装成功。</p><p>官方教程网址：<a href="https://www.zhimale.com/News/show/id/8.html" target="_blank" rel="external">https://www.zhimale.com/News/show/id/8.html</a></p><img src="/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/9.png" alt="9.png"><p>至此，芝麻乐开源众筹系统已经在本地的Ubuntu上安装成功。</p><h3 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h3><p>本地安装一切顺利，可是没想到服务器上安装同样的东西却状况连连。</p><h4 id="怎么连接服务器？"><a href="#怎么连接服务器？" class="headerlink" title="怎么连接服务器？"></a>怎么连接服务器？</h4><p>采用阿里云推荐方式，Windows下安装盘putty，使用这个来与运行在阿里云上的服务器进行通信和命令传输。参考<a href="www.putty.org">www.putty.org</a></p><h4 id="怎么把文件传送到服务器？"><a href="#怎么把文件传送到服务器？" class="headerlink" title="怎么把文件传送到服务器？"></a>怎么把文件传送到服务器？</h4><p>经过一番搜索，我采用在服务器搭建ftp系统，然后用ftp传送的方式。这里使用 vsftpd，安装和配置过程略去不讲，参考<a href="http://blog.csdn.net/dongtingzhizi/article/details/12028627" target="_blank" rel="external">//TODO</a> 和 <a href="http://jingyan.baidu.com/article/67508eb4d6c4fd9ccb1ce470.html" target="_blank" rel="external">http://jingyan.baidu.com/article/67508eb4d6c4fd9ccb1ce470.html</a>。</p><p>这个配置是挺麻烦的，因为服务器上的文件是可以ftp给大家看的，如果没有做到充分地保障的话，服务器可能被大家搞得一塌糊涂，需要花点功夫好好折腾一下。</p><p>Windows上安装FileZilla，这样可以连接到服务器ip，注意端口为21.</p><p>将Windows下的芝麻乐平台代码进行上传，如果出现530错误，说明vsftpd设置的文件夹没有写入权限，需要使用以下命令改变文件夹的写入权限。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> sudo chmod 755 /home/sftp/</div></pre></td></tr></table></figure><p>上传成功之后进行文件夹复制，使用以下命令。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> sudo cp /home/sft/ /var/www</div></pre></td></tr></table></figure><p>文件复制参考：<a href="http://zhidao.baidu.com/question/63755445.html" title="ubuntu 拷贝 文件夹 到 另外一个文件家下，如何些shell命令" target="_blank" rel="external">http://zhidao.baidu.com/question/63755445.html</a></p><p>如果失败的话，同样是因为文件夹权限的问题，记得使用chmod改变/var/www/文件夹的写入权限。</p><img src="/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/8.png" alt="8.png"><p>这样之后，就成功把系统放入到了要配置的目标文件夹。下面配置Apache指向这里的文件夹。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> sudo vim /etc/apache2/sites-available/000-default.conf</div></pre></td></tr></table></figure><p>将其中的ServerName取消注释，并将DocumentRoot修改为 /var/www/sftp，并使用 :wq! 命令保存关闭vim.</p><p>注意：上面的这些过程中如果出现错误一般就是读写权限的问题，出现错误之后注意修改文件夹的写入权限。</p><p>重启Apache，理论上已经可以用了，浏览器直接输入服务器的网址就行。</p><h4 id="遇到问题怎么办？"><a href="#遇到问题怎么办？" class="headerlink" title="遇到问题怎么办？"></a>遇到问题怎么办？</h4><p>这时候如果出现关于ServerName的警告：</p><blockquote><p>Restarting web server apache2</p><p>apache2: Could not reliably determine the server’s fully qualified domain name, using 127.0.1.1 for ServerName</p></blockquote><p>那么请在 /etc/apache2/apache2.conf 中添加：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ServerName localhost</div></pre></td></tr></table></figure><p>重启Apache，这个警告就会消失。</p><p>可是我的服务器给我了500的错误，这个是怎么回事呢？为什么本地运行没出现这个问题？而且没有显示错误日志。</p><p>本以为是PHP安装没成功，但是搜索一番之后，受到启发，可以开启PHP的错误提示，然后进行分析。开启PHP错误提示的方法参考：<a href="http://tsov.net/open-ubuntu-php-error/" target="_blank" rel="external">http://tsov.net/open-ubuntu-php-error/</a></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo chmod 777 /etc/php5/apache2/php.ini</div><div class="line"></div><div class="line">sudo vim /etc/php5/apache2/php.ini</div></pre></td></tr></table></figure><p>搜索并修改下行，把Off值改成On</p><pre><code>display_errors = Off
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/avatar.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="服务器," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="起因最近老师让我做一个众筹系统，可以在微信公众号上展示运行的。虽然说着简单，但是实现起来却完全不是那么回事，并且我一个做安卓开发的，对服务器和前端完全不懂，这个对我来说一路坎坷，最终上线，这里记录一下我的辛酸历程。最终效果是在自己的网站服务器网页中运行以下网站：">
+<meta name="keywords" content="服务器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于阿里云 Ubuntu 的 LAMP 网站搭建及配置完全教程">
+<meta property="og:url" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/index.html">
+<meta property="og:site_name" content="负雪明烛的博客">
+<meta property="og:description" content="起因最近老师让我做一个众筹系统，可以在微信公众号上展示运行的。虽然说着简单，但是实现起来却完全不是那么回事，并且我一个做安卓开发的，对服务器和前端完全不懂，这个对我来说一路坎坷，最终上线，这里记录一下我的辛酸历程。最终效果是在自己的网站服务器网页中运行以下网站：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/1.JPG">
+<meta property="og:image" content="http://i.imgur.com/6fcMruh.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/2.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/3.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/4.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/5.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/6.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/7.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/9.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/8.png">
+<meta property="og:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/10.png">
+<meta property="og:updated_time" content="2017-08-11T08:02:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于阿里云 Ubuntu 的 LAMP 网站搭建及配置完全教程">
+<meta name="twitter:description" content="起因最近老师让我做一个众筹系统，可以在微信公众号上展示运行的。虽然说着简单，但是实现起来却完全不是那么回事，并且我一个做安卓开发的，对服务器和前端完全不懂，这个对我来说一路坎坷，最终上线，这里记录一下我的辛酸历程。最终效果是在自己的网站服务器网页中运行以下网站：">
+<meta name="twitter:image" content="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/1.JPG">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/"/>
+
+
+
+
+
+  <title>基于阿里云 Ubuntu 的 LAMP 网站搭建及配置完全教程 | 负雪明烛的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?720cd3f4909308ad8a7cac68733c0a19";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">负雪明烛的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">好好学习，努力成为渣硕</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签云
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br />
+            
+            留言板
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-drawing">
+          <a href="/drawing/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-picture-o"></i> <br />
+            
+            菜菜手绘坊
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+<script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="负雪明烛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="负雪明烛的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">基于阿里云 Ubuntu 的 LAMP 网站搭建及配置完全教程</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-02T14:06:33+08:00">
+                2016-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">术业专攻</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/03/02/My-Aliyun-Server-Setting/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/03/02/My-Aliyun-Server-Setting/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">热度
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>℃
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!-- build time:Wed Jan 23 2019 14:39:31 GMT+0800 (CST) --><h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>最近老师让我做一个众筹系统，可以在微信公众号上展示运行的。虽然说着简单，但是实现起来却完全不是那么回事，并且我一个做安卓开发的，对服务器和前端完全不懂，这个对我来说一路坎坷，最终上线，这里记录一下我的辛酸历程。</p><p>最终效果是在自己的网站服务器网页中运行以下网站：</p><img src="/2016/03/02/My-Aliyun-Server-Setting/1.JPG" alt="1.JPG"><a id="more"></a><h1 id="经过"><a href="#经过" class="headerlink" title="经过"></a>经过</h1><h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><p>首先，当然要有一台云服务器，在腾讯云和阿里云当中，学生包的价格分别是1元每月和9.9元每月，这里我选择了阿里云，因为我感觉阿里云用的更多，应该更可靠点（想太多了，我这种小白用户感觉不到差别好么）。在使用阿里云的过程中还是感到了使用阿里云是更简单的，首先实名认证部分只需要绑定支付宝就能完成，学生认证需要输入学号和身份证号和学信网信息一致即可。腾讯云需要本人手持学生证拍照上传，这些略去不提。</p><h2 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h2><p>再者，需要一个域名。当然这个不是必须的，因为只有云服务器ip也能访问服务器上运行的网站。当然我还是买了一个<a href="http://www.fuxuemingzhu.com/" target="_blank" rel="external">http://www.fuxuemingzhu.com/</a>,这个域名现在是我的博客站点，并不是用来给服务器用，因为我的博客是存储在github.io的，这样写博客的时候还能增加github的contributions……这个域名需要备案和审核，采用的是阿里旗下的万网备案，如实填写，提交各种信息之后有个人工电话审核，接听了之后也只是有个住址信息不完整，帮我完善了下信息，最后阿里送了块幕布，拍照上传之后给工信部备案，总共大概20天左右域名到手。</p><h2 id="前端和后台"><a href="#前端和后台" class="headerlink" title="前端和后台"></a>前端和后台</h2><h3 id="系统选择"><a href="#系统选择" class="headerlink" title="系统选择"></a>系统选择</h3><p>这两个完成之后，我也就啥都不会了……咳咳，但不能放弃不是，我知道需要前端和服务器配合，本来想按照学姐画的草图用DreamWeaver慢慢画吧，可惜自己水平不是一般的差，完全不会弄。经学姐提醒，可以搜类似网站代码啊，在搜的过程中，我找到了一个RaiseDreams的开源众筹系统！对呀，直接用开源写系统不就完了！看来程序员一般都是想着自己动手，没想到人家已经有免费的直接用就完了。</p><p>几经对比，我最终选择了<strong>芝麻乐开源众筹系统</strong><a href="https://www.zhimale.com/" target="_blank" rel="external">https://www.zhimale.com/</a>，开源版本，永久免费，顺便也给人家打一个广告。我感觉这个系统唯一的不足就是帮助文档太少，可能对于我一个新手帮助不够吧。</p><h2 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h2><p>我的阿里云服务器运行的是Ubuntu，正好我的电脑也有Ubuntu，所以，就先在本地搭建服务器试用吧。下面进入正式讲解。</p><p>首先，需要安装一个Apache，在放狗搜的时候发现了LAMP(Linux-Apache-MySQL-PHP)这个东西。对呀，一次性安装齐全多好！在Ubuntu的官方网站上有教程<a href="https://help.ubuntu.com/community/ApacheMySQLPHP" target="_blank" rel="external">https://help.ubuntu.com/community/ApacheMySQLPHP</a>。对我来说只需要一行命令（软件更新速度慢，没用）：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> sudo apt-get install lamp-server^</div></pre></td></tr></table></figure><p>不要忘记最后的 ^ 号。</p><p>Ubuntu好啊，一行命令就完成了所有的安装，这在Windows下不可想象。中间有一个对MySQL的密码的设置，设置好一定要记住！</p><p><img src="http://i.imgur.com/6fcMruh.png" alt=""></p><p>等运行结束之后就全部完成了！</p><p>测试Apache，在浏览器输入 127.0.0.1 或者 <a href="http://localhost/" target="_blank" rel="external">http://localhost/</a> ,这个时候不能挂代理。如果出现 It works! 的画面，说明Apache安装成功。</p><img src="/2016/03/02/My-Aliyun-Server-Setting/2.png" alt="2.png"><p>下面检验PHP是否安装成功。在 /var/www/html 文件夹之下新建 testphp.php，打开写入以下内容：</p><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> <span class="meta">&lt;?php</span>  </div><div class="line">    phpinfo();  </div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure><p>如果用gedit无法编辑保存 testphp.php ，说明该文件为只读模式，请安装vim，并使用以下命令：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo vim /var/www/html/testphp.php</div></pre></td></tr></table></figure><p>在vim模式编辑模式下编写，关闭时要使用强制执行：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:wq!</div></pre></td></tr></table></figure><p>应该就可以了。如果还是不行可以采用 chmod 改变文章读写权限再试。（我忘记了我用哪种方法成功的了）</p><p>然后再在浏览器地址栏输入：<a href="http://localhost/testphp.php，出现如图所示内容表示PHP安装成功！" target="_blank" rel="external">http://localhost/testphp.php，出现如图所示内容表示PHP安装成功！</a></p><img src="/2016/03/02/My-Aliyun-Server-Setting/3.png" alt="3.png"><p>因为芝麻乐系统需要用到php-gd，所以采用以下命令安装。不需要的请不要安装。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> apt-get install php5-gd</div><div class="line">```java</div><div class="line"></div><div class="line">或者</div><div class="line"></div><div class="line">```shell</div><div class="line"><span class="meta">$</span> sudo apt-get install php5-gd</div></pre></td></tr></table></figure><p>并且重启狗帕琪。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> sudo /etc/init.d/apache2 restart</div></pre></td></tr></table></figure><p>至此，所有软件的安装已经结束。还是很简单的吧？</p><h2 id="软件配置"><a href="#软件配置" class="headerlink" title="软件配置"></a>软件配置</h2><p>软件安装过程中会自动生成 /etc/apache2/ 和 /var/www/ 文件夹，这两个基本是我们最重要的设置地方。其中 /etc/apache2/ 是apache的自身设置文件夹， /var/www/ 是要展示的网站的文件夹。其中 /etc/apache2/ 的文件夹目录如下：</p><img src="/2016/03/02/My-Aliyun-Server-Setting/4.png" alt="4.png"><p>可以看到 /var/www/ 只有一个被锁定的只读的文件夹 /html ，这里的文件必须用 sudo 命令打开，vim 编辑退出时使用 :wq! 命令。</p><img src="/2016/03/02/My-Aliyun-Server-Setting/5.png" alt="5.png"><p>下面设置自己的服务站点，并让其能在自己的网页上显示出来。</p><p>在 /var/www/ 文件夹下新建<a href="http://www.test.net的文件夹，并将开源网站所有代码和文件放入到其中，效果如图。" target="_blank" rel="external">www.test.net的文件夹，并将开源网站所有代码和文件放入到其中，效果如图。</a></p><img src="/2016/03/02/My-Aliyun-Server-Setting/6.png" alt="6.png"><p>下面修改apache的路径指向<a href="http://www.test.net的文件夹。使用以下命令进行编辑。" target="_blank" rel="external">www.test.net的文件夹。使用以下命令进行编辑。</a></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> sudo vim /etc/apache2/sites-available/000-default.conf</div></pre></td></tr></table></figure><p>将其中的ServerName取消注释，并将DocumentRoot修改为 /var/www/<a href="http://www.test.net，并使用" target="_blank" rel="external">www.test.net，并使用</a> :wq! 命令保存关闭vim.</p><img src="/2016/03/02/My-Aliyun-Server-Setting/7.png" alt="7.png"><p>重启Apache:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> sudo /etc/init.d/apache2 restart</div></pre></td></tr></table></figure><p>如果没有问题的话就已经进入了芝麻乐重酬平台开源系统的安装界面了。按照芝麻乐的官方教程来做，应该很快就能安装成功。</p><p>官方教程网址：<a href="https://www.zhimale.com/News/show/id/8.html" target="_blank" rel="external">https://www.zhimale.com/News/show/id/8.html</a></p><img src="/2016/03/02/My-Aliyun-Server-Setting/9.png" alt="9.png"><p>至此，芝麻乐开源众筹系统已经在本地的Ubuntu上安装成功。</p><h3 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h3><p>本地安装一切顺利，可是没想到服务器上安装同样的东西却状况连连。</p><h4 id="怎么连接服务器？"><a href="#怎么连接服务器？" class="headerlink" title="怎么连接服务器？"></a>怎么连接服务器？</h4><p>采用阿里云推荐方式，Windows下安装盘putty，使用这个来与运行在阿里云上的服务器进行通信和命令传输。参考<a href="www.putty.org">www.putty.org</a></p><h4 id="怎么把文件传送到服务器？"><a href="#怎么把文件传送到服务器？" class="headerlink" title="怎么把文件传送到服务器？"></a>怎么把文件传送到服务器？</h4><p>经过一番搜索，我采用在服务器搭建ftp系统，然后用ftp传送的方式。这里使用 vsftpd，安装和配置过程略去不讲，参考<a href="http://blog.csdn.net/dongtingzhizi/article/details/12028627" target="_blank" rel="external">//TODO</a> 和 <a href="http://jingyan.baidu.com/article/67508eb4d6c4fd9ccb1ce470.html" target="_blank" rel="external">http://jingyan.baidu.com/article/67508eb4d6c4fd9ccb1ce470.html</a>。</p><p>这个配置是挺麻烦的，因为服务器上的文件是可以ftp给大家看的，如果没有做到充分地保障的话，服务器可能被大家搞得一塌糊涂，需要花点功夫好好折腾一下。</p><p>Windows上安装FileZilla，这样可以连接到服务器ip，注意端口为21.</p><p>将Windows下的芝麻乐平台代码进行上传，如果出现530错误，说明vsftpd设置的文件夹没有写入权限，需要使用以下命令改变文件夹的写入权限。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> sudo chmod 755 /home/sftp/</div></pre></td></tr></table></figure><p>上传成功之后进行文件夹复制，使用以下命令。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> sudo cp /home/sft/ /var/www</div></pre></td></tr></table></figure><p>文件复制参考：<a href="http://zhidao.baidu.com/question/63755445.html" title="ubuntu 拷贝 文件夹 到 另外一个文件家下，如何些shell命令" target="_blank" rel="external">http://zhidao.baidu.com/question/63755445.html</a></p><p>如果失败的话，同样是因为文件夹权限的问题，记得使用chmod改变/var/www/文件夹的写入权限。</p><img src="/2016/03/02/My-Aliyun-Server-Setting/8.png" alt="8.png"><p>这样之后，就成功把系统放入到了要配置的目标文件夹。下面配置Apache指向这里的文件夹。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> sudo vim /etc/apache2/sites-available/000-default.conf</div></pre></td></tr></table></figure><p>将其中的ServerName取消注释，并将DocumentRoot修改为 /var/www/sftp，并使用 :wq! 命令保存关闭vim.</p><p>注意：上面的这些过程中如果出现错误一般就是读写权限的问题，出现错误之后注意修改文件夹的写入权限。</p><p>重启Apache，理论上已经可以用了，浏览器直接输入服务器的网址就行。</p><h4 id="遇到问题怎么办？"><a href="#遇到问题怎么办？" class="headerlink" title="遇到问题怎么办？"></a>遇到问题怎么办？</h4><p>这时候如果出现关于ServerName的警告：</p><blockquote><p>Restarting web server apache2</p></blockquote><blockquote><p>apache2: Could not reliably determine the server’s fully qualified domain name, using 127.0.1.1 for ServerName</p></blockquote><p>那么请在 /etc/apache2/apache2.conf 中添加：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ServerName localhost</div></pre></td></tr></table></figure><p>重启Apache，这个警告就会消失。</p><p>可是我的服务器给我了500的错误，这个是怎么回事呢？为什么本地运行没出现这个问题？而且没有显示错误日志。</p><p>本以为是PHP安装没成功，但是搜索一番之后，受到启发，可以开启PHP的错误提示，然后进行分析。开启PHP错误提示的方法参考：<a href="http://tsov.net/open-ubuntu-php-error/" target="_blank" rel="external">http://tsov.net/open-ubuntu-php-error/</a></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo chmod 777 /etc/php5/apache2/php.ini</div><div class="line"></div><div class="line">sudo vim /etc/php5/apache2/php.ini</div></pre></td></tr></table></figure><p>搜索并修改下行，把Off值改成On</p><pre><code>display_errors = Off
 </code></pre><p>这就完成了，重启Apache。</p><p>这次服务器网页上会出现错误提示了，如下：</p><pre><code>Unknown: failed to open stream
-</code></pre><p>经过搜索，参考以下网页<a href="http://stackoverflow.com/questions/5326531/php-warning-unknown-failed-to-open-stream" target="_blank" rel="external">http://stackoverflow.com/questions/5326531/php-warning-unknown-failed-to-open-stream</a>，我推断是因为文件夹的读写权限导致。这个很奇怪，为什么读权限的文件夹不能在Apache上？这个我没有深入研究。那么下面的问题是修改 /var/www/ 文件夹下的文件的写入权限，把文件夹的用户切换到我的用户名root。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cd /var/www</div><div class="line"></div><div class="line">sudo chown www-data:www-data * -R</div><div class="line"></div><div class="line">sudo usermod -a -G www-data root</div></pre></td></tr></table></figure><p>重启Apache。</p><p>这次已经出现了芝麻乐的开源系统安装引导，按指导进行安装就能成功啦！</p><img src="/2016/03/02/My-Aliyun-Server-Setting/2016/03/02/My-Aliyun-Server-Setting/10.png" alt="10.png"><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>至此安装已经完全成功，中途遇到了很多问题，最终都在强大的Google的帮助下解决。上面的文章虽然写到的遇到的问题的内容篇幅不多，但是却花了我两天的时间。中途学到了很多东西，也让我对服务器的使用更加熟练。</p><p>另外，我在遇到问题的时候并没有完全当时截图，后来写文章时有参考别人，另外命令不保证完全正确。</p><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>用到的文章在文章当中基本上都写了，在此表示感谢。</p><p>部分图片来自网络。</p></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>如果满分10分，你会给这篇文章打几分？</div><button id="rewardButton" disable="enable" onclick='var e=document.getElementById("QR");"none"===e.style.display?e.style.display="block":e.style.display="none"'><span>赞赏</span></button><div id="QR" style="display:block"><div id="wechat" style="display:inline-block"><img id="wechat_qr" src="/images/wechatpay.jpg" alt="负雪明烛 微信"><p>微信</p></div><div id="alipay" style="display:inline-block"><img id="alipay_qr" src="/images/alipay.jpg" alt="负雪明烛 支付宝"><p>支付宝</p></div></div></div></div><div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong> 负雪明烛</li><li class="post-copyright-link"><strong>本文链接：</strong> <a href="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/" title="基于阿里云 Ubuntu 的 LAMP 网站搭建及配置完全教程">http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/</a></li><li class="post-copyright-license"><strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！</li></ul></div><footer class="post-footer"><div class="post-tags"><a href="/tags/服务器/" rel="tag"># 服务器</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2016/03/01/Song-History/" rel="next" title="最近感动到哭的一首歌《History》"><i class="fa fa-chevron-left"></i> 最近感动到哭的一首歌《History》</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2016/03/03/Solve-Win10-Screen-Rotation/" rel="prev" title="Win8/Win10 Ctrl+Alt+方向键 屏幕显示翻转解决办法">Win8/Win10 Ctrl+Alt+方向键 屏幕显示翻转解决办法 <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"></div></div></div><div class="comments" id="comments"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview-wrap">站点概览</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="负雪明烛"><p class="site-author-name" itemprop="name">负雪明烛</p><p class="site-description motion-element" itemprop="description"></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">25</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">2</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">18</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/fuxuemingzhu" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a> </span><span class="links-of-author-item"><a href="http://blog.csdn.net/fuxuemingzhu" target="_blank" title="CSDN"><i class="fa fa-fw fa-link"></i>CSDN</a></span></div><div class="cc-license motion-element" itemprop="license"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a></div><div class="links-of-blogroll motion-element links-of-blogroll-inline"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-globe"></i> 友情链接</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="http://merrier.wang/" title="Merrier说" target="_blank">Merrier说</a></li></ul></div></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#经过"><span class="nav-number">2.</span> <span class="nav-text">经过</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器"><span class="nav-number">2.1.</span> <span class="nav-text">服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#域名"><span class="nav-number">2.2.</span> <span class="nav-text">域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端和后台"><span class="nav-number">2.3.</span> <span class="nav-text">前端和后台</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统选择"><span class="nav-number">2.3.1.</span> <span class="nav-text">系统选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件安装"><span class="nav-number">2.4.</span> <span class="nav-text">软件安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件配置"><span class="nav-number">2.5.</span> <span class="nav-text">软件配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器配置"><span class="nav-number">2.5.1.</span> <span class="nav-text">服务器配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#怎么连接服务器？"><span class="nav-number">2.5.1.1.</span> <span class="nav-text">怎么连接服务器？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#怎么把文件传送到服务器？"><span class="nav-number">2.5.1.2.</span> <span class="nav-text">怎么把文件传送到服务器？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#遇到问题怎么办？"><span class="nav-number">2.5.1.3.</span> <span class="nav-text">遇到问题怎么办？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">2.6.</span> <span class="nav-text">结语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">2.7.</span> <span class="nav-text">参考文献</span></a></li></ol></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span> <span class="with-love"><i class="fa fa-user"></i> </span><span class="author" itemprop="copyrightHolder">负雪明烛</span></div><div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div><span class="post-meta-divider">|</span><div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div><div class="footer-custom">Hosted by <a href="https://pages.coding.me">Coding Pages</a></div><div class="busuanzi-count"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv">您是第 <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 个小伙伴 </span><span class="site-pv">本站总浏览 <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><script id="dsq-count-scr" src="https://fuxuemingzhu.disqus.com/count.js" async></script><script type="text/javascript">var disqus_config=function(){this.page.url="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/",this.page.identifier="2016/03/02/My-Aliyun-Server-Setting/",this.page.title="基于阿里云 Ubuntu 的 LAMP 网站搭建及配置完全教程"},d=document,s=d.createElement("script");s.src="https://fuxuemingzhu.disqus.com/embed.js",s.setAttribute("data-timestamp",""+ +new Date),(d.head||d.body).appendChild(s)</script><script type="text/javascript" src="/js/src/love.js"></script><script type="text/javascript">var OriginTitile=document.title,st;document.addEventListener("visibilitychange",function(){document.hidden?(document.title="负雪明烛在这里等你",clearTimeout(st)):(document.title="Got ya~～(￣▽￣～)~",st=setTimeout(function(){document.title=OriginTitile},3e3))})</script></body></html><!-- rebuild by neat -->
+</code></pre><p>经过搜索，参考以下网页<a href="http://stackoverflow.com/questions/5326531/php-warning-unknown-failed-to-open-stream" target="_blank" rel="external">http://stackoverflow.com/questions/5326531/php-warning-unknown-failed-to-open-stream</a>，我推断是因为文件夹的读写权限导致。这个很奇怪，为什么读权限的文件夹不能在Apache上？这个我没有深入研究。那么下面的问题是修改 /var/www/ 文件夹下的文件的写入权限，把文件夹的用户切换到我的用户名root。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cd /var/www</div><div class="line"></div><div class="line">sudo chown www-data:www-data * -R</div><div class="line"></div><div class="line">sudo usermod -a -G www-data root</div></pre></td></tr></table></figure><p>重启Apache。</p><p>这次已经出现了芝麻乐的开源系统安装引导，按指导进行安装就能成功啦！</p><img src="/2016/03/02/My-Aliyun-Server-Setting/10.png" alt="10.png"><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>至此安装已经完全成功，中途遇到了很多问题，最终都在强大的Google的帮助下解决。上面的文章虽然写到的遇到的问题的内容篇幅不多，但是却花了我两天的时间。中途学到了很多东西，也让我对服务器的使用更加熟练。</p><p>另外，我在遇到问题的时候并没有完全当时截图，后来写文章时有参考别人，另外命令不保证完全正确。</p><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>用到的文章在文章当中基本上都写了，在此表示感谢。</p><p>部分图片来自网络。</p><!-- rebuild by neat -->
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果满分10分，你会给这篇文章打几分？</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赞赏</span>
+  </button>
+  <div id="QR" style="display: block;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="负雪明烛 微信"/>
+        <p>微信</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="负雪明烛 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    负雪明烛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/" title="基于阿里云 Ubuntu 的 LAMP 网站搭建及配置完全教程">http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/服务器/" rel="tag"># 服务器</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/01/Song-History/" rel="next" title="最近感动到哭的一首歌《History》">
+                <i class="fa fa-chevron-left"></i> 最近感动到哭的一首歌《History》
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/03/Solve-Win10-Screen-Rotation/" rel="prev" title="Win8/Win10 Ctrl+Alt+方向键 屏幕显示翻转解决办法">
+                Win8/Win10 Ctrl+Alt+方向键 屏幕显示翻转解决办法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="负雪明烛" />
+            
+              <p class="site-author-name" itemprop="name">负雪明烛</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fuxuemingzhu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://blog.csdn.net/fuxuemingzhu" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-link"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://merrier.wang/" title="Merrier说" target="_blank">Merrier说</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#经过"><span class="nav-number">2.</span> <span class="nav-text">经过</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器"><span class="nav-number">2.1.</span> <span class="nav-text">服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#域名"><span class="nav-number">2.2.</span> <span class="nav-text">域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端和后台"><span class="nav-number">2.3.</span> <span class="nav-text">前端和后台</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统选择"><span class="nav-number">2.3.1.</span> <span class="nav-text">系统选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件安装"><span class="nav-number">2.4.</span> <span class="nav-text">软件安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件配置"><span class="nav-number">2.5.</span> <span class="nav-text">软件配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器配置"><span class="nav-number">2.5.1.</span> <span class="nav-text">服务器配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#怎么连接服务器？"><span class="nav-number">2.5.1.1.</span> <span class="nav-text">怎么连接服务器？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#怎么把文件传送到服务器？"><span class="nav-number">2.5.1.2.</span> <span class="nav-text">怎么把文件传送到服务器？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#遇到问题怎么办？"><span class="nav-number">2.5.1.3.</span> <span class="nav-text">遇到问题怎么办？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">2.6.</span> <span class="nav-text">结语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">2.7.</span> <span class="nav-text">参考文献</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">负雪明烛</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+  <div class="footer-custom">Hosted by <a href="https://pages.coding.me">Coding Pages</a></div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      您是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      个小伙伴
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总浏览
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://fuxuemingzhu.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://fuxuemingzhu.me/2016/03/02/My-Aliyun-Server-Setting/';
+          this.page.identifier = '2016/03/02/My-Aliyun-Server-Setting/';
+          this.page.title = '基于阿里云 Ubuntu 的 LAMP 网站搭建及配置完全教程';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://fuxuemingzhu.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<!-- 页面点击小心心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascript">var OriginTitile=document.title,st;document.addEventListener("visibilitychange",function(){document.hidden?(document.title="负雪明烛在这里等你",clearTimeout(st)):(document.title="Got ya~～(￣▽￣～)~",st=setTimeout(function(){document.title=OriginTitile},3e3))})</script>
+</body>
+</html>

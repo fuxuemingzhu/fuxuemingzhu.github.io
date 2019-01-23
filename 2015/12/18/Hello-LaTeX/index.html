@@ -1,2 +1,939 @@
-<!-- build time:Wed Jan 23 2019 11:42:49 GMT+0800 (CST) --><!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png?v=5.1.4"><link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=5.1.4"><link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=5.1.4"><link rel="mask-icon" href="/images/avatar.png?v=5.1.4" color="#222"><meta name="keywords" content="LaTeX,"><meta name="description" content="起源最早听说LaTeX是在做数据挖掘的熊辉老师公开课上，当时他说他看别人投过来的论文时，如果用Word写的，直接Pass，用”LaTeX”的才看。当时没有字幕，我愣是听了好几遍才根据发音把”LaTeX”这个词给拼了出来，搜索了相关资料。后来了解到了中国化之后的CTeX。 自从接触到这个词之后才感觉周围到处都是在讲LaTeX（可能是我之前没注意），学校里也有大神用LaTeX写毕设论文，恰巧我又在看美"><meta name="keywords" content="LaTeX"><meta property="og:type" content="article"><meta property="og:title" content="Hello LaTeX"><meta property="og:url" content="http://fuxuemingzhu.me/2015/12/18/Hello-LaTeX/index.html"><meta property="og:site_name" content="负雪明烛的博客"><meta property="og:description" content="起源最早听说LaTeX是在做数据挖掘的熊辉老师公开课上，当时他说他看别人投过来的论文时，如果用Word写的，直接Pass，用”LaTeX”的才看。当时没有字幕，我愣是听了好几遍才根据发音把”LaTeX”这个词给拼了出来，搜索了相关资料。后来了解到了中国化之后的CTeX。 自从接触到这个词之后才感觉周围到处都是在讲LaTeX（可能是我之前没注意），学校里也有大神用LaTeX写毕设论文，恰巧我又在看美"><meta property="og:locale" content="zh-Hans"><meta property="og:image" content="http://i.imgur.com/OSVpy6f.png"><meta property="og:image" content="http://i.imgur.com/FVookeu.jpg"><meta property="og:image" content="http://bbs.byr.cn/img/ubb/ema/9.gif"><meta property="og:image" content="http://i.imgur.com/PHnINJg.jpg"><meta property="og:image" content="http://i.imgur.com/7RkGe3A.jpg"><meta property="og:image" content="http://i.imgur.com/ZHbMYWF.jpg"><meta property="og:image" content="http://i.imgur.com/kSSjIpV.jpg"><meta property="og:updated_time" content="2017-08-09T13:03:20.000Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Hello LaTeX"><meta name="twitter:description" content="起源最早听说LaTeX是在做数据挖掘的熊辉老师公开课上，当时他说他看别人投过来的论文时，如果用Word写的，直接Pass，用”LaTeX”的才看。当时没有字幕，我愣是听了好几遍才根据发音把”LaTeX”这个词给拼了出来，搜索了相关资料。后来了解到了中国化之后的CTeX。 自从接触到这个词之后才感觉周围到处都是在讲LaTeX（可能是我之前没注意），学校里也有大神用LaTeX写毕设论文，恰巧我又在看美"><meta name="twitter:image" content="http://i.imgur.com/OSVpy6f.png"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",version:"5.1.4",sidebar:{position:"left",display:"post",offset:12,b2t:!1,scrollpercent:!1,onmobile:!1},fancybox:!0,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://fuxuemingzhu.me/2015/12/18/Hello-LaTeX/"><title>Hello LaTeX | 负雪明烛的博客</title><script type="text/javascript">var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?720cd3f4909308ad8a7cac68733c0a19";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">负雪明烛的博客</span> <span class="logo-line-after"><i></i></span></a></div><h1 class="site-subtitle" itemprop="description">好好学习，努力成为渣硕</h1></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于我</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签云</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-guestbook"><a href="/guestbook/" rel="section"><i class="menu-item-icon fa fa-fw fa-commenting"></i><br>留言板</a></li><li class="menu-item menu-item-drawing"><a href="/drawing/" rel="section"><i class="menu-item-icon fa fa-fw fa-picture-o"></i><br>菜菜手绘坊</a></li></ul></nav></div></header><script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2015/12/18/Hello-LaTeX/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="负雪明烛"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.png"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="负雪明烛的博客"></span><header class="post-header"><h2 class="post-title" itemprop="name headline">Hello LaTeX</h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-18T16:50:05+08:00">2015-12-18 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">术业专攻</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/2015/12/18/Hello-LaTeX/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/18/Hello-LaTeX/" itemprop="commentCount"></span> </a></span><span class="post-meta-divider">|</span> <span class="page-pv">热度 <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>℃</span></div></header><div class="post-body" itemprop="articleBody"><h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>最早听说LaTeX是在做数据挖掘的熊辉老师公开课上，当时他说他看别人投过来的论文时，如果用Word写的，直接Pass，用”LaTeX”的才看。当时没有字幕，我愣是听了好几遍才根据发音把”LaTeX”这个词给拼了出来，搜索了相关资料。后来了解到了中国化之后的CTeX。</p><p>自从接触到这个词之后才感觉周围到处都是在讲LaTeX（可能是我之前没注意），学校里也有大神用LaTeX写毕设论文，恰巧我又在看美赛建模的一些经验，里面也有人提到了LaTeX，总之，LaTeX对我来说越来越具有吸引力。</p><p><img src="http://i.imgur.com/OSVpy6f.png" alt=""></p><a id="more"></a><h2 id="经过"><a href="#经过" class="headerlink" title="经过"></a>经过</h2><p>当然首先是下载安装了。这本应该是最简单的一步，结果让我整了好久才弄成功。</p><p>对于CTeX，在其官方社区<a href="http://www.ctex.org/HomePage" target="_blank" rel="external">http://www.ctex.org/HomePage</a>上给了百度网盘的下载地址。是我不小心，把所有的历史版本的CTeX都下载了下来，当然我发现下的不对，暂停了下载，只下载了最新的CTeX2.9。</p><p>讲一讲在安装时遇到的问题。</p><p>第一个，CTeX安装会覆盖系统环境变量，这个太坑爹，还好我提前做了备份。</p><p>第二个问题，第一次安装之后发现不好使，具体表现是WinEdt打开新建文件编译有问题，命令行的提示是“系统找不到相关文件”。我以为是下载的时候没现在完整（文件夹里还有.download文件），于是把CTeX2.9的Full版本给卸载重装。仍然同样问题。以为是没有字体库，安装上了，仍然不好使。卸载了重新装基本版本。仍然不好使。这个时候我就不淡定了，以为是CTeX的锅，打算装原版LaTex，反正美赛建模于是用纯英文写作。百度呀、Google呀、论坛呀都没搜到相关问题的答案，我感觉是我电脑的问题，或者我下载了盗版，我不会是唯一一出现这个问题的吧。</p><p>今天下午水论坛，发现一个人也是请教CTeX的问题，当然问题和我的问题不一样，但帖子底下有条回复是让楼主去CTeX的社区去问。这就提醒我，在一些技术性比较强的场合，自己专门的社区很可能比百度后者Google上其他人的经验内容要丰富。在CTeX社区搜索真发现了类似问题的帖子。逛了两个帖子之后找到了解决方案。</p><p><img src="http://i.imgur.com/FVookeu.jpg" alt=""></p><p>我试了一下，再次打开WinEdt就完全正常了！</p><p>这个莫名其妙的错误困扰了我两三天。另外这个其实也发现是我们论坛的好哇，说不定哪个贴子就可以启发自己的思路找到正确结果。<img src="http://bbs.byr.cn/img/ubb/ema/9.gif" alt=""></p><p>使用方法：</p><p><img src="http://i.imgur.com/PHnINJg.jpg" alt=""></p><p>我用的是XeLaTeX编译。然后点击放大镜查看pdf.</p><p>上几个小栗子。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">\documentclass&#123;article&#125; </div><div class="line">  \author&#123;My Name&#125; </div><div class="line">  \title&#123;The Title&#125; </div><div class="line">\begin&#123;document&#125; </div><div class="line">  \maketitle </div><div class="line">  hello, world % This is comment </div><div class="line">\end&#123;document&#125;</div></pre></td></tr></table></figure><p>运行结果：</p><p><img src="http://i.imgur.com/7RkGe3A.jpg" alt=""></p><p>挺漂亮的吧。</p><p>中文示例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">\documentclass&#123;ctexart&#125;</div><div class="line">\begin&#123;document&#125;</div><div class="line">你好，世界</div><div class="line">\end&#123;document&#125;</div></pre></td></tr></table></figure><p>结果：</p><p><img src="http://i.imgur.com/ZHbMYWF.jpg" alt=""></p><p>图片示例：</p><p>```latex<br>\documentclass{article}<br>\usepackage{graphicx}<br>\begin{document}</p><pre><code>taylor.jpg
-</code></pre><p>\includegraphics[width=4.00in,height=4.00in]{taylor.jpg}<br>\end{document}<br>```latex</p><p>结果：</p><p><img src="http://i.imgur.com/kSSjIpV.jpg" alt=""></p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>LaTeX虽然不是一项必须的技能，但是我感觉是一个写文章的很好的方式。当然Word的所见即所得令人爱不释手，但是对于专业论文的书写，LaTeX有它天生的优势。新技能，get。</p><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>CSDN:<a href="http://blog.csdn.net/perfumekristy/article/details/8515272" target="_blank" rel="external">LaTeX新人教程，30分钟从完全陌生到基本入门</a></p></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>如果满分10分，你会给这篇文章打几分？</div><button id="rewardButton" disable="enable" onclick='var e=document.getElementById("QR");"none"===e.style.display?e.style.display="block":e.style.display="none"'><span>赞赏</span></button><div id="QR" style="display:block"><div id="wechat" style="display:inline-block"><img id="wechat_qr" src="/images/wechatpay.jpg" alt="负雪明烛 微信"><p>微信</p></div><div id="alipay" style="display:inline-block"><img id="alipay_qr" src="/images/alipay.jpg" alt="负雪明烛 支付宝"><p>支付宝</p></div></div></div></div><div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong> 负雪明烛</li><li class="post-copyright-link"><strong>本文链接：</strong> <a href="http://fuxuemingzhu.me/2015/12/18/Hello-LaTeX/" title="Hello LaTeX">http://fuxuemingzhu.me/2015/12/18/Hello-LaTeX/</a></li><li class="post-copyright-license"><strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！</li></ul></div><footer class="post-footer"><div class="post-tags"><a href="/tags/LaTeX/" rel="tag"># LaTeX</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2015/12/15/arrays-are-objects/" rel="next" title="数组竟然是对象"><i class="fa fa-chevron-left"></i> 数组竟然是对象</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2016/02/29/No-Man-s-Land/" rel="prev" title="电影《无人区》">电影《无人区》 <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"></div></div></div><div class="comments" id="comments"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview-wrap">站点概览</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="负雪明烛"><p class="site-author-name" itemprop="name">负雪明烛</p><p class="site-description motion-element" itemprop="description"></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">25</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">2</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">18</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/fuxuemingzhu" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a> </span><span class="links-of-author-item"><a href="http://blog.csdn.net/fuxuemingzhu" target="_blank" title="CSDN"><i class="fa fa-fw fa-link"></i>CSDN</a></span></div><div class="cc-license motion-element" itemprop="license"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a></div><div class="links-of-blogroll motion-element links-of-blogroll-inline"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-globe"></i> 友情链接</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="http://merrier.wang/" title="Merrier说" target="_blank">Merrier说</a></li></ul></div></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起源"><span class="nav-number">1.</span> <span class="nav-text">起源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经过"><span class="nav-number">2.</span> <span class="nav-text">经过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span> <span class="with-love"><i class="fa fa-user"></i> </span><span class="author" itemprop="copyrightHolder">负雪明烛</span></div><div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div><span class="post-meta-divider">|</span><div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div><div class="footer-custom">Hosted by <a href="https://pages.coding.me">Coding Pages</a></div><div class="busuanzi-count"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv">您是第 <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 个小伙伴 </span><span class="site-pv">本站总浏览 <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><script id="dsq-count-scr" src="https://fuxuemingzhu.disqus.com/count.js" async></script><script type="text/javascript">var disqus_config=function(){this.page.url="http://fuxuemingzhu.me/2015/12/18/Hello-LaTeX/",this.page.identifier="2015/12/18/Hello-LaTeX/",this.page.title="Hello LaTeX"},d=document,s=d.createElement("script");s.src="https://fuxuemingzhu.disqus.com/embed.js",s.setAttribute("data-timestamp",""+ +new Date),(d.head||d.body).appendChild(s)</script><script type="text/javascript" src="/js/src/love.js"></script><script type="text/javascript">var OriginTitile=document.title,st;document.addEventListener("visibilitychange",function(){document.hidden?(document.title="负雪明烛在这里等你",clearTimeout(st)):(document.title="Got ya~～(￣▽￣～)~",st=setTimeout(function(){document.title=OriginTitile},3e3))})</script></body></html><!-- rebuild by neat -->
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/avatar.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="LaTeX," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="起源最早听说LaTeX是在做数据挖掘的熊辉老师公开课上，当时他说他看别人投过来的论文时，如果用Word写的，直接Pass，用”LaTeX”的才看。当时没有字幕，我愣是听了好几遍才根据发音把”LaTeX”这个词给拼了出来，搜索了相关资料。后来了解到了中国化之后的CTeX。自从接触到这个词之后才感觉周围到处都是在讲LaTeX（可能是我之前没注意），学校里也有大神用LaTeX写毕设论文，恰巧我又在看美赛">
+<meta name="keywords" content="LaTeX">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hello LaTeX">
+<meta property="og:url" content="http://fuxuemingzhu.me/2015/12/18/Hello-LaTeX/index.html">
+<meta property="og:site_name" content="负雪明烛的博客">
+<meta property="og:description" content="起源最早听说LaTeX是在做数据挖掘的熊辉老师公开课上，当时他说他看别人投过来的论文时，如果用Word写的，直接Pass，用”LaTeX”的才看。当时没有字幕，我愣是听了好几遍才根据发音把”LaTeX”这个词给拼了出来，搜索了相关资料。后来了解到了中国化之后的CTeX。自从接触到这个词之后才感觉周围到处都是在讲LaTeX（可能是我之前没注意），学校里也有大神用LaTeX写毕设论文，恰巧我又在看美赛">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i.imgur.com/OSVpy6f.png">
+<meta property="og:image" content="http://i.imgur.com/FVookeu.jpg">
+<meta property="og:image" content="http://bbs.byr.cn/img/ubb/ema/9.gif">
+<meta property="og:image" content="http://i.imgur.com/PHnINJg.jpg">
+<meta property="og:image" content="http://i.imgur.com/7RkGe3A.jpg">
+<meta property="og:image" content="http://i.imgur.com/ZHbMYWF.jpg">
+<meta property="og:image" content="http://i.imgur.com/kSSjIpV.jpg">
+<meta property="og:updated_time" content="2017-08-09T13:03:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hello LaTeX">
+<meta name="twitter:description" content="起源最早听说LaTeX是在做数据挖掘的熊辉老师公开课上，当时他说他看别人投过来的论文时，如果用Word写的，直接Pass，用”LaTeX”的才看。当时没有字幕，我愣是听了好几遍才根据发音把”LaTeX”这个词给拼了出来，搜索了相关资料。后来了解到了中国化之后的CTeX。自从接触到这个词之后才感觉周围到处都是在讲LaTeX（可能是我之前没注意），学校里也有大神用LaTeX写毕设论文，恰巧我又在看美赛">
+<meta name="twitter:image" content="http://i.imgur.com/OSVpy6f.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://fuxuemingzhu.me/2015/12/18/Hello-LaTeX/"/>
+
+
+
+
+
+  <title>Hello LaTeX | 负雪明烛的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?720cd3f4909308ad8a7cac68733c0a19";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">负雪明烛的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">好好学习，努力成为渣硕</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签云
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br />
+            
+            留言板
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-drawing">
+          <a href="/drawing/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-picture-o"></i> <br />
+            
+            菜菜手绘坊
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+<script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2015/12/18/Hello-LaTeX/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="负雪明烛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="负雪明烛的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Hello LaTeX</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-18T16:50:05+08:00">
+                2015-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">术业专攻</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/12/18/Hello-LaTeX/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/12/18/Hello-LaTeX/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">热度
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>℃
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!-- build time:Wed Jan 23 2019 14:39:31 GMT+0800 (CST) --><h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>最早听说LaTeX是在做数据挖掘的熊辉老师公开课上，当时他说他看别人投过来的论文时，如果用Word写的，直接Pass，用”LaTeX”的才看。当时没有字幕，我愣是听了好几遍才根据发音把”LaTeX”这个词给拼了出来，搜索了相关资料。后来了解到了中国化之后的CTeX。</p><p>自从接触到这个词之后才感觉周围到处都是在讲LaTeX（可能是我之前没注意），学校里也有大神用LaTeX写毕设论文，恰巧我又在看美赛建模的一些经验，里面也有人提到了LaTeX，总之，LaTeX对我来说越来越具有吸引力。</p><p><img src="http://i.imgur.com/OSVpy6f.png" alt=""></p><a id="more"></a><h2 id="经过"><a href="#经过" class="headerlink" title="经过"></a>经过</h2><p>当然首先是下载安装了。这本应该是最简单的一步，结果让我整了好久才弄成功。</p><p>对于CTeX，在其官方社区<a href="http://www.ctex.org/HomePage" target="_blank" rel="external">http://www.ctex.org/HomePage</a>上给了百度网盘的下载地址。是我不小心，把所有的历史版本的CTeX都下载了下来，当然我发现下的不对，暂停了下载，只下载了最新的CTeX2.9。</p><p>讲一讲在安装时遇到的问题。</p><p>第一个，CTeX安装会覆盖系统环境变量，这个太坑爹，还好我提前做了备份。</p><p>第二个问题，第一次安装之后发现不好使，具体表现是WinEdt打开新建文件编译有问题，命令行的提示是“系统找不到相关文件”。我以为是下载的时候没现在完整（文件夹里还有.download文件），于是把CTeX2.9的Full版本给卸载重装。仍然同样问题。以为是没有字体库，安装上了，仍然不好使。卸载了重新装基本版本。仍然不好使。这个时候我就不淡定了，以为是CTeX的锅，打算装原版LaTex，反正美赛建模于是用纯英文写作。百度呀、Google呀、论坛呀都没搜到相关问题的答案，我感觉是我电脑的问题，或者我下载了盗版，我不会是唯一一出现这个问题的吧。</p><p>今天下午水论坛，发现一个人也是请教CTeX的问题，当然问题和我的问题不一样，但帖子底下有条回复是让楼主去CTeX的社区去问。这就提醒我，在一些技术性比较强的场合，自己专门的社区很可能比百度后者Google上其他人的经验内容要丰富。在CTeX社区搜索真发现了类似问题的帖子。逛了两个帖子之后找到了解决方案。</p><p><img src="http://i.imgur.com/FVookeu.jpg" alt=""></p><p>我试了一下，再次打开WinEdt就完全正常了！</p><p>这个莫名其妙的错误困扰了我两三天。另外这个其实也发现是我们论坛的好哇，说不定哪个贴子就可以启发自己的思路找到正确结果。<img src="http://bbs.byr.cn/img/ubb/ema/9.gif" alt=""></p><p>使用方法：</p><p><img src="http://i.imgur.com/PHnINJg.jpg" alt=""></p><p>我用的是XeLaTeX编译。然后点击放大镜查看pdf.</p><p>上几个小栗子。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">\documentclass&#123;article&#125; </div><div class="line">  \author&#123;My Name&#125; </div><div class="line">  \title&#123;The Title&#125; </div><div class="line">\begin&#123;document&#125; </div><div class="line">  \maketitle </div><div class="line">  hello, world % This is comment </div><div class="line">\end&#123;document&#125;</div></pre></td></tr></table></figure><p>运行结果：</p><p><img src="http://i.imgur.com/7RkGe3A.jpg" alt=""></p><p>挺漂亮的吧。</p><p>中文示例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">\documentclass&#123;ctexart&#125;</div><div class="line">\begin&#123;document&#125;</div><div class="line">你好，世界</div><div class="line">\end&#123;document&#125;</div></pre></td></tr></table></figure><p>结果：</p><p><img src="http://i.imgur.com/ZHbMYWF.jpg" alt=""></p><p>图片示例：</p><p><code>`</code>latex<br>\documentclass{article}<br>\usepackage{graphicx}<br>\begin{document}</p><pre><code>taylor.jpg
+</code></pre><p>\includegraphics[width=4.00in,height=4.00in]{taylor.jpg}<br>\end{document}<br><code>`</code>latex</p><p>结果：</p><p><img src="http://i.imgur.com/kSSjIpV.jpg" alt=""></p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>LaTeX虽然不是一项必须的技能，但是我感觉是一个写文章的很好的方式。当然Word的所见即所得令人爱不释手，但是对于专业论文的书写，LaTeX有它天生的优势。新技能，get。</p><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>CSDN:<a href="http://blog.csdn.net/perfumekristy/article/details/8515272" target="_blank" rel="external">LaTeX新人教程，30分钟从完全陌生到基本入门</a></p><!-- rebuild by neat -->
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果满分10分，你会给这篇文章打几分？</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赞赏</span>
+  </button>
+  <div id="QR" style="display: block;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="负雪明烛 微信"/>
+        <p>微信</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="负雪明烛 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    负雪明烛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://fuxuemingzhu.me/2015/12/18/Hello-LaTeX/" title="Hello LaTeX">http://fuxuemingzhu.me/2015/12/18/Hello-LaTeX/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LaTeX/" rel="tag"># LaTeX</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/15/arrays-are-objects/" rel="next" title="数组竟然是对象">
+                <i class="fa fa-chevron-left"></i> 数组竟然是对象
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/29/No-Man-s-Land/" rel="prev" title="电影《无人区》">
+                电影《无人区》 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="负雪明烛" />
+            
+              <p class="site-author-name" itemprop="name">负雪明烛</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fuxuemingzhu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://blog.csdn.net/fuxuemingzhu" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-link"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://merrier.wang/" title="Merrier说" target="_blank">Merrier说</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起源"><span class="nav-number">1.</span> <span class="nav-text">起源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经过"><span class="nav-number">2.</span> <span class="nav-text">经过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">负雪明烛</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+  <div class="footer-custom">Hosted by <a href="https://pages.coding.me">Coding Pages</a></div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      您是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      个小伙伴
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总浏览
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://fuxuemingzhu.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://fuxuemingzhu.me/2015/12/18/Hello-LaTeX/';
+          this.page.identifier = '2015/12/18/Hello-LaTeX/';
+          this.page.title = 'Hello LaTeX';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://fuxuemingzhu.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<!-- 页面点击小心心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascript">var OriginTitile=document.title,st;document.addEventListener("visibilitychange",function(){document.hidden?(document.title="负雪明烛在这里等你",clearTimeout(st)):(document.title="Got ya~～(￣▽￣～)~",st=setTimeout(function(){document.title=OriginTitile},3e3))})</script>
+</body>
+</html>
