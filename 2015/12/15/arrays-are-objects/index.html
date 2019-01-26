@@ -404,14 +404,74 @@
       
 
       
-        <!-- build time:Wed Jan 23 2019 14:39:31 GMT+0800 (CST) --><h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>事件起源是论坛里的一篇帖子，关于数组的.lenth多次调用是否会影响效率，回帖中发现有人说数组是类，调用类的.lenth属性就是看一下值，速度不会慢，云云。然后我就非常不同意的问人家“数组是对象？”，其实有点故意挑毛病的味道，但正是我这句话引起了论坛里较真的同学们的批判，事实证明，我错了，数组就是对象。</p><a id="more"></a><h2 id="经过"><a href="#经过" class="headerlink" title="经过"></a>经过</h2><p>论坛里同学也给出了比较合理的反驳理由，就是下面这张图：</p><p><img src="http://bbs.byr.cn/att/Java/0/46465/361" alt=""></p><p>已经比较直观地说明数组是<strong>Object</strong>类的<strong>子类</strong>了，也就是说数组是对象。</p><p>但是我并不这么认为，因为我是从C,C++一步步学过来的，在我印象之中，C里面的数组就是内存中的连续的一段数据，数组的名称就是内存地址的开始位置的指针。后来这个想法就一直持续到C++里和java里。当然C里面并没有对象的说法，但是C++和java里面都有对象的说法。对于C++中，数组是不是对象我已经完全不知道了，我估计也是内存的物理地址，通过更改数组的下标就可以访问到数组的不同地址的元素。java里面我也理所当然的这么认为了。</p><p>当然，有很多机会都可以向我说明数组是对象，比如<code>array.length</code>，我在今天以前都认为这是java的一个为数组设计的简便获取数组长度的方式，并不认为是调用类的属性。更让我信以为真的是<code>length</code>后面没有<code>()</code>，说明不是方法。这种思维根深蒂固。</p><p>在上图中，数组通过<code>new</code>的方式构建出来，并没有类的声明，构造方法等，我和同学说，数组理论上来说不是类，只是JVM在处理的时候非常向一个类那样处理了。有较真的同学就更进一步指出，数组理论上来说就是一个类。</p><p>底下就完全暴露出我的不足与无知了，我反问同学：</p><blockquote><p>是对象就得有类吧？构建对象怎么构建？对象内存存放位置在哪？</p></blockquote><p>还是我太无知了，我仍然天真的以为，构建对象需要用类，声明对象需要用类来声明、构造方法来完成构建，而且更要命的是我认为数组存放位置在内存中的<strong>栈</strong>中，所以我认为这几个问题都说明数组不是一个类。</p><p>同学的回答非常有说服力：</p><blockquote><p>你的类难道就只是指硬盘上的.class文件？对象都是放堆上，一般是eden上，除非特别大，那就直接进老年代。hotspot虚拟机对象头元数据引用指向方法区的类元数据。类加载进来就放方法区。这种基础问题你就不用研究虚拟机了，多看看书</p></blockquote><p>我还想继续反驳，但是我先去百度了一下，几乎所有人都认为数组是对象，理由就是上面那张图。而且有<strong>一切皆对象</strong>的说法。</p><p>有个帖子的分类比较好，我认为一定程度上解决了我的困惑：</p><p>引用数据类型<br>java数据类型图：</p><pre><code>                 ┏数值型━┳━整数型：byte short int long
+        <h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>事件起源是论坛里的一篇帖子，关于数组的.lenth多次调用是否会影响效率，回帖中发现有人说数组是类，调用类的.lenth属性就是看一下值，速度不会慢，云云。然后我就非常不同意的问人家“数组是对象？”，其实有点故意挑毛病的味道，但正是我这句话引起了论坛里较真的同学们的批判，事实证明，我错了，数组就是对象。</p>
+<a id="more"></a>
+<h2 id="经过"><a href="#经过" class="headerlink" title="经过"></a>经过</h2><p>论坛里同学也给出了比较合理的反驳理由，就是下面这张图：</p>
+<p><img src="http://bbs.byr.cn/att/Java/0/46465/361" alt=""></p>
+<p>已经比较直观地说明数组是<strong>Object</strong>类的<strong>子类</strong>了，也就是说数组是对象。</p>
+<p>但是我并不这么认为，因为我是从C,C++一步步学过来的，在我印象之中，C里面的数组就是内存中的连续的一段数据，数组的名称就是内存地址的开始位置的指针。后来这个想法就一直持续到C++里和java里。当然C里面并没有对象的说法，但是C++和java里面都有对象的说法。对于C++中，数组是不是对象我已经完全不知道了，我估计也是内存的物理地址，通过更改数组的下标就可以访问到数组的不同地址的元素。java里面我也理所当然的这么认为了。</p>
+<p>当然，有很多机会都可以向我说明数组是对象，比如<code>array.length</code>，我在今天以前都认为这是java的一个为数组设计的简便获取数组长度的方式，并不认为是调用类的属性。更让我信以为真的是<code>length</code>后面没有<code>()</code>，说明不是方法。这种思维根深蒂固。</p>
+<p>在上图中，数组通过<code>new</code>的方式构建出来，并没有类的声明，构造方法等，我和同学说，数组理论上来说不是类，只是JVM在处理的时候非常向一个类那样处理了。有较真的同学就更进一步指出，数组理论上来说就是一个类。</p>
+<p>底下就完全暴露出我的不足与无知了，我反问同学：</p>
+<blockquote>
+<p>是对象就得有类吧？构建对象怎么构建？对象内存存放位置在哪？</p>
+</blockquote>
+<p>还是我太无知了，我仍然天真的以为，构建对象需要用类，声明对象需要用类来声明、构造方法来完成构建，而且更要命的是我认为数组存放位置在内存中的<strong>栈</strong>中，所以我认为这几个问题都说明数组不是一个类。</p>
+<p>同学的回答非常有说服力：</p>
+<blockquote>
+<p>你的类难道就只是指硬盘上的.class文件？对象都是放堆上，一般是eden上，除非特别大，那就直接进老年代。hotspot虚拟机对象头元数据引用指向方法区的类元数据。类加载进来就放方法区。这种基础问题你就不用研究虚拟机了，多看看书</p>
+</blockquote>
+<p>我还想继续反驳，但是我先去百度了一下，几乎所有人都认为数组是对象，理由就是上面那张图。而且有<strong>一切皆对象</strong>的说法。</p>
+<p>有个帖子的分类比较好，我认为一定程度上解决了我的困惑：</p>
+<p>引用数据类型<br>java数据类型图：</p>
+<pre><code>                 ┏数值型━┳━整数型：byte short int long
        ┏基本数据类型━━┫   ┗━浮点型：float do
        ┃         ┣字符型：char                                          
 数据类型╋         ┗布尔型：boolean             
        ┃         ┏类（class）
        ┗引用数据类型━━╋接口（interface）
                   ┗数组（array）
-</code></pre><p>其实如果看到这里，把数组当成引用数据类型就解决了我的困惑。</p><p>我不放心，又去Google.</p><blockquote><p>java arrays are objects?</p></blockquote><p>结果让我震惊，所有的人全部都在说是的。</p><p>甚至还放出了Oracal的文档，第一句就是：</p><blockquote><p>In the Java programming language, arrays are objects (§4.3.1), are dynamically created, and may be assigned to variables of type Object (§4.3.2). All methods of class Object may be invoked on an array.</p></blockquote><p>网址：<a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-10.html" target="_blank" rel="external">http://docs.oracle.com/javase/specs/jls/se7/html/jls-10.html</a></p><p>这就让我不淡定了。</p><p>同时还有这种说法：</p><blockquote><p>An object is a class instance or an array.</p></blockquote><p>这就说明了我的理解是错的，一个对象是一个类的实例后者是数组。</p><p>查阅更多资料后发现，数组属于特殊的类，是有JVM创建的，不像代码那样的天真。</p><p>在<a href="http://math.hws.edu/javanotes/c5/s1.html#OOP.1.4" target="_blank" rel="external">http://math.hws.edu/javanotes/c5/s1.html#OOP.1.4</a>网址的5.1.4中，有更详细的说明。</p><blockquote><p>As I noted in Subsection 3.8.1, arrays are objects. Like Strings they are special objects, with their own unique syntax. An array type such as int[] or String[] is actually a class, and arrays are created using a special version of the new operator. As in the case for other object variables, an array variable can never hold an actual array – only a reference to an array object. The array object itself exists in the heap. It is possible for an array variable to hold the value null, which means there is no actual array.</p></blockquote><p>数组也可以指向<code>null</code>,它就是一个对象。</p><p>下面这个代码说明数组里可以包含对象，默认的对象并没有初始化，这里的对象是null.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Student[] classlist;  <span class="comment">// Declare a variable of type Student[].</span></div><div class="line">classlist = <span class="keyword">new</span> Student[<span class="number">30</span>];  <span class="comment">// The variable now points to an array.</span></div></pre></td></tr></table></figure><blockquote><p>The array has 30 elements, classlist[0], classlist[1], … classlist[29]. When the array is created, it is filled with the default initial value, which for an object type is null.</p></blockquote><p>如果需要实例化每个对象，需要这么做：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Student[] classlist;</div><div class="line">classlist = <span class="keyword">new</span> Student[<span class="number">30</span>];</div><div class="line"><span class="keyword">for</span> ( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">30</span>; i++ ) &#123;</div><div class="line">    classlist[i] = <span class="keyword">new</span> Student();</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>所以，综合这些，我确实错了。JVM可以不通过常规的类的实例化的方式构建对象。</p><p>还有最后一个问题，数组的内存存放方式，我之前认为数组放的是基本的数据类型，或者是引用数据类型（对象的引用），所以数组的存放位置是在<code>栈</code>区。</p><p>还是太天真了。</p><p>据<a href="http://www.cnblogs.com/hmiinyu/archive/2012/10/22/2732781.html" target="_blank" rel="external">http://www.cnblogs.com/hmiinyu/archive/2012/10/22/2732781.html</a>文章说法，数组存放方式和普通对象的存放方式相同。</p><p><img src="http://i.imgur.com/BLs4Bzk.jpg" alt=""></p><p>堆内存生成数组内容，栈内存存放数组的引用。</p><p>多维数组的存放方式如下：</p><p><img src="http://i.imgur.com/CDbujlN.jpg" alt=""></p><p>这篇文章真是好文章，适合一看。</p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>有时候学习东西就是先入为主，并且根深蒂固想当然。另外，这也暴露了自己的不足，就是对java自己认为很熟的东西其实并不一定是对的，另外JVM的知识我简直就是小白。总而言之，自己水平还是非常有限，需要更一步的学习。</p><!-- rebuild by neat -->
+</code></pre><p>其实如果看到这里，把数组当成引用数据类型就解决了我的困惑。</p>
+<p>我不放心，又去Google.</p>
+<blockquote>
+<p>java arrays are objects?</p>
+</blockquote>
+<p>结果让我震惊，所有的人全部都在说是的。</p>
+<p>甚至还放出了Oracal的文档，第一句就是：</p>
+<blockquote>
+<p>In the Java programming language, arrays are objects (§4.3.1), are dynamically created, and may be assigned to variables of type Object (§4.3.2). All methods of class Object may be invoked on an array.</p>
+</blockquote>
+<p>网址：<a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-10.html" target="_blank" rel="external">http://docs.oracle.com/javase/specs/jls/se7/html/jls-10.html</a></p>
+<p>这就让我不淡定了。</p>
+<p>同时还有这种说法：</p>
+<blockquote>
+<p>An object is a class instance or an array.</p>
+</blockquote>
+<p>这就说明了我的理解是错的，一个对象是一个类的实例后者是数组。</p>
+<p>查阅更多资料后发现，数组属于特殊的类，是有JVM创建的，不像代码那样的天真。</p>
+<p>在<a href="http://math.hws.edu/javanotes/c5/s1.html#OOP.1.4" target="_blank" rel="external">http://math.hws.edu/javanotes/c5/s1.html#OOP.1.4</a>网址的5.1.4中，有更详细的说明。</p>
+<blockquote>
+<p>As I noted in Subsection 3.8.1, arrays are objects. Like Strings they are special objects, with their own unique syntax. An array type such as int[] or String[] is actually a class, and arrays are created using a special version of the new operator. As in the case for other object variables, an array variable can never hold an actual array – only a reference to an array object. The array object itself exists in the heap. It is possible for an array variable to hold the value null, which means there is no actual array.</p>
+</blockquote>
+<p>数组也可以指向<code>null</code>,它就是一个对象。</p>
+<p>下面这个代码说明数组里可以包含对象，默认的对象并没有初始化，这里的对象是null.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Student[] classlist;  <span class="comment">// Declare a variable of type Student[].</span></div><div class="line">classlist = <span class="keyword">new</span> Student[<span class="number">30</span>];  <span class="comment">// The variable now points to an array.</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>The array has 30 elements, classlist[0], classlist[1], … classlist[29]. When the array is created, it is filled with the default initial value, which for an object type is null. </p>
+</blockquote>
+<p>如果需要实例化每个对象，需要这么做：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Student[] classlist;</div><div class="line">classlist = <span class="keyword">new</span> Student[<span class="number">30</span>];</div><div class="line"><span class="keyword">for</span> ( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">30</span>; i++ ) &#123;</div><div class="line">    classlist[i] = <span class="keyword">new</span> Student();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>所以，综合这些，我确实错了。JVM可以不通过常规的类的实例化的方式构建对象。</p>
+<p>还有最后一个问题，数组的内存存放方式，我之前认为数组放的是基本的数据类型，或者是引用数据类型（对象的引用），所以数组的存放位置是在<code>栈</code>区。</p>
+<p>还是太天真了。</p>
+<p>据<a href="http://www.cnblogs.com/hmiinyu/archive/2012/10/22/2732781.html" target="_blank" rel="external">http://www.cnblogs.com/hmiinyu/archive/2012/10/22/2732781.html</a>文章说法，数组存放方式和普通对象的存放方式相同。</p>
+<p><img src="http://i.imgur.com/BLs4Bzk.jpg" alt=""></p>
+<p>堆内存生成数组内容，栈内存存放数组的引用。</p>
+<p>多维数组的存放方式如下：</p>
+<p><img src="http://i.imgur.com/CDbujlN.jpg" alt=""></p>
+<p>这篇文章真是好文章，适合一看。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>有时候学习东西就是先入为主，并且根深蒂固想当然。另外，这也暴露了自己的不足，就是对java自己认为很熟的东西其实并不一定是对的，另外JVM的知识我简直就是小白。总而言之，自己水平还是非常有限，需要更一步的学习。</p>
+
       
     </div>
     

@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="项亮的《推荐系统实践》是一本面向推荐系统初学者的好书。这本书中间花了不少的篇幅去介绍了推荐系统中很重要的一个算法：协同过滤。囿于书中的篇幅限制，作者只给出了核心部分的代码。基于此书内容，我动手实现了基于用户的协同过滤算法和基于物品的协同过滤算法，并在MovieLens数据集上做了测试，效果令人满意。现在总结一下自己对协同过滤系统的理解和动手实践过程的经验。本电影推荐系统已开源在：https://g">
+<meta name="description" content="项亮的《推荐系统实践》是一本面向推荐系统初学者的好书。这本书中间花了不少的篇幅去介绍了推荐系统中很重要的一个算法：协同过滤。囿于书中的篇幅限制，作者只给出了核心部分的代码。基于此书内容，我动手实现了基于用户的协同过滤算法和基于物品的协同过滤算法，并在MovieLens数据集上做了测试，效果令人满意。现在总结一下自己对协同过滤系统的理解和动手实践过程的经验。 本电影推荐系统已开源在：https://">
 <meta name="keywords" content="推荐系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="动手实现基于协同过滤的电影推荐系统">
 <meta property="og:url" content="http://fuxuemingzhu.me/2018/06/12/MovieLens-Recommender/index.html">
 <meta property="og:site_name" content="负雪明烛的博客">
-<meta property="og:description" content="项亮的《推荐系统实践》是一本面向推荐系统初学者的好书。这本书中间花了不少的篇幅去介绍了推荐系统中很重要的一个算法：协同过滤。囿于书中的篇幅限制，作者只给出了核心部分的代码。基于此书内容，我动手实现了基于用户的协同过滤算法和基于物品的协同过滤算法，并在MovieLens数据集上做了测试，效果令人满意。现在总结一下自己对协同过滤系统的理解和动手实践过程的经验。本电影推荐系统已开源在：https://g">
+<meta property="og:description" content="项亮的《推荐系统实践》是一本面向推荐系统初学者的好书。这本书中间花了不少的篇幅去介绍了推荐系统中很重要的一个算法：协同过滤。囿于书中的篇幅限制，作者只给出了核心部分的代码。基于此书内容，我动手实现了基于用户的协同过滤算法和基于物品的协同过滤算法，并在MovieLens数据集上做了测试，效果令人满意。现在总结一下自己对协同过滤系统的理解和动手实践过程的经验。 本电影推荐系统已开源在：https://">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://fuxuemingzhu.me/2018/06/12/MovieLens-Recommender/head.jpg">
 <meta property="og:image" content="http://fuxuemingzhu.me/2018/06/12/MovieLens-Recommender/Precision.png">
@@ -101,7 +101,7 @@
 <meta property="og:updated_time" content="2018-06-12T13:22:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动手实现基于协同过滤的电影推荐系统">
-<meta name="twitter:description" content="项亮的《推荐系统实践》是一本面向推荐系统初学者的好书。这本书中间花了不少的篇幅去介绍了推荐系统中很重要的一个算法：协同过滤。囿于书中的篇幅限制，作者只给出了核心部分的代码。基于此书内容，我动手实现了基于用户的协同过滤算法和基于物品的协同过滤算法，并在MovieLens数据集上做了测试，效果令人满意。现在总结一下自己对协同过滤系统的理解和动手实践过程的经验。本电影推荐系统已开源在：https://g">
+<meta name="twitter:description" content="项亮的《推荐系统实践》是一本面向推荐系统初学者的好书。这本书中间花了不少的篇幅去介绍了推荐系统中很重要的一个算法：协同过滤。囿于书中的篇幅限制，作者只给出了核心部分的代码。基于此书内容，我动手实现了基于用户的协同过滤算法和基于物品的协同过滤算法，并在MovieLens数据集上做了测试，效果令人满意。现在总结一下自己对协同过滤系统的理解和动手实践过程的经验。 本电影推荐系统已开源在：https://">
 <meta name="twitter:image" content="http://fuxuemingzhu.me/2018/06/12/MovieLens-Recommender/head.jpg">
 
 
@@ -412,7 +412,79 @@
       
 
       
-        <!-- build time:Wed Jan 23 2019 14:39:31 GMT+0800 (CST) --><p>项亮的《推荐系统实践》是一本面向推荐系统初学者的好书。这本书中间花了不少的篇幅去介绍了推荐系统中很重要的一个算法：协同过滤。囿于书中的篇幅限制，作者只给出了核心部分的代码。基于此书内容，我动手实现了基于用户的协同过滤算法和基于物品的协同过滤算法，并在MovieLens数据集上做了测试，效果令人满意。现在总结一下自己对协同过滤系统的理解和动手实践过程的经验。</p><p>本电影推荐系统已开源在：<a href="https://github.com/fuxuemingzhu/MovieLens-Recommender" target="_blank" rel="external">https://github.com/fuxuemingzhu/MovieLens-Recommender</a></p><img src="/2018/06/12/MovieLens-Recommender/head.jpg" alt="head.jpg"><a id="more"></a><h2 id="协同过滤理论"><a href="#协同过滤理论" class="headerlink" title="协同过滤理论"></a>协同过滤理论</h2><p>协同过滤算法（Collaborative Filtering，CF）是只基于用户的历史行为对用户未来的购买习惯进行预测的一种算法。对于协同过滤的算法，最著名的、在业界得到最广泛应用的算法是基于邻域的方法，而基于邻域的方法主要包含下面两种算法。</p><ul><li>基于用户的协同过滤算法（UserBasedCF） 这种算法给用户推荐和他兴趣相似的其他用户喜欢的物品。</li><li>基于物品的协同过滤算法（ItemBasedCF） 这种算法给用户推荐和他之前喜欢的物品相似的物品。</li></ul><p>（对于两种算法的基本概念我就不详细解读了，可以看《推荐系统实践》或者IBM的文章<a href="https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy1/" target="_blank" rel="external">推荐引擎初探</a>。）</p><p>因为这两种算法都是基于求邻域的，并且直观上UserBasedCF更容易理解，所以UserBasedCF比ItemBasedCF提出的更早一点。关于协同过滤理论，最值得一看的论文就是亚马逊发表的《Amazon.com Recommendations Item-to-Item Collaborative Filtering》。这篇论文是ItemBasedCF开山之作，很值得学习。</p><p>这篇论文的主要思想是：</p><p>在 User-based 方法中，随着用户数量的不断增多，在大数量级的用户范围内进行“最近邻搜索”会成为整个算法的瓶颈。Item-based 方法通过计算项之间的相似性来代替用户之间的相似性。对于项来讲，它们之间的相似性要稳定很多，因此可以离线完成工作量最大的相似性计算步骤，从而大大降低了在线计算量，提高推荐效率。</p><p>在 Item-based 方法中，要对 A 和 B 进行项相似性计算，通常分为两步：1）找出同时对 A 和 B 打过分的组合；2）对这些组合进行相似度计算，常用的算法包括：皮尔森相关系数、余弦相似性、调整余弦相似性和条件概率等。</p><p>这篇论文中也提出了可以只计算购买了这个物品的用户和其购买的其他物品的相似性来简化计算，项亮的书里也有用到，所以我实现的时候也采用了。</p><p>其实，很容易看出协同过滤算法的思想非常简单淳朴：用户之前的行为记录会反映出用户-用户的相关性（UserBasedCF）或者物品-物品的相关性（ItemBasedCF）。也就是UserBasedCF是基于用户的历史信息求用户的相关性，然后根据该用户的相似用户购买了的物品产生推荐信息；ItemBasedCF是基于用户的历史信息求物品的相关性，然后根据用户购买了的物品产生推荐信息。</p><h2 id="评测指标"><a href="#评测指标" class="headerlink" title="评测指标"></a>评测指标</h2><p>本文采用的评测指标和《推荐系统实践》一致，分为精确率，召回率，覆盖率和新颖度。</p><p>精确率描述最终的推荐列表中有多少比例是发生过的用户—物品评分记录；</p><p>召回率描述有多少比例的用户—物品评分记录包含在最终的推荐列表中；</p><p>覆盖率反映了推荐算法发掘长尾的能力，覆盖率越高，说明推荐算法越能够将长尾中的物品推荐给用户；</p><p>新颖度反映了推荐列表中物品的平均流行度。如果推荐出的物品都很热门，说明推荐的新颖度较低，否则说明推荐结果比较新颖。</p><p>对用户u推荐N个物品（记为R(u)），令用户u在测试集上喜欢的物品集合为T(u)，那么各个评测指标的公式如下：</p><img src="/2018/06/12/MovieLens-Recommender/Precision.png" alt="精确率" title="精确率"> <img src="/2018/06/12/MovieLens-Recommender/Recall.png" alt="召回率" title="召回率"> <img src="/2018/06/12/MovieLens-Recommender/Coverage.png" alt="覆盖率" title="覆盖率"><h2 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h2><h3 id="基于用户的协同过滤算法"><a href="#基于用户的协同过滤算法" class="headerlink" title="基于用户的协同过滤算法"></a>基于用户的协同过滤算法</h3><img src="/2018/06/12/MovieLens-Recommender/usercf.gif" alt="基于用户的协同过滤算法" title="基于用户的协同过滤算法"><p>基于用户的协同过滤算法主要包括两个步骤。</p><p>(1) 找到和目标用户兴趣相似的用户集合。<br>(2) 找到这个集合中的用户喜欢的，且目标用户没有听说过的物品推荐给目标用户。</p><p>求用户的相似性矩阵的时候，使用的余弦相似度。</p><img src="/2018/06/12/MovieLens-Recommender/cosine.png" alt="余弦相似度" title="余弦相似度"><p>由于两个用户之间可能根本没有购买过同样的物品，所以直接求用户两两之间的相似性矩阵浪费计算资源。所以使用物品—用户倒排表，这样可以很轻易地看出哪些用户购买了同样的商品，只要两个用户在同一个物品的用户表格里出现，就直接把他们两个用户的共现矩阵C[u][v]+1，最终就可以得到所有用户之间不为0的C[u][v]。</p><img src="/2018/06/12/MovieLens-Recommender/item-user-inverse.png" alt="物品—用户倒排表" title="物品—用户倒排表"><p>上面计算的是余弦相似度的分子，如果要求用户之间的相似性矩阵还要除以用户购买物品个数的乘积的算数平方根。</p><p>得到用户之间的兴趣相似度后， UserCF算法会计算与该用户兴趣最相似的K个用户的购买记录中的每个物品的兴趣程度。如下的公式度量了UserCF算法中用户u对物品i的感兴趣程度：</p><img src="/2018/06/12/MovieLens-Recommender/usercf-interest.png" alt="usercf-interest.png"><p>所以，只要找出和该用户最相似的K个用户的购买记录，对每个商品打分，得分最高的N个物品推荐给用户即可。</p><h3 id="基于用户的协同过滤算法的改进"><a href="#基于用户的协同过滤算法的改进" class="headerlink" title="基于用户的协同过滤算法的改进"></a>基于用户的协同过滤算法的改进</h3><p>上面的基于用户的协同过滤算法没有对流行的商品进行惩罚，更有根据的做法是惩罚用户u和用户v共同兴趣列表中热门物品对他们相似度的影响。该改进算法称为User-IIF算法。</p><img src="/2018/06/12/MovieLens-Recommender/user-iif.png" alt="User-IIF算法" title="User-IIF算法"><h3 id="基于物品的协同过滤算法"><a href="#基于物品的协同过滤算法" class="headerlink" title="基于物品的协同过滤算法"></a>基于物品的协同过滤算法</h3><img src="/2018/06/12/MovieLens-Recommender/itemcf.gif" alt="基于物品的协同过滤算法" title="基于物品的协同过滤算法"><p>根据影响最广的，被引用的次数也最多的一篇推荐系统论文《Item-Based Collaborative Filtering Recommendation Algorithms》，Item-based算法分为两步：</p><p>（1）相似度计算，得到各item之间的相似度</p><ul><li>基于余弦（Cosine-based）的相似度计算</li><li>基于关联（Correlation-based）的相似度计算</li><li>调整的余弦（Adjusted Cosine）相似度计算</li></ul><p>（2）预测值计算，对用户未打分的物品进行预测</p><ul><li>加权求和。用户u已打分的物品的分数进行加权求和，权值为各个物品与物品i的相似度，然后对所有物品相似度的和求平均，计算得到用户u对物品i打分。</li><li>回归。如果两个用户都喜欢一样的物品，因为打分习惯不同，他们的欧式距离可能比较远，但他们应该有较高的相似度 。在通过用线性回归的方式重新估算一个新的R(u,N).</li></ul><p>本文采用的是余弦相似度和加权求和的方式，主要的步骤和基于用户的协同过滤算法很接近，就不再赘述，可以看书、论文或者我的代码。</p><h3 id="基于物品的协同过滤算法的改进"><a href="#基于物品的协同过滤算法的改进" class="headerlink" title="基于物品的协同过滤算法的改进"></a>基于物品的协同过滤算法的改进</h3><p>考虑到可能有用户对物品产生了大量的行为，那么这个用户的购买记录将对众多的书产生了相似度影响。所以可以对用户活跃度进行惩罚，活跃用户对物品相似度的贡献应该小于不活跃的用户，即ItemCF-IUF算法：</p><img src="/2018/06/12/MovieLens-Recommender/item-iuf.png" alt="ItemCF-IUF算法" title="ItemCF-IUF算法"><h2 id="电影推荐系统实现"><a href="#电影推荐系统实现" class="headerlink" title="电影推荐系统实现"></a>电影推荐系统实现</h2><p>我在实现MovieLens-Recommender时，花了很多的时间做了很好的优化。把不同的推荐算法分成独立文件，每个文件的每个函数都有详细的注释，变量名等通俗易懂，很适合详细看看。</p><p>推荐过程分为4步：</p><ol><li>构造训练集和预测集</li><li>训练推荐系统模型</li><li>给出推荐结果</li><li>评价推荐结果</li></ol><p>为了对比协同过滤和其他推荐算法的区别，所以我一共实现了六种推荐算法：</p><ul><li>UserCF</li><li>ItemCF</li><li>UserCF-IIF</li><li>ItemCF-IUF</li><li>Random</li><li>Most Popular</li></ul><p>本项目使用的数据集是Movielens-1M和Movielens-100k，当然也可以很简单的换成其他数据集。运行的方式很简单，修改main.py里的参数为你想要的即可：</p><pre><code>dataset_name = &apos;ml-100k&apos;
+        <p>项亮的《推荐系统实践》是一本面向推荐系统初学者的好书。这本书中间花了不少的篇幅去介绍了推荐系统中很重要的一个算法：协同过滤。囿于书中的篇幅限制，作者只给出了核心部分的代码。基于此书内容，我动手实现了基于用户的协同过滤算法和基于物品的协同过滤算法，并在MovieLens数据集上做了测试，效果令人满意。现在总结一下自己对协同过滤系统的理解和动手实践过程的经验。</p>
+<p>本电影推荐系统已开源在：<a href="https://github.com/fuxuemingzhu/MovieLens-Recommender" target="_blank" rel="external">https://github.com/fuxuemingzhu/MovieLens-Recommender</a></p>
+<img src="/2018/06/12/MovieLens-Recommender/head.jpg" alt="head.jpg" title="">
+<a id="more"></a>
+<h2 id="协同过滤理论"><a href="#协同过滤理论" class="headerlink" title="协同过滤理论"></a>协同过滤理论</h2><p>协同过滤算法（Collaborative Filtering，CF）是只基于用户的历史行为对用户未来的购买习惯进行预测的一种算法。对于协同过滤的算法，最著名的、在业界得到最广泛应用的算法是基于邻域的方法，而基于邻域的方法主要包含下面两种算法。</p>
+<ul>
+<li>基于用户的协同过滤算法（UserBasedCF） 这种算法给用户推荐和他兴趣相似的其他用户喜欢的物品。</li>
+<li>基于物品的协同过滤算法（ItemBasedCF） 这种算法给用户推荐和他之前喜欢的物品相似的物品。</li>
+</ul>
+<p>（对于两种算法的基本概念我就不详细解读了，可以看《推荐系统实践》或者IBM的文章<a href="https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy1/" target="_blank" rel="external">推荐引擎初探</a>。）</p>
+<p>因为这两种算法都是基于求邻域的，并且直观上UserBasedCF更容易理解，所以UserBasedCF比ItemBasedCF提出的更早一点。关于协同过滤理论，最值得一看的论文就是亚马逊发表的《Amazon.com Recommendations Item-to-Item Collaborative Filtering》。这篇论文是ItemBasedCF开山之作，很值得学习。</p>
+<p>这篇论文的主要思想是：</p>
+<p>在 User-based 方法中，随着用户数量的不断增多，在大数量级的用户范围内进行“最近邻搜索”会成为整个算法的瓶颈。Item-based 方法通过计算项之间的相似性来代替用户之间的相似性。对于项来讲，它们之间的相似性要稳定很多，因此可以离线完成工作量最大的相似性计算步骤，从而大大降低了在线计算量，提高推荐效率。</p>
+<p>在 Item-based 方法中，要对 A 和 B 进行项相似性计算，通常分为两步：1）找出同时对 A 和 B 打过分的组合；2）对这些组合进行相似度计算，常用的算法包括：皮尔森相关系数、余弦相似性、调整余弦相似性和条件概率等。</p>
+<p>这篇论文中也提出了可以只计算购买了这个物品的用户和其购买的其他物品的相似性来简化计算，项亮的书里也有用到，所以我实现的时候也采用了。</p>
+<p>其实，很容易看出协同过滤算法的思想非常简单淳朴：用户之前的行为记录会反映出用户-用户的相关性（UserBasedCF）或者物品-物品的相关性（ItemBasedCF）。也就是UserBasedCF是基于用户的历史信息求用户的相关性，然后根据该用户的相似用户购买了的物品产生推荐信息；ItemBasedCF是基于用户的历史信息求物品的相关性，然后根据用户购买了的物品产生推荐信息。</p>
+<h2 id="评测指标"><a href="#评测指标" class="headerlink" title="评测指标"></a>评测指标</h2><p>本文采用的评测指标和《推荐系统实践》一致，分为精确率，召回率，覆盖率和新颖度。</p>
+<p>精确率描述最终的推荐列表中有多少比例是发生过的用户—物品评分记录；</p>
+<p>召回率描述有多少比例的用户—物品评分记录包含在最终的推荐列表中；</p>
+<p>覆盖率反映了推荐算法发掘长尾的能力，覆盖率越高，说明推荐算法越能够将长尾中的物品推荐给用户；</p>
+<p>新颖度反映了推荐列表中物品的平均流行度。如果推荐出的物品都很热门，说明推荐的新颖度较低，否则说明推荐结果比较新颖。</p>
+<p>对用户u推荐N个物品（记为R(u)），令用户u在测试集上喜欢的物品集合为T(u)，那么各个评测指标的公式如下：</p>
+<img src="/2018/06/12/MovieLens-Recommender/Precision.png" alt="精确率" title="精确率">
+<img src="/2018/06/12/MovieLens-Recommender/Recall.png" alt="召回率" title="召回率">
+<img src="/2018/06/12/MovieLens-Recommender/Coverage.png" alt="覆盖率" title="覆盖率">
+<h2 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h2><h3 id="基于用户的协同过滤算法"><a href="#基于用户的协同过滤算法" class="headerlink" title="基于用户的协同过滤算法"></a>基于用户的协同过滤算法</h3><img src="/2018/06/12/MovieLens-Recommender/usercf.gif" alt="基于用户的协同过滤算法" title="基于用户的协同过滤算法">
+<p>基于用户的协同过滤算法主要包括两个步骤。</p>
+<p>(1) 找到和目标用户兴趣相似的用户集合。<br>(2) 找到这个集合中的用户喜欢的，且目标用户没有听说过的物品推荐给目标用户。</p>
+<p>求用户的相似性矩阵的时候，使用的余弦相似度。</p>
+<img src="/2018/06/12/MovieLens-Recommender/cosine.png" alt="余弦相似度" title="余弦相似度">
+<p>由于两个用户之间可能根本没有购买过同样的物品，所以直接求用户两两之间的相似性矩阵浪费计算资源。所以使用物品—用户倒排表，这样可以很轻易地看出哪些用户购买了同样的商品，只要两个用户在同一个物品的用户表格里出现，就直接把他们两个用户的共现矩阵C[u][v]+1，最终就可以得到所有用户之间不为0的C[u][v]。</p>
+<img src="/2018/06/12/MovieLens-Recommender/item-user-inverse.png" alt="物品—用户倒排表" title="物品—用户倒排表">
+<p>上面计算的是余弦相似度的分子，如果要求用户之间的相似性矩阵还要除以用户购买物品个数的乘积的算数平方根。</p>
+<p>得到用户之间的兴趣相似度后， UserCF算法会计算与该用户兴趣最相似的K个用户的购买记录中的每个物品的兴趣程度。如下的公式度量了UserCF算法中用户u对物品i的感兴趣程度：</p>
+<img src="/2018/06/12/MovieLens-Recommender/usercf-interest.png" alt="usercf-interest.png" title="">
+<p>所以，只要找出和该用户最相似的K个用户的购买记录，对每个商品打分，得分最高的N个物品推荐给用户即可。</p>
+<h3 id="基于用户的协同过滤算法的改进"><a href="#基于用户的协同过滤算法的改进" class="headerlink" title="基于用户的协同过滤算法的改进"></a>基于用户的协同过滤算法的改进</h3><p>上面的基于用户的协同过滤算法没有对流行的商品进行惩罚，更有根据的做法是惩罚用户u和用户v共同兴趣列表中热门物品对他们相似度的影响。该改进算法称为User-IIF算法。</p>
+<img src="/2018/06/12/MovieLens-Recommender/user-iif.png" alt="User-IIF算法" title="User-IIF算法">
+<h3 id="基于物品的协同过滤算法"><a href="#基于物品的协同过滤算法" class="headerlink" title="基于物品的协同过滤算法"></a>基于物品的协同过滤算法</h3><img src="/2018/06/12/MovieLens-Recommender/itemcf.gif" alt="基于物品的协同过滤算法" title="基于物品的协同过滤算法">
+<p>根据影响最广的，被引用的次数也最多的一篇推荐系统论文《Item-Based Collaborative Filtering Recommendation Algorithms》，Item-based算法分为两步：</p>
+<p>（1）相似度计算，得到各item之间的相似度</p>
+<ul>
+<li>基于余弦（Cosine-based）的相似度计算</li>
+<li>基于关联（Correlation-based）的相似度计算</li>
+<li>调整的余弦（Adjusted Cosine）相似度计算</li>
+</ul>
+<p>（2）预测值计算，对用户未打分的物品进行预测</p>
+<ul>
+<li>加权求和。用户u已打分的物品的分数进行加权求和，权值为各个物品与物品i的相似度，然后对所有物品相似度的和求平均，计算得到用户u对物品i打分。</li>
+<li>回归。如果两个用户都喜欢一样的物品，因为打分习惯不同，他们的欧式距离可能比较远，但他们应该有较高的相似度 。在通过用线性回归的方式重新估算一个新的R(u,N).</li>
+</ul>
+<p>本文采用的是余弦相似度和加权求和的方式，主要的步骤和基于用户的协同过滤算法很接近，就不再赘述，可以看书、论文或者我的代码。</p>
+<h3 id="基于物品的协同过滤算法的改进"><a href="#基于物品的协同过滤算法的改进" class="headerlink" title="基于物品的协同过滤算法的改进"></a>基于物品的协同过滤算法的改进</h3><p>考虑到可能有用户对物品产生了大量的行为，那么这个用户的购买记录将对众多的书产生了相似度影响。所以可以对用户活跃度进行惩罚，活跃用户对物品相似度的贡献应该小于不活跃的用户，即ItemCF-IUF算法：</p>
+<img src="/2018/06/12/MovieLens-Recommender/item-iuf.png" alt="ItemCF-IUF算法" title="ItemCF-IUF算法">
+<h2 id="电影推荐系统实现"><a href="#电影推荐系统实现" class="headerlink" title="电影推荐系统实现"></a>电影推荐系统实现</h2><p>我在实现MovieLens-Recommender时，花了很多的时间做了很好的优化。把不同的推荐算法分成独立文件，每个文件的每个函数都有详细的注释，变量名等通俗易懂，很适合详细看看。</p>
+<p>推荐过程分为4步：</p>
+<ol>
+<li>构造训练集和预测集</li>
+<li>训练推荐系统模型</li>
+<li>给出推荐结果</li>
+<li>评价推荐结果</li>
+</ol>
+<p>为了对比协同过滤和其他推荐算法的区别，所以我一共实现了六种推荐算法：</p>
+<ul>
+<li>UserCF</li>
+<li>ItemCF</li>
+<li>UserCF-IIF</li>
+<li>ItemCF-IUF</li>
+<li>Random</li>
+<li>Most Popular</li>
+</ul>
+<p>本项目使用的数据集是Movielens-1M和Movielens-100k，当然也可以很简单的换成其他数据集。运行的方式很简单，修改main.py里的参数为你想要的即可：</p>
+<pre><code>dataset_name = &apos;ml-100k&apos;
 # dataset_name = &apos;ml-1m&apos;
 # model_type = &apos;UserCF&apos;
 # model_type = &apos;UserCF-IIF&apos;
@@ -421,7 +493,9 @@
 # model_type = &apos;MostPopular&apos;
 model_type = &apos;ItemCF-IUF&apos;
 test_size = 0.1
-</code></pre><p>另外，因为当test_size不变时，训练的模型也不会有变化，所以我在运行的时候会保存已有模型，再次运行相同参数的推荐时不用再重新训练模型，大大加快了推荐速度。在求相似性矩阵时，使用defaultdict可以大幅优化速度，这个也是我的一个经验。</p><p>运行时会打印进度，最后给出推荐结果，比如在ml-1m上训练的ItemCF的推荐结果如下：</p><pre><code>recommend for userid = 1:
+</code></pre><p>另外，因为当test_size不变时，训练的模型也不会有变化，所以我在运行的时候会保存已有模型，再次运行相同参数的推荐时不用再重新训练模型，大大加快了推荐速度。在求相似性矩阵时，使用defaultdict可以大幅优化速度，这个也是我的一个经验。</p>
+<p>运行时会打印进度，最后给出推荐结果，比如在ml-1m上训练的ItemCF的推荐结果如下：</p>
+<pre><code>recommend for userid = 1:
 [&apos;1196&apos;, &apos;364&apos;, &apos;1265&apos;, &apos;318&apos;, &apos;2081&apos;, &apos;1282&apos;, &apos;1198&apos;, &apos;2716&apos;, &apos;1&apos;, &apos;2096&apos;]
 
 recommend for userid = 100:
@@ -435,7 +509,8 @@ recommend for userid = 666:
 
 recommend for userid = 888:
 [&apos;2916&apos;, &apos;457&apos;, &apos;480&apos;, &apos;2628&apos;, &apos;1265&apos;, &apos;1610&apos;, &apos;1198&apos;, &apos;1573&apos;, &apos;2762&apos;, &apos;1527&apos;]
-</code></pre><p>打印完推荐结果之后，会评估模型。评估模型的方式是对每个用户进行推荐，最后使用评估指标进行评测，所以这个步骤可能相对较慢。比如某次的评估过程如下：</p><pre><code>Test recommendation system start...
+</code></pre><p>打印完推荐结果之后，会评估模型。评估模型的方式是对每个用户进行推荐，最后使用评估指标进行评测，所以这个步骤可能相对较慢。比如某次的评估过程如下：</p>
+<pre><code>Test recommendation system start...
  steps(0), 0.10 seconds have spent..
  steps(1000), 291.42 seconds have spent..
  steps(2000), 627.60 seconds have spent..
@@ -448,7 +523,133 @@ total  step number is 6040
 total 1829.26 seconds have spent
 
 precision=0.1900    recall=0.1147    coverage=0.1673    popularity=7.3911
-</code></pre><h2 id="推荐结果评价"><a href="#推荐结果评价" class="headerlink" title="推荐结果评价"></a>推荐结果评价</h2><p>在测试集大小选为0.1的情况下，使用本项目对两个数据集进行了推荐并评估，得出以下的表格。基本和书中的结果一致。</p><p><strong>Movielens 1M:</strong></p><table><thead><tr><th style="text-align:center">Movielens 1M</th><th style="text-align:right">Precision</th><th style="text-align:right">Recall</th><th style="text-align:right">Coverage</th><th style="text-align:right">Popularity</th></tr></thead><tbody><tr><td style="text-align:center">UserCF</td><td style="text-align:right">19.84%</td><td style="text-align:right">11.97%</td><td style="text-align:right">28.16%</td><td style="text-align:right">7.2023</td></tr><tr><td style="text-align:center">ItemCF</td><td style="text-align:right">19.00%</td><td style="text-align:right">11.47%</td><td style="text-align:right">16.73%</td><td style="text-align:right">7.3911</td></tr><tr><td style="text-align:center">UserCF-IIF</td><td style="text-align:right">19.77%</td><td style="text-align:right">11.93%</td><td style="text-align:right">29.62%</td><td style="text-align:right">7.1660</td></tr><tr><td style="text-align:center">ItemCF-IUF</td><td style="text-align:right">18.71%</td><td style="text-align:right">11.29%</td><td style="text-align:right">15.03%</td><td style="text-align:right">7.4748</td></tr><tr><td style="text-align:center">Random</td><td style="text-align:right">0.54%</td><td style="text-align:right">0.33%</td><td style="text-align:right">100.00%</td><td style="text-align:right">4.4075</td></tr><tr><td style="text-align:center">Most Popular</td><td style="text-align:right">10.59%</td><td style="text-align:right">6.39%</td><td style="text-align:right">2.76%</td><td style="text-align:right">7.7462</td></tr></tbody></table><p><strong>Movielens 100k:</strong></p><table><thead><tr><th style="text-align:center">Movielens 100k</th><th style="text-align:right">Precision</th><th style="text-align:right">Recall</th><th style="text-align:right">Coverage</th><th style="text-align:right">Popularity</th></tr></thead><tbody><tr><td style="text-align:center">UserCF</td><td style="text-align:right">19.69%</td><td style="text-align:right">18.50%</td><td style="text-align:right">22.20%</td><td style="text-align:right">5.4928</td></tr><tr><td style="text-align:center">ItemCF</td><td style="text-align:right">17.89%</td><td style="text-align:right">16.80%</td><td style="text-align:right">13.23%</td><td style="text-align:right">5.6202</td></tr><tr><td style="text-align:center">UserCF-IIF</td><td style="text-align:right">19.57%</td><td style="text-align:right">18.38%</td><td style="text-align:right">22.74%</td><td style="text-align:right">5.4716</td></tr><tr><td style="text-align:center">ItemCF-IUF</td><td style="text-align:right">20.38%</td><td style="text-align:right">12.30%</td><td style="text-align:right">17.30%</td><td style="text-align:right">7.3643</td></tr><tr><td style="text-align:center">Random</td><td style="text-align:right">0.82%</td><td style="text-align:right">0.77%</td><td style="text-align:right">99.64%</td><td style="text-align:right">3.0332</td></tr><tr><td style="text-align:center">Most Popular</td><td style="text-align:right">10.54%</td><td style="text-align:right">9.90%</td><td style="text-align:right">4.07%</td><td style="text-align:right">5.9578</td></tr></tbody></table><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文用精简的篇幅概括了协同过滤的思想，并穿插了两篇最重要的协同过滤论文。算法实现本身并不难，可以把书中的代码作为参考，实现一个系统的难点应该在于构思框架、优化算法、如何评估。我觉得这个项目本身的可参考意义还是很大的，希望对大家有所帮助。</p><p>本电影推荐系统的所有代码都已经更新到仓库：<a href="https://github.com/fuxuemingzhu/MovieLens-Recommender" target="_blank" rel="external">https://github.com/fuxuemingzhu/MovieLens-Recommender</a>，欢迎Fork和Star。</p><h2 id="走心推广"><a href="#走心推广" class="headerlink" title="走心推广"></a>走心推广</h2><p>因为本博客部署在Digital Ocean 服务器上，每个月都要有5美元的成本，对于学生党来说也是不小开支。所以既然你能看到这篇博客的话，希望你能帮助我一下，鼓励我写出更好的文章。</p><h3 id="Digital-Ocean-服务器购买"><a href="#Digital-Ocean-服务器购买" class="headerlink" title="Digital Ocean 服务器购买"></a>Digital Ocean 服务器购买</h3><p>如果你也需要购买服务器，强烈推荐Digital Ocean，推荐原因如下：</p><ul><li>基础套餐很便宜，每月最低5美元</li><li>服务器资源很给力，基础套餐配置是512MB内存，20GB的SSD硬盘，<strong>带宽不限制</strong></li><li>可以搭建ShadowSocks，实现科学上网（特别实用！！）</li><li>支持ipv6，轻松解决校园网流量不够用的问题</li></ul><p>我使用的是san francisco节点，搭建好ss之后，看油管1080p视频轻松无压力！！</p><p>你如果使用我的这个网址注册Digital Ocean，<strong>你可以得到10美元的代金券</strong>，我也能赚到一点，就是这个链接：<a href="https://m.do.co/c/86d4e56f6c7a" target="_blank" rel="external">https://m.do.co/c/86d4e56f6c7a</a>。</p><p>另外，如果你也是学生，有校园网邮箱，即可申请GitHub的Student Pack，免费送你50美刀的Digital Ocean代金券！地址是：<a href="https://education.github.com/pack/offers" target="_blank" rel="external">https://education.github.com/pack/offers</a>。</p><!-- rebuild by neat -->
+</code></pre><h2 id="推荐结果评价"><a href="#推荐结果评价" class="headerlink" title="推荐结果评价"></a>推荐结果评价</h2><p>在测试集大小选为0.1的情况下，使用本项目对两个数据集进行了推荐并评估，得出以下的表格。基本和书中的结果一致。</p>
+<p><strong>Movielens 1M:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Movielens 1M</th>
+<th style="text-align:right">Precision</th>
+<th style="text-align:right">Recall</th>
+<th style="text-align:right">Coverage</th>
+<th style="text-align:right">Popularity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">UserCF</td>
+<td style="text-align:right">19.84%</td>
+<td style="text-align:right">11.97%</td>
+<td style="text-align:right">28.16%</td>
+<td style="text-align:right">7.2023</td>
+</tr>
+<tr>
+<td style="text-align:center">ItemCF</td>
+<td style="text-align:right">19.00%</td>
+<td style="text-align:right">11.47%</td>
+<td style="text-align:right">16.73%</td>
+<td style="text-align:right">7.3911</td>
+</tr>
+<tr>
+<td style="text-align:center">UserCF-IIF</td>
+<td style="text-align:right">19.77%</td>
+<td style="text-align:right">11.93%</td>
+<td style="text-align:right">29.62%</td>
+<td style="text-align:right">7.1660</td>
+</tr>
+<tr>
+<td style="text-align:center">ItemCF-IUF</td>
+<td style="text-align:right">18.71%</td>
+<td style="text-align:right">11.29%</td>
+<td style="text-align:right">15.03%</td>
+<td style="text-align:right">7.4748</td>
+</tr>
+<tr>
+<td style="text-align:center">Random</td>
+<td style="text-align:right">0.54%</td>
+<td style="text-align:right">0.33%</td>
+<td style="text-align:right">100.00%</td>
+<td style="text-align:right">4.4075</td>
+</tr>
+<tr>
+<td style="text-align:center">Most Popular</td>
+<td style="text-align:right">10.59%</td>
+<td style="text-align:right">6.39%</td>
+<td style="text-align:right">2.76%</td>
+<td style="text-align:right">7.7462</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Movielens 100k:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Movielens 100k</th>
+<th style="text-align:right">Precision</th>
+<th style="text-align:right">Recall</th>
+<th style="text-align:right">Coverage</th>
+<th style="text-align:right">Popularity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">UserCF</td>
+<td style="text-align:right">19.69%</td>
+<td style="text-align:right">18.50%</td>
+<td style="text-align:right">22.20%</td>
+<td style="text-align:right">5.4928</td>
+</tr>
+<tr>
+<td style="text-align:center">ItemCF</td>
+<td style="text-align:right">17.89%</td>
+<td style="text-align:right">16.80%</td>
+<td style="text-align:right">13.23%</td>
+<td style="text-align:right">5.6202</td>
+</tr>
+<tr>
+<td style="text-align:center">UserCF-IIF</td>
+<td style="text-align:right">19.57%</td>
+<td style="text-align:right">18.38%</td>
+<td style="text-align:right">22.74%</td>
+<td style="text-align:right">5.4716</td>
+</tr>
+<tr>
+<td style="text-align:center">ItemCF-IUF</td>
+<td style="text-align:right">20.38%</td>
+<td style="text-align:right">12.30%</td>
+<td style="text-align:right">17.30%</td>
+<td style="text-align:right">7.3643</td>
+</tr>
+<tr>
+<td style="text-align:center">Random</td>
+<td style="text-align:right">0.82%</td>
+<td style="text-align:right">0.77%</td>
+<td style="text-align:right">99.64%</td>
+<td style="text-align:right">3.0332</td>
+</tr>
+<tr>
+<td style="text-align:center">Most Popular</td>
+<td style="text-align:right">10.54%</td>
+<td style="text-align:right">9.90%</td>
+<td style="text-align:right">4.07%</td>
+<td style="text-align:right">5.9578</td>
+</tr>
+</tbody>
+</table>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文用精简的篇幅概括了协同过滤的思想，并穿插了两篇最重要的协同过滤论文。算法实现本身并不难，可以把书中的代码作为参考，实现一个系统的难点应该在于构思框架、优化算法、如何评估。我觉得这个项目本身的可参考意义还是很大的，希望对大家有所帮助。</p>
+<p>本电影推荐系统的所有代码都已经更新到仓库：<a href="https://github.com/fuxuemingzhu/MovieLens-Recommender" target="_blank" rel="external">https://github.com/fuxuemingzhu/MovieLens-Recommender</a>，欢迎Fork和Star。</p>
+<h2 id="走心推广"><a href="#走心推广" class="headerlink" title="走心推广"></a>走心推广</h2><p>因为本博客部署在Digital Ocean 服务器上，每个月都要有5美元的成本，对于学生党来说也是不小开支。所以既然你能看到这篇博客的话，希望你能帮助我一下，鼓励我写出更好的文章。</p>
+<h3 id="Digital-Ocean-服务器购买"><a href="#Digital-Ocean-服务器购买" class="headerlink" title="Digital Ocean 服务器购买"></a>Digital Ocean 服务器购买</h3><p>如果你也需要购买服务器，强烈推荐Digital Ocean，推荐原因如下：</p>
+<ul>
+<li>基础套餐很便宜，每月最低5美元</li>
+<li>服务器资源很给力，基础套餐配置是512MB内存，20GB的SSD硬盘，<strong>带宽不限制</strong></li>
+<li>可以搭建ShadowSocks，实现科学上网（特别实用！！）</li>
+<li>支持ipv6，轻松解决校园网流量不够用的问题</li>
+</ul>
+<p>我使用的是san francisco节点，搭建好ss之后，看油管1080p视频轻松无压力！！</p>
+<p>你如果使用我的这个网址注册Digital Ocean，<strong>你可以得到10美元的代金券</strong>，我也能赚到一点，就是这个链接：<a href="https://m.do.co/c/86d4e56f6c7a" target="_blank" rel="external">https://m.do.co/c/86d4e56f6c7a</a>。</p>
+<p>另外，如果你也是学生，有校园网邮箱，即可申请GitHub的Student Pack，免费送你50美刀的Digital Ocean代金券！地址是：<a href="https://education.github.com/pack/offers" target="_blank" rel="external">https://education.github.com/pack/offers</a>。</p>
+
       
     </div>
     
