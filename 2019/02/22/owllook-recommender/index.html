@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/avatar.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="推荐系统," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文记录了我对owllook.net这一网络小说搜索引擎的推荐系统的分析与设计过程。这个项目是开源项目，地址在owllook repo，目前已经积累了一定的数据量，需要一个靠谱的推荐系统。注意我用到的数据是内部数据，并没有开源。 本文使用推荐算法包括：基于用户的协同过滤（UserCF）、基于物品的协同过滤（ItemCF）、基于流行度的推荐、随机推荐、基于用户标签相似度的推荐等算法。通过对比发现基于">
+<meta name="keywords" content="推荐系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="owllook网络小说推荐系统">
+<meta property="og:url" content="http://fuxuemingzhu.me/2019/02/22/owllook-recommender/index.html">
+<meta property="og:site_name" content="负雪明烛的博客">
+<meta property="og:description" content="本文记录了我对owllook.net这一网络小说搜索引擎的推荐系统的分析与设计过程。这个项目是开源项目，地址在owllook repo，目前已经积累了一定的数据量，需要一个靠谱的推荐系统。注意我用到的数据是内部数据，并没有开源。 本文使用推荐算法包括：基于用户的协同过滤（UserCF）、基于物品的协同过滤（ItemCF）、基于流行度的推荐、随机推荐、基于用户标签相似度的推荐等算法。通过对比发现基于">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images-1251805293.cos.ap-chengdu.myqcloud.com/%E9%80%89%E5%8C%BA_140.png">
+<meta property="og:image" content="https://images-1251805293.cos.ap-chengdu.myqcloud.com/%E9%80%89%E5%8C%BA_139.png">
+<meta property="og:updated_time" content="2019-02-23T15:14:45.626Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="owllook网络小说推荐系统">
+<meta name="twitter:description" content="本文记录了我对owllook.net这一网络小说搜索引擎的推荐系统的分析与设计过程。这个项目是开源项目，地址在owllook repo，目前已经积累了一定的数据量，需要一个靠谱的推荐系统。注意我用到的数据是内部数据，并没有开源。 本文使用推荐算法包括：基于用户的协同过滤（UserCF）、基于物品的协同过滤（ItemCF）、基于流行度的推荐、随机推荐、基于用户标签相似度的推荐等算法。通过对比发现基于">
+<meta name="twitter:image" content="https://images-1251805293.cos.ap-chengdu.myqcloud.com/%E9%80%89%E5%8C%BA_140.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://fuxuemingzhu.me/2019/02/22/owllook-recommender/"/>
+
+
+
+
+
+  <title>owllook网络小说推荐系统 | 负雪明烛的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?720cd3f4909308ad8a7cac68733c0a19";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">负雪明烛的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">好好学习，努力成为渣硕</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签云
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br />
+            
+            留言板
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-drawing">
+          <a href="/drawing/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-picture-o"></i> <br />
+            
+            菜菜手绘坊
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+<script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuxuemingzhu.me/2019/02/22/owllook-recommender/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="负雪明烛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="负雪明烛的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">owllook网络小说推荐系统</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-22T18:34:59+08:00">
+                2019-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">术业专攻</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/22/owllook-recommender/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/02/22/owllook-recommender/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">热度
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>℃
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文记录了我对<a href="https://www.owllook.net/" target="_blank" rel="external">owllook.net</a>这一网络小说搜索引擎的推荐系统的分析与设计过程。这个项目是开源项目，地址在<a href="https://github.com/howie6879/owllook" target="_blank" rel="external">owllook repo</a>，目前已经积累了一定的数据量，需要一个靠谱的推荐系统。注意我用到的数据是内部数据，并没有开源。</p>
+<p>本文使用推荐算法包括：基于用户的协同过滤（UserCF）、基于物品的协同过滤（ItemCF）、基于流行度的推荐、随机推荐、基于用户标签相似度的推荐等算法。通过对比发现<strong>基于用户标签相似度的推荐算法</strong>表现效果最佳，目前已经将该算法在线上使用。</p>
+<p><img src="https://images-1251805293.cos.ap-chengdu.myqcloud.com/%E9%80%89%E5%8C%BA_140.png" alt="owllook"></p>
+<a id="more"></a>
+<h1 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h1><p>本文的数据主要是<strong>用户收藏的小说、小说的类型</strong>两大类。其中用户收藏的小说这个数据比较有说服力，相对于搜索和点击记录，收藏数据更能显现出用户对这个小说的喜爱。</p>
+<p>在我使用的这批数据中，共有用户2420个，共有书籍1596本，所有用户共收藏书籍4780本。为了验证推荐系统的有效性，我们使用每个用户的70%的数据当做训练集，把剩下的30%当做测试集。也就是说基本上每个用户都会在训练集和测试集同时出现，但是这个用户读过的书不会同时出现。我们的目的就是通过分析这个用户读过的书（训练集），去给这个用户推荐他可能感兴趣的书籍。如果我们推荐的书籍中包括了用户测试集的书，说明我们这个推荐命中了。这里的推荐没有考虑时间因素。</p>
+<p>每本书都会有至少一个标签，比如<code>《文化入侵异世界》</code>这本书的标签是<code>“科幻、时空穿梭、二次元”</code>，这个标签是起点中文网给打的，可以认为比较准确。</p>
+<p>下面是对用户收藏的书籍的个数统计，横坐标代表收藏个数，纵坐标代表该收藏个数有多少人。可以看出大部分人都只收藏了很少的书籍，符合长尾效应。</p>
+<div id="echarts8024" style="width: 81%;height: 400px;margin: 0 auto"></div>
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('echarts8024'));
+
+        // 指定图表的配置项和数据
+        var option = {"title":[{"left":"auto","top":"auto","textStyle":{"fontSize":18},"subtextStyle":{"fontSize":12}}],"toolbox":{"show":true,"orient":"vertical","left":"95%","top":"center","feature":{"saveAsImage":{"show":true,"title":"saveasimage"},"restore":{"show":true,"title":"restore"},"dataView":{"show":true,"title":"dataview"}}},"series_id":5375887,"tooltip":{"trigger":"item","triggerOn":"mousemove|click","axisPointer":{"type":"line"},"textStyle":{"fontSize":14},"backgroundColor":"rgba(50,50,50,0.7)","borderColor":"#333","borderWidth":0},"series":[{"type":"line","name":"用户统计","symbol":"emptyCircle","symbolSize":4,"smooth":false,"step":false,"showSymbol":true,"data":[[1,758.0],[2,228.0],[3,96.0],[4,60.0],[5,49.0],[6,32.0],[7,26.0],[8,12.0],[9,12.0],[10,15.0],[11,8.0],[12,8.0],[13,9.0],[14,5.0],[15,3.0],[16,8.0],[17,7.0],[18,3.0],[19,1.0],[20,4.0],[21,6.0],[22,1.0],[23,1.0],[24,1.0],[25,4.0],[26,1.0],[27,2.0],[28,1.0],[29,1.0],[33,2.0],[34,1.0],[35,1.0],[36,3.0],[38,1.0],[43,1.0],[57,1.0],[63,1.0],[373,1.0]],"label":{"normal":{"show":false,"position":"top","textStyle":{"fontSize":12}},"emphasis":{"show":true,"textStyle":{"fontSize":12}}},"lineStyle":{"normal":{"width":1,"opacity":1,"curveness":0,"type":"solid"}},"areaStyle":{"opacity":0},"markPoint":{"data":[]},"markLine":{"data":[]},"seriesId":5375887}],"legend":[{"data":["用户统计"],"selectedMode":"multiple","show":true,"left":"center","top":"top","orient":"horizontal","textStyle":{"fontSize":12}}],"animation":true,"xAxis":[{"show":true,"nameLocation":"middle","nameGap":25,"nameTextStyle":{"fontSize":14},"axisTick":{"alignWithLabel":false},"inverse":false,"boundaryGap":true,"type":"category","splitLine":{"show":false},"axisLine":{"lineStyle":{"width":1}},"axisLabel":{"interval":"auto","rotate":0,"margin":8,"textStyle":{"fontSize":12}},"data":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0,21.0,22.0,23.0,24.0,25.0,26.0,27.0,28.0,29.0,33.0,34.0,35.0,36.0,38.0,43.0,57.0,63.0,373.0]}],"yAxis":[{"show":true,"nameLocation":"middle","nameGap":25,"nameTextStyle":{"fontSize":14},"axisTick":{"alignWithLabel":false},"inverse":false,"boundaryGap":true,"type":"value","splitLine":{"show":true},"axisLine":{"lineStyle":{"width":1}},"axisLabel":{"interval":"auto","formatter":"{value}","rotate":0,"margin":8,"textStyle":{"fontSize":12}}}],"color":["#c23531","#2f4554","#61a0a8","#d48265","#749f83","#ca8622","#bda29a","#6e7074","#546570","#c4ccd3","#f05b72","#ef5b9c","#f47920","#905a3d","#fab27b","#2a5caa","#444693","#726930","#b2d235","#6d8346","#ac6767","#1d953f","#6950a1","#918597","#f6f5ec"]}
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+</script>
+<p>下面是对每本书被收藏次数统计，横坐标代表被收藏次数，纵坐标代表该被收藏次数有多少本。可以看出大部分书都只被收藏了很少次，只有少部分书被大量收藏，符合长尾效应。</p>
+<div id="echarts5576" style="width: 81%;height: 400px;margin: 0 auto"></div>
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('echarts5576'));
+
+        // 指定图表的配置项和数据
+        var option = {"title":[{"left":"auto","top":"auto","textStyle":{"fontSize":18},"subtextStyle":{"fontSize":12}}],"toolbox":{"show":true,"orient":"vertical","left":"95%","top":"center","feature":{"saveAsImage":{"show":true,"title":"saveasimage"},"restore":{"show":true,"title":"restore"},"dataView":{"show":true,"title":"dataview"}}},"series_id":7652770,"tooltip":{"trigger":"item","triggerOn":"mousemove|click","axisPointer":{"type":"line"},"textStyle":{"fontSize":14},"backgroundColor":"rgba(50,50,50,0.7)","borderColor":"#333","borderWidth":0},"series":[{"type":"line","name":"书籍统计","symbol":"emptyCircle","symbolSize":4,"smooth":false,"step":false,"showSymbol":true,"data":[[1,1662.0],[2,294.0],[3,137.0],[4,65.0],[5,41.0],[6,19.0],[7,19.0],[8,11.0],[9,7.0],[10,4.0],[11,4.0],[12,6.0],[13,4.0],[15,5.0],[17,2.0],[18,2.0],[19,3.0],[20,1.0],[22,4.0],[23,1.0],[25,1.0],[26,2.0],[29,2.0],[30,1.0],[31,2.0],[32,1.0],[33,1.0],[36,1.0],[39,1.0],[42,1.0],[51,1.0],[52,1.0],[53,1.0],[54,1.0],[96,1.0]],"label":{"normal":{"show":false,"position":"top","textStyle":{"fontSize":12}},"emphasis":{"show":true,"textStyle":{"fontSize":12}}},"lineStyle":{"normal":{"width":1,"opacity":1,"curveness":0,"type":"solid"}},"areaStyle":{"opacity":0},"markPoint":{"data":[]},"markLine":{"data":[]},"seriesId":7652770}],"legend":[{"data":["书籍统计"],"selectedMode":"multiple","show":true,"left":"center","top":"top","orient":"horizontal","textStyle":{"fontSize":12}}],"animation":true,"xAxis":[{"show":true,"nameLocation":"middle","nameGap":25,"nameTextStyle":{"fontSize":14},"axisTick":{"alignWithLabel":false},"inverse":false,"boundaryGap":true,"type":"category","splitLine":{"show":false},"axisLine":{"lineStyle":{"width":1}},"axisLabel":{"interval":"auto","rotate":0,"margin":8,"textStyle":{"fontSize":12}},"data":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,15.0,17.0,18.0,19.0,20.0,22.0,23.0,25.0,26.0,29.0,30.0,31.0,32.0,33.0,36.0,39.0,42.0,51.0,52.0,53.0,54.0,96.0]}],"yAxis":[{"show":true,"nameLocation":"middle","nameGap":25,"nameTextStyle":{"fontSize":14},"axisTick":{"alignWithLabel":false},"inverse":false,"boundaryGap":true,"type":"value","splitLine":{"show":true},"axisLine":{"lineStyle":{"width":1}},"axisLabel":{"interval":"auto","formatter":"{value}","rotate":0,"margin":8,"textStyle":{"fontSize":12}}}],"color":["#c23531","#2f4554","#61a0a8","#d48265","#749f83","#ca8622","#bda29a","#6e7074","#546570","#c4ccd3","#f05b72","#ef5b9c","#f47920","#905a3d","#fab27b","#2a5caa","#444693","#726930","#b2d235","#6d8346","#ac6767","#1d953f","#6950a1","#918597","#f6f5ec"]}
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+</script>
+<h1 id="推荐算法"><a href="#推荐算法" class="headerlink" title="推荐算法"></a>推荐算法</h1><p>下面开始分析推荐算法。</p>
+<h2 id="协同过滤"><a href="#协同过滤" class="headerlink" title="协同过滤"></a>协同过滤</h2><p>一提到推荐算法，首先反应过来的就是协同过滤。协同过滤分为基于用户的协同过滤和基于物品的协同过滤。</p>
+<ul>
+<li>基于用户的协同过滤算法（UserBasedCF） 这种算法给用户推荐和他兴趣相似的其他用户喜欢的物品。</li>
+<li>基于物品的协同过滤算法（ItemBasedCF） 这种算法给用户推荐和他之前喜欢的物品相似的物品。</li>
+</ul>
+<p>这两种推荐算法只需要使用用户的历史收藏数据，所以算法比较简单，也有较好的可解释性。但是问题也很明显：如果用户的历史收藏数据太少，那么这两种算法就无效了。在我们的这个小说推荐系统中，数据只有几千条，并不算很多，不能保证协同过滤算法有太大的威力。</p>
+<p>更多关于协同过滤的内容，可以看我这篇博客<a href="http://fuxuemingzhu.cn/2018/06/12/MovieLens-Recommender/" target="_blank" rel="external">动手实现基于协同过滤的电影推荐系统</a>。</p>
+<h2 id="基于流行度的推荐"><a href="#基于流行度的推荐" class="headerlink" title="基于流行度的推荐"></a>基于流行度的推荐</h2><p>在用户收藏书籍个数统计和书籍被收藏个数统计的分析图中我们可以看到，事实上只有活跃的用户占少数、也只有少量的书籍比较热门。热门书籍大概可以从<a href="https://www.owllook.net/" target="_blank" rel="external">owllook.net</a>这个搜索框下面的搜索排行中有所反映。</p>
+<p><img src="https://images-1251805293.cos.ap-chengdu.myqcloud.com/%E9%80%89%E5%8C%BA_139.png" alt="搜索排行"></p>
+<p>这个暗示着我们，或许可以使用基于流行度的推荐算法。即给用户直接推荐比较流行的书籍即可，很可能这个用户就喜欢。虽然这个方法很粗暴，但是对于整体效果来说，未必就差。</p>
+<h2 id="基于用户标签相似度的推荐"><a href="#基于用户标签相似度的推荐" class="headerlink" title="基于用户标签相似度的推荐"></a>基于用户标签相似度的推荐</h2><p>这个想法来自基于用户的协同过滤算法，本质上是个基于内容的推荐算法。所谓基于内容的推荐算法，就是把物品做映射，使用更低维的数据表示该物品，在本项目中就是用户标签。在UserCF中，我们使用两个用户的收藏历史来做相似性分析，但是对于owllook来说，收藏历史不算多，那么就会造成两个用户的共同的收藏书籍很少，那么就无法有效地求用户余弦相似度。所以，这就引导了我们做一个书籍到标签的映射，计算两个用户的相似度不是使用两个用户的共同书籍，而是使用两个用户的共同标签。标签的个数肯定是很少的，所以就解决了无法求两个用户相似度的问题。</p>
+<p>其实仔细想想还是很有道理的：只有看的书一样的两个用户才比较相似吗？其实并不是。直观上，对于小说来说，如果两个用户的<strong>口味</strong>比较一致就行。比如两个人都喜欢科幻，那么这两个人就比较相似。所以可以把其中一个人喜欢的，另一个人没看过的《三体》推荐过去。</p>
+<p>总之，我们可以把每个用户收藏的书转化成标签之后，然后利用每个人的标签，求相似用户，然后根据相似用户做书籍推荐。</p>
+<p>具体做法是：</p>
+<ol>
+<li>求出每个用户的所有书籍累积的标签计数，比如<code>用户A : {&quot;科幻&quot;:3, &quot;时空穿梭&quot;:2, &quot;二次元&quot;:4}</code>；</li>
+<li>求该用户和其他用户的余弦相似度，比如<code>用户A : {&quot;用户B&quot; : 0.97, &quot;用户C&quot; : 0.86, &quot;用户D&quot; : 0.72}</code>;</li>
+<li>遍历每个相似用户的书籍，累加用户相似度得到书籍平分，比如用户B看过《三体》、《球形闪电》，用户C看过《球形闪电》，用户D看过《流浪地球》，那么给用户A推荐的书籍的打分为：<code>用户A : {&quot;《三体》&quot; : 0.97,&quot;《球形闪电》&quot; : 1.83,&quot;《流浪地球》&quot; : 0.72</code>。</li>
+<li>对推荐的书籍按照打分排序，并把得分最高的TopK推荐给用户A.</li>
+</ol>
+<h1 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h1><p>本文采用的评价指标和《推荐系统实践》一致，分为精确率，召回率，覆盖率和新颖度。</p>
+<ul>
+<li><p>精确率描述最终的推荐列表中有多少比例是发生过的用户—物品评分记录；</p>
+</li>
+<li><p>召回率描述有多少比例的用户—物品评分记录包含在最终的推荐列表中；</p>
+</li>
+<li><p>覆盖率反映了推荐算法发掘长尾的能力，覆盖率越高，说明推荐算法越能够将长尾中的物品推荐给用户；</p>
+</li>
+<li><p>新颖度反映了推荐列表中物品的平均流行度。如果推荐出的物品都很热门，说明推荐的新颖度较低，否则说明推荐结果比较新颖。</p>
+</li>
+</ul>
+<h1 id="算法对比"><a href="#算法对比" class="headerlink" title="算法对比"></a>算法对比</h1><p>在上面的几节内容中，我们已经分析了本文的主要几个算法的工作原理，推荐系统的评价指标。真正地推荐过程分为4步：</p>
+<ol>
+<li>构造训练集和预测集</li>
+<li>训练推荐系统模型</li>
+<li>给出推荐结果</li>
+<li>评价推荐结果</li>
+</ol>
+<p>所以我一共实现了5种推荐算法：</p>
+<ul>
+<li>UserCF，基于用户的协同过滤算法</li>
+<li>ItemCF，基于物品的协同过滤算法</li>
+<li>Random，随机推荐</li>
+<li>Most Popular，推荐最流行物品</li>
+<li>Most Similar，根据用户标签相似度推荐</li>
+</ul>
+<h2 id="推荐10本书籍"><a href="#推荐10本书籍" class="headerlink" title="推荐10本书籍"></a>推荐10本书籍</h2><p>为了对比，我们一致使用推荐10本书籍，比如下面的含义就是用户<code>h****</code>的所有书籍标签、所有收藏的书籍、给他推荐的书籍：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">User: h****</div><div class="line">User tags: &#123;&apos;上古先秦&apos;, &apos;东方玄幻&apos;, &apos;异术超能&apos;, &apos;都市&apos;, &apos;架空历史&apos;, &apos;玄幻&apos;, &apos;二次元&apos;, &apos;灵异&apos;, &apos;恐怖惊悚&apos;, &apos;幻想修仙&apos;, &apos;武侠仙侠&apos;, &apos;仙侠&apos;, &apos;历史&apos;&#125;</div><div class="line">User books: [&apos;剑来&apos;, &apos;圣墟&apos;, &apos;修真聊天群&apos;, &apos;牧神记&apos;, &apos;汉乡&apos;, &apos;逍遥游&apos;, &apos;深夜书屋&apos;, &apos;秦吏&apos;, &apos;三寸人间&apos;]</div><div class="line">recommend for userid = h****:</div><div class="line">[&apos;大王饶命&apos;, &apos;飞剑问道&apos;, &apos;修真聊天群&apos;, &apos;赘婿&apos;, &apos;太初&apos;, &apos;帝霸&apos;, &apos;一念永恒&apos;, &apos;诡秘之主&apos;, &apos;天道图书馆&apos;, &apos;永夜君王&apos;]</div></pre></td></tr></table></figure>
+<p>下面是当给每个用户推荐10本书的时候，各个推荐算法的结果对比：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">推荐算法\评测指标</th>
+<th style="text-align:right">Precision</th>
+<th style="text-align:right">Recall</th>
+<th style="text-align:right">Coverage</th>
+<th style="text-align:right">Popularity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">UserCF</td>
+<td style="text-align:right">0.49%</td>
+<td style="text-align:right">4.93%</td>
+<td style="text-align:right">45.69%</td>
+<td style="text-align:right">1.1230</td>
+</tr>
+<tr>
+<td style="text-align:center">ItemCF</td>
+<td style="text-align:right">0.08%</td>
+<td style="text-align:right">0.08%</td>
+<td style="text-align:right">52.77%</td>
+<td style="text-align:right">0.6141</td>
+</tr>
+<tr>
+<td style="text-align:center">Random</td>
+<td style="text-align:right">0.04%</td>
+<td style="text-align:right">0.34%</td>
+<td style="text-align:right">99.83%</td>
+<td style="text-align:right">0.8827</td>
+</tr>
+<tr>
+<td style="text-align:center">Most Popular</td>
+<td style="text-align:right">0.74%</td>
+<td style="text-align:right">7.45%</td>
+<td style="text-align:right">0.90%</td>
+<td style="text-align:right">3.5024</td>
+</tr>
+<tr>
+<td style="text-align:center">Most Similar</td>
+<td style="text-align:right">1.43%</td>
+<td style="text-align:right">14.08%</td>
+<td style="text-align:right">7.96%</td>
+<td style="text-align:right">2.2894</td>
+</tr>
+</tbody>
+</table>
+<p>在上面的结果中，我们可以看到，对于协同过滤来说，UserCF比ItemCF的准确和召回率多高出了不少，说明在我们的实验中，求相似用户然后做推荐的方式是有效果的。ItemCF表现差是因为书籍很多、被收藏的书主要是同样的那几个，导致我们不能很好的求不同书籍的相似情况。另外，我们看到ItemCF比UserCF的覆盖率更广、流行度更低，这说明ItemCF能更好的挖掘出书籍的长尾效应，能够把更冷门的书籍推荐出来。</p>
+<p>随机推荐推荐准确率和召回率都比较低，说明随机猜的推荐效果很差。其覆盖率极高，流行度很低，这说明随机猜地推荐算法最能把所有的书籍都推荐出去了，但是我们都知道这种推荐做法不可取。</p>
+<p>基于流行度的推荐算法，准确率和召回率比UserCF还要高。这说明我们在上面的分析是对的！由于owllook首页给出了排行榜，另外也可能由于比较火的书确实有很多人喜欢看，所以我们只要把最火的10本书无脑推荐给所有人都能得到很高的准确和召回。其实这引发了我们思考：推荐算法越复杂越好吗？未必见得。基于流行度的推荐的覆盖率很低，这是显然地，毕竟只推荐了最火的10本。流行度是所有推荐算法中最高的，这个指标说明了我们推荐的确实都是最流行的书，并没有很好地把所有书籍都推荐出去的能力。</p>
+<p>最后，我们设计的基于用户标签相似度的算法表现最好，准确率和召回率都是最高的，而且领先了一大截。这说明用户对于小说的追求确实是和小说的类型有关，给用户推荐口味相投的用户收藏的书籍确实是是个明智之举。值得注意的是这个算法的召回率，因为召回率反映了推荐算法能不能把用户想要的东西都推荐给他，14%的召回非常高了。这个算法的覆盖率8%左右，相对于协同过滤和随机猜测都很小，说明这个算法并不能太好的挖掘书籍的长尾效应；但是这个覆盖率也远高于基于流行度的推荐，说明这个算法还是推荐了不少的新鲜书籍给用户。最后，这个算法的流行度小于基于流行度的推荐算法，大于UserCF，这个说明了该算法也推荐了不少流行书籍。但上文已经解释过了，推荐流行书籍并不代表是错的，因为流行书籍确实受欢迎。</p>
+<p>上面是推荐10本书的情况下，不同推荐算法的对比，我们可以得出结论：本文设计的基于用户标签相似度的推荐算法表现非常好，给用户推荐的书籍受到了用户喜爱，同时也有一定地挖掘长尾效应的能力。</p>
+<h2 id="推荐20本书籍"><a href="#推荐20本书籍" class="headerlink" title="推荐20本书籍"></a>推荐20本书籍</h2><p>为了做进一步地对比，我将推荐书籍的个数扩大到20本，比如下面的含义就是用户<code>y***</code>的所有书籍标签、所有收藏的书籍、给他推荐的书籍：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">User: y***</div><div class="line">User tags: &#123;&apos;武侠仙侠&apos;, &apos;玄幻&apos;, &apos;都市&apos;, &apos;武侠幻想&apos;, &apos;架空历史&apos;, &apos;都市生活&apos;, &apos;两晋隋唐&apos;, &apos;虚拟网游&apos;, &apos;未来世界&apos;, &apos;东方玄幻&apos;, &apos;武侠&apos;, &apos;科幻&apos;, &apos;二次元&apos;, &apos;游戏&apos;, &apos;历史&apos;&#125;</div><div class="line">User books: [&apos;尘劫录&apos;, &apos;大王饶命&apos;, &apos;凡人修仙传仙界篇&apos;, &apos;天骄战纪&apos;, &apos;霸汉&apos;, &apos;修炼狂潮&apos;, &apos;惊悚乐园&apos;, &apos;江山美色&apos;, &apos;死人经&apos;, &apos;孺子帝&apos;, &apos;多宝浮屠&apos;, &apos;赘婿&apos;, &apos;枭臣&apos;, &apos;长宁帝军&apos;, &apos;天下第九&apos;, &apos;三寸人间&apos;, &apos;牧神记&apos;, &apos;剑来&apos;, &apos;行镖&apos;, &apos;最强反派系统&apos;, &apos;星际游轮&apos;]</div><div class="line">recommend for userid = y***:</div><div class="line">[&apos;圣墟&apos;, &apos;太初&apos;, &apos;剑来&apos;, &apos;赘婿&apos;, &apos;帝霸&apos;, &apos;飞剑问道&apos;, &apos;修真聊天群&apos;, &apos;诡秘之主&apos;, &apos;天道图书馆&apos;, &apos;汉乡&apos;, &apos;永夜君王&apos;, &apos;大道朝天&apos;, &apos;三寸人间&apos;, &apos;武炼巅峰&apos;, &apos;元尊&apos;, &apos;一念永恒&apos;, &apos;明朝败家子&apos;, &apos;斗战狂潮&apos;, &apos;斗破苍穹&apos;, &apos;将夜&apos;]</div></pre></td></tr></table></figure>
+<p>下面是当给每个用户推荐20本书的时候，各个推荐算法的结果对比：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">推荐算法\评测指标</th>
+<th style="text-align:right">Precision</th>
+<th style="text-align:right">Recall</th>
+<th style="text-align:right">Coverage</th>
+<th style="text-align:right">Popularity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">UserCF</td>
+<td style="text-align:right">0.28%</td>
+<td style="text-align:right">5.50%</td>
+<td style="text-align:right">59.08%</td>
+<td style="text-align:right">0.8878</td>
+</tr>
+<tr>
+<td style="text-align:center">ItemCF</td>
+<td style="text-align:right">0.08%</td>
+<td style="text-align:right">1.48%</td>
+<td style="text-align:right">62.53%</td>
+<td style="text-align:right">0.5854</td>
+</tr>
+<tr>
+<td style="text-align:center">Random</td>
+<td style="text-align:right">0.02%</td>
+<td style="text-align:right">0.36%</td>
+<td style="text-align:right">100.00%</td>
+<td style="text-align:right">0.8739</td>
+</tr>
+<tr>
+<td style="text-align:center">Most Popular</td>
+<td style="text-align:right">0.65%</td>
+<td style="text-align:right">12.65%</td>
+<td style="text-align:right">1.57%</td>
+<td style="text-align:right">3.2299</td>
+</tr>
+<tr>
+<td style="text-align:center">Most Similar</td>
+<td style="text-align:right">0.87%</td>
+<td style="text-align:right">17.52%</td>
+<td style="text-align:right">15.33%</td>
+<td style="text-align:right">2.1372</td>
+</tr>
+</tbody>
+</table>
+<p>从上面的结果中，我们可以看出，我们设计的基于用户标签相似度的推荐算法准确率、召回率依然最高，覆盖率和流行率处于中等水平，仍然是效果最好的算法。总体来看，当推荐书的个数变多时，所有的算法准确率降低了、召回率提高了。很显然，当推荐数目变多时，推荐的书籍就更<code>不准</code>了，但推荐的书籍就更<code>全</code>了。这告诉我们应该根据项目需求，合理选择推荐系统的优化目标。另外，我们注意到<code>Most Similar</code>算法与<code>Most Similar</code>算法的准确率和召回率更加接近了，这是否说明<code>Most Similar</code>已经退化成<code>Most Popular</code>了呢？这么说有一定道理，但并不完全是。有道理是因为比较流行的书籍本来就受欢迎，<code>Most Similar</code>也做推荐是理所当然的；不完全对的地方在于<code>Most Similar</code>的覆盖率还是非常大的，说明对长尾的书籍也做了推荐；流行度指标较低，说明推荐了一些冷门的书籍。</p>
+<h1 id="推荐解释"><a href="#推荐解释" class="headerlink" title="推荐解释"></a>推荐解释</h1><p>这里说的推荐解释，是给我们一个直观上的感受：我们的推荐结果是有说服力的。对于我们的基于用户标签相似度的推荐算法，可解释性非常强，因为我们只要证明推荐的结果书籍的标签是用户喜欢的标签即可。我们把推荐书籍的个数设为10，推荐书籍的同时打印出这个书籍的标签。</p>
+<p>对于用户<code>s********</code>，他喜欢的标签是<code>幻想修仙</code>和<code>仙侠</code>，推荐的这10本书基本比较符合，同时也推荐了两本玄幻的书籍，相当于去探索用户的其他兴趣。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">User: s********</div><div class="line">User tags: &#123;&apos;幻想修仙&apos;, &apos;仙侠&apos;&#125;</div><div class="line">User books: [&apos;系统的超级宗门&apos;, &apos;明朝败家子&apos;, &apos;兔子必须死&apos;, &apos;我真是医二代&apos;, &apos;万界之最强大&apos;, &apos;听说我死后超凶&apos;, &apos;神豪的悠闲人生&apos;, &apos;创业吧学霸大人&apos;, &apos;这个末世有点槽&apos;, &apos;逆天邪神&apos;]</div><div class="line">recommend for userid = s********:</div><div class="line">一念永恒 [&apos;仙侠&apos;, &apos;幻想修仙&apos;]</div><div class="line">飞剑问道 [&apos;仙侠&apos;, &apos;古典仙侠&apos;]</div><div class="line">圣墟 [&apos;玄幻&apos;, &apos;东方玄幻&apos;]</div><div class="line">牧神记 [&apos;玄幻&apos;, &apos;东方玄幻&apos;]</div><div class="line">道君 [&apos;仙侠&apos;, &apos;幻想修仙&apos;]</div><div class="line">凡人修仙传 [&apos;仙侠&apos;, &apos;幻想修仙&apos;]</div><div class="line">剑来 [&apos;武侠仙侠&apos;]</div><div class="line">斗战狂潮 [&apos;仙侠&apos;, &apos;修真文明&apos;]</div><div class="line">蛊真人 [&apos;仙侠&apos;, &apos;幻想修仙&apos;]</div><div class="line">大王饶命 [&apos;都市&apos;, &apos;都市生活&apos;, &apos;二次元&apos;]</div><div class="line">[&apos;一念永恒&apos;, &apos;飞剑问道&apos;, &apos;圣墟&apos;, &apos;牧神记&apos;, &apos;道君&apos;, &apos;凡人修仙传&apos;, &apos;剑来&apos;, &apos;斗战狂潮&apos;, &apos;蛊真人&apos;, &apos;大王饶命&apos;]</div></pre></td></tr></table></figure>
+<p>对于用户<code>陈**</code>，他喜欢的书籍标签是<code>科幻</code>和<code>二次元</code>，看出推荐的书籍都是比较接近他的口味的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">User: 陈**</div><div class="line">User tags: &#123;&apos;未来世界&apos;, &apos;史诗奇幻&apos;, &apos;奇幻&apos;, &apos;科幻&apos;, &apos;时空穿梭&apos;, &apos;二次元&apos;&#125;</div><div class="line">User books: [&apos;放开那个女巫&apos;, &apos;两界搬运工&apos;, &apos;修真四万年&apos;]</div><div class="line">recommend for userid = 陈**:</div><div class="line">大王饶命 [&apos;都市&apos;, &apos;都市生活&apos;, &apos;二次元&apos;]</div><div class="line">诡秘之主 [&apos;玄幻&apos;, &apos;异世大陆&apos;, &apos;二次元&apos;]</div><div class="line">修真聊天群 [&apos;都市&apos;, &apos;异术超能&apos;, &apos;二次元&apos;]</div><div class="line">修真四万年 [&apos;科幻&apos;, &apos;未来世界&apos;]</div><div class="line">赘婿 [&apos;历史&apos;, &apos;架空历史&apos;]</div><div class="line">学霸的黑科技系统 [&apos;科幻&apos;, &apos;超级科技&apos;]</div><div class="line">牧神记 [&apos;玄幻&apos;, &apos;东方玄幻&apos;]</div><div class="line">异常生物见闻录 [&apos;科幻&apos;, &apos;时空穿梭&apos;, &apos;二次元&apos;]</div><div class="line">天道图书馆 [&apos;玄幻&apos;, &apos;异世大陆&apos;]</div><div class="line">[&apos;大王饶命&apos;, &apos;诡秘之主&apos;, &apos;修真聊天群&apos;, &apos;修真四万年&apos;, &apos;赘婿&apos;, &apos;学霸的黑科技系统&apos;, &apos;牧神记&apos;, &apos;异常生物见闻录&apos;, &apos;大医凌然&apos;, &apos;天道图书馆&apos;]</div></pre></td></tr></table></figure>
+<p>对于用户<code>风**</code>，他喜欢的标签是<code>历史</code>和<code>武侠</code>，这个推荐的书籍非常符合他的口味。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">User: 风**</div><div class="line">User tags: &#123;&apos;清史民国&apos;, &apos;传统武侠&apos;, &apos;两宋元明&apos;, &apos;历史&apos;, &apos;历史军事&apos;, &apos;架空历史&apos;, &apos;武侠&apos;&#125;</div><div class="line">User books: [&apos;刺明&apos;, &apos;明扬天下&apos;, &apos;草清&apos;, &apos;三国之兵临天下&apos;, &apos;顺明&apos;, &apos;指南录&apos;, &apos;纸花船&apos;, &apos;明贼&apos;, &apos;乱世扬明&apos;, &apos;明末传奇&apos;, &apos;大明1617&apos;, &apos;大明最后一个太子&apos;, &apos;汉儿不为奴&apos;]</div><div class="line">recommend for userid = 风**:</div><div class="line">赘婿 [&apos;历史&apos;, &apos;架空历史&apos;]</div><div class="line">汉乡 [&apos;历史&apos;, &apos;架空历史&apos;]</div><div class="line">唐砖 [&apos;历史&apos;, &apos;两晋隋唐&apos;]</div><div class="line">带着仓库到大明 [&apos;历史&apos;, &apos;两宋元明&apos;]</div><div class="line">剑来 [&apos;武侠仙侠&apos;]</div><div class="line">秦吏 [&apos;历史&apos;, &apos;上古先秦&apos;]</div><div class="line">锦衣夜行 [&apos;历史&apos;, &apos;两宋元明&apos;]</div><div class="line">圣墟 [&apos;玄幻&apos;, &apos;东方玄幻&apos;]</div><div class="line">晚明 [&apos;历史&apos;, &apos;两宋元明&apos;]</div><div class="line">[&apos;赘婿&apos;, &apos;汉乡&apos;, &apos;唐砖&apos;, &apos;带着仓库到大明&apos;, &apos;剑来&apos;, &apos;秦吏&apos;, &apos;锦衣夜行&apos;, &apos;明朝败家子&apos;, &apos;圣墟&apos;, &apos;晚明&apos;]</div></pre></td></tr></table></figure>
+<p>当然，也存在一些口味比较复杂的用户，收藏了很多种类的书籍，推荐的结果也应该包括了对应的种类。比如对于用户<code>青**</code>，推荐的结果留给读者自行判断吧。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">User: 青**</div><div class="line">User tags: &#123;&apos;游戏异界&apos;, &apos;二次元&apos;, &apos;恐怖惊悚&apos;, &apos;史诗奇幻&apos;, &apos;灵异&apos;, &apos;都市&apos;, &apos;古典仙侠&apos;, &apos;东方玄幻&apos;, &apos;进化变异&apos;, &apos;修真文明&apos;, &apos;异世大陆&apos;, &apos;都市生活&apos;, &apos;灵异鬼怪&apos;, &apos;幻想修仙&apos;, &apos;黑暗幻想&apos;, &apos;奇幻&apos;, &apos;科幻&apos;, &apos;游戏&apos;, &apos;玄幻&apos;, &apos;仙侠&apos;&#125;</div><div class="line">User books: [&apos;怪谈研究会&apos;, &apos;就是个道士&apos;, &apos;最初的寻道者&apos;, &apos;恶神当道&apos;, &apos;我是仙凡&apos;, &apos;道辟九霄&apos;, &apos;当个法师闹革命&apos;, &apos;炼道长生&apos;, &apos;一世之尊&apos;, &apos;问镜&apos;, &apos;原始战记&apos;, &apos;极度尸寒&apos;, &apos;恐怖邮差&apos;, &apos;玄门封神&apos;, &apos;封仙&apos;, &apos;蛊真人&apos;, &apos;这世界的土著好凶猛&apos;, &apos;诸天纪&apos;, &apos;仙路云霄&apos;, &apos;旧日篇章&apos;, &apos;深夜书屋&apos;, &apos;修真新时代&apos;, &apos;白中仙的修道生涯&apos;, &apos;侠道行&apos;, &apos;道门振兴系统&apos;, &apos;难道我是神&apos;, &apos;我假装会异能&apos;, &apos;我当道士那些年&apos;, &apos;绿洲中的领主&apos;, &apos;与妖怪的二三事&apos;, &apos;道吟&apos;, &apos;氪金魔主&apos;, &apos;一品修仙&apos;, &apos;全球高武&apos;, &apos;黑夜玩家&apos;, &apos;民国谍影&apos;]</div><div class="line">recommend for userid = 青**:</div><div class="line">圣墟 [&apos;玄幻&apos;, &apos;东方玄幻&apos;]</div><div class="line">飞剑问道 [&apos;仙侠&apos;, &apos;古典仙侠&apos;]</div><div class="line">牧神记 [&apos;玄幻&apos;, &apos;东方玄幻&apos;]</div><div class="line">一念永恒 [&apos;仙侠&apos;, &apos;幻想修仙&apos;]</div><div class="line">大王饶命 [&apos;都市&apos;, &apos;都市生活&apos;, &apos;二次元&apos;]</div><div class="line">剑来 [&apos;武侠仙侠&apos;]</div><div class="line">斗战狂潮 [&apos;仙侠&apos;, &apos;修真文明&apos;]</div><div class="line">太初 [&apos;玄幻&apos;, &apos;东方玄幻&apos;]</div><div class="line">逆天邪神 [&apos;仙侠&apos;, &apos;幻想修仙&apos;]</div><div class="line">道君 [&apos;仙侠&apos;, &apos;幻想修仙&apos;]</div><div class="line">[&apos;圣墟&apos;, &apos;飞剑问道&apos;, &apos;牧神记&apos;, &apos;一念永恒&apos;, &apos;大王饶命&apos;, &apos;剑来&apos;, &apos;斗战狂潮&apos;, &apos;太初&apos;, &apos;逆天邪神&apos;, &apos;道君&apos;]</div></pre></td></tr></table></figure>
+<h1 id="探讨"><a href="#探讨" class="headerlink" title="探讨"></a>探讨</h1><p>本文设计的基于用户标签相似度的推荐算法有没有什么缺点呢？我认为也是有的。</p>
+<p>首先，这个算法仍然是基于相似度的算法，那么就不可避免地涉及到推荐系统冷启动问题。当一个新用户加入的时候，他的喜好是未知的，那么该算法也就失效了。</p>
+<p>其次，在实验过程中发现，并不是每一本书都会有对应的标签，那么用户如果看了几本没有标签的书，那么就没法给他做推荐了。另外，如果我们的推荐算法有效的前提是书籍的标签是准确的，这个并不是那么容易确定的。</p>
+<p>再者，本文对每个要推荐的小说累加了用户的相似度，然后根据小说得分的TopK做的推荐。那么不同的相似度计算方式会影响推荐结果。这个需要在实验中去验证选择。</p>
+<p>对于前两个问题，可以考虑使用基于流行度的推荐算法作为补充。即，我们遇到无法推荐的情况时，直接把流行的书籍推荐给他。上文的推荐算法对比已经说明了，流行书籍推荐是有效的。</p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>本文设计的基于用户标签相似度的网络小说推荐系统，在推荐系统的各个评测指标上，表现都很出色。目前已经投入线上使用当中。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果满分10分，你会给这篇文章打几分？</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赞赏</span>
+  </button>
+  <div id="QR" style="display: block;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="负雪明烛 微信"/>
+        <p>微信</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="负雪明烛 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    负雪明烛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://fuxuemingzhu.me/2019/02/22/owllook-recommender/" title="owllook网络小说推荐系统">http://fuxuemingzhu.me/2019/02/22/owllook-recommender/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/推荐系统/" rel="tag"># 推荐系统</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/12/MovieLens-Recommender/" rel="next" title="动手实现基于协同过滤的电影推荐系统">
+                <i class="fa fa-chevron-left"></i> 动手实现基于协同过滤的电影推荐系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="负雪明烛" />
+            
+              <p class="site-author-name" itemprop="name">负雪明烛</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fuxuemingzhu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://blog.csdn.net/fuxuemingzhu" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-link"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://merrier.wang/" title="Merrier说" target="_blank">Merrier说</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据"><span class="nav-number">1.</span> <span class="nav-text">数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#推荐算法"><span class="nav-number">2.</span> <span class="nav-text">推荐算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#协同过滤"><span class="nav-number">2.1.</span> <span class="nav-text">协同过滤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于流行度的推荐"><span class="nav-number">2.2.</span> <span class="nav-text">基于流行度的推荐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于用户标签相似度的推荐"><span class="nav-number">2.3.</span> <span class="nav-text">基于用户标签相似度的推荐</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#评价指标"><span class="nav-number">3.</span> <span class="nav-text">评价指标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#算法对比"><span class="nav-number">4.</span> <span class="nav-text">算法对比</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐10本书籍"><span class="nav-number">4.1.</span> <span class="nav-text">推荐10本书籍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐20本书籍"><span class="nav-number">4.2.</span> <span class="nav-text">推荐20本书籍</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#推荐解释"><span class="nav-number">5.</span> <span class="nav-text">推荐解释</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#探讨"><span class="nav-number">6.</span> <span class="nav-text">探讨</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结论"><span class="nav-number">7.</span> <span class="nav-text">结论</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">负雪明烛</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      您是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      个小伙伴
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总浏览
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://fuxuemingzhu.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://fuxuemingzhu.me/2019/02/22/owllook-recommender/';
+          this.page.identifier = '2019/02/22/owllook-recommender/';
+          this.page.title = 'owllook网络小说推荐系统';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://fuxuemingzhu.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+<!-- 页面点击小心心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascript">var OriginTitile=document.title,st;document.addEventListener("visibilitychange",function(){document.hidden?(document.title="负雪明烛在这里等你",clearTimeout(st)):(document.title="Got ya~～(￣▽￣～)~",st=setTimeout(function(){document.title=OriginTitile},3e3))})</script>
+</body>
+</html>
