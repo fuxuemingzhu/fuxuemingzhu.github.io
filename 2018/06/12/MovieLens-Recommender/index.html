@@ -98,7 +98,7 @@
 <meta property="og:image" content="http://fuxuemingzhu.me/2018/06/12/MovieLens-Recommender/user-iif.png">
 <meta property="og:image" content="http://fuxuemingzhu.me/2018/06/12/MovieLens-Recommender/itemcf.gif">
 <meta property="og:image" content="http://fuxuemingzhu.me/2018/06/12/MovieLens-Recommender/item-iuf.png">
-<meta property="og:updated_time" content="2019-02-23T11:07:44.904Z">
+<meta property="og:updated_time" content="2019-05-22T07:53:46.152Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动手实现基于协同过滤的电影推荐系统">
 <meta name="twitter:description" content="项亮的《推荐系统实践》是一本面向推荐系统初学者的好书。这本书中间花了不少的篇幅去介绍了推荐系统中很重要的一个算法：协同过滤。囿于书中的篇幅限制，作者只给出了核心部分的代码。基于此书内容，我动手实现了基于用户的协同过滤算法和基于物品的协同过滤算法，并在MovieLens数据集上做了测试，效果令人满意。现在总结一下自己对协同过滤系统的理解和动手实践过程的经验。 本电影推荐系统已开源在：https://">
@@ -429,10 +429,16 @@
 <p>这篇论文中也提出了可以只计算购买了这个物品的用户和其购买的其他物品的相似性来简化计算，项亮的书里也有用到，所以我实现的时候也采用了。</p>
 <p>其实，很容易看出协同过滤算法的思想非常简单淳朴：用户之前的行为记录会反映出用户-用户的相关性（UserBasedCF）或者物品-物品的相关性（ItemBasedCF）。也就是UserBasedCF是基于用户的历史信息求用户的相关性，然后根据该用户的相似用户购买了的物品产生推荐信息；ItemBasedCF是基于用户的历史信息求物品的相关性，然后根据用户购买了的物品产生推荐信息。</p>
 <h2 id="评测指标"><a href="#评测指标" class="headerlink" title="评测指标"></a>评测指标</h2><p>本文采用的评测指标和《推荐系统实践》一致，分为精确率，召回率，覆盖率和新颖度。</p>
-<p>精确率描述最终的推荐列表中有多少比例是发生过的用户—物品评分记录；</p>
-<p>召回率描述有多少比例的用户—物品评分记录包含在最终的推荐列表中；</p>
-<p>覆盖率反映了推荐算法发掘长尾的能力，覆盖率越高，说明推荐算法越能够将长尾中的物品推荐给用户；</p>
-<p>新颖度反映了推荐列表中物品的平均流行度。如果推荐出的物品都很热门，说明推荐的新颖度较低，否则说明推荐结果比较新颖。</p>
+<ul>
+<li><p>精确率描述最终的推荐列表中有多少比例是发生过的用户—物品评分记录；</p>
+</li>
+<li><p>召回率描述有多少比例的用户—物品评分记录包含在最终的推荐列表中；</p>
+</li>
+<li><p>覆盖率反映了推荐算法发掘长尾的能力，覆盖率越高，说明推荐算法越能够将长尾中的物品推荐给用户；</p>
+</li>
+<li><p>流行度反映了推荐列表中物品的平均流行度。如果推荐出的物品都很热门，说明推荐结果偏向于流行物品，否则说明推荐结果比较新颖。</p>
+</li>
+</ul>
 <p>对用户u推荐N个物品（记为R(u)），令用户u在测试集上喜欢的物品集合为T(u)，那么各个评测指标的公式如下：</p>
 <img src="/2018/06/12/MovieLens-Recommender/Precision.png" alt="精确率" title="精确率">
 <img src="/2018/06/12/MovieLens-Recommender/Recall.png" alt="召回率" title="召回率">
