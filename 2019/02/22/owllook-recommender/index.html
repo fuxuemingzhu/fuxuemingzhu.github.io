@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://images-1251805293.cos.ap-chengdu.myqcloud.com/%E9%80%89%E5%8C%BA_140.png">
 <meta property="og:image" content="https://images-1251805293.cos.ap-chengdu.myqcloud.com/%E9%80%89%E5%8C%BA_139.png">
-<meta property="og:updated_time" content="2019-02-23T15:26:46.985Z">
+<meta property="og:updated_time" content="2019-05-22T07:48:10.978Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计owllook网络小说推荐系统">
 <meta name="twitter:description" content="本文记录了我对owllook.net这一网络小说搜索引擎的推荐系统的分析与设计过程。这个项目是开源项目，地址在owllook repo，目前已经积累了一定的数据量，需要一个靠谱的推荐系统。注意我用到的数据是内部数据，并没有开源。 本文使用推荐算法包括：基于用户的协同过滤（UserCF）、基于物品的协同过滤（ItemCF）、基于流行度的推荐、随机推荐、基于用户标签相似度的推荐等算法。通过对比发现基于">
@@ -411,10 +411,10 @@
 <p>在我使用的这批数据中，共有用户2420个，共有书籍1596本，所有用户共收藏书籍4780本。为了验证推荐系统的有效性，我们使用每个用户的70%的数据当做训练集，把剩下的30%当做测试集。也就是说基本上每个用户都会在训练集和测试集同时出现，但是这个用户读过的书不会同时出现。我们的目的就是通过分析这个用户读过的书（训练集），去给这个用户推荐他可能感兴趣的书籍。如果我们推荐的书籍中包括了用户测试集的书，说明我们这个推荐命中了。这里的推荐没有考虑时间因素。</p>
 <p>每本书都会有至少一个标签，比如<code>《文化入侵异世界》</code>这本书的标签是<code>“科幻、时空穿梭、二次元”</code>，这个标签是起点中文网给打的，可以认为比较准确。</p>
 <p>下面是对用户收藏的书籍的个数统计，横坐标代表收藏个数，纵坐标代表该收藏个数有多少人。可以看出大部分人都只收藏了很少的书籍，符合长尾效应。</p>
-<div id="echarts3172" style="width: 81%;height: 400px;margin: 0 auto"></div>
+<div id="echarts6122" style="width: 81%;height: 400px;margin: 0 auto"></div>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts3172'));
+        var myChart = echarts.init(document.getElementById('echarts6122'));
 
         // 指定图表的配置项和数据
         var option = {"title":[{"left":"auto","top":"auto","textStyle":{"fontSize":18},"subtextStyle":{"fontSize":12}}],"toolbox":{"show":true,"orient":"vertical","left":"95%","top":"center","feature":{"saveAsImage":{"show":true,"title":"saveasimage"},"restore":{"show":true,"title":"restore"},"dataView":{"show":true,"title":"dataview"}}},"series_id":5375887,"tooltip":{"trigger":"item","triggerOn":"mousemove|click","axisPointer":{"type":"line"},"textStyle":{"fontSize":14},"backgroundColor":"rgba(50,50,50,0.7)","borderColor":"#333","borderWidth":0},"series":[{"type":"line","name":"用户统计","symbol":"emptyCircle","symbolSize":4,"smooth":false,"step":false,"showSymbol":true,"data":[[1,758.0],[2,228.0],[3,96.0],[4,60.0],[5,49.0],[6,32.0],[7,26.0],[8,12.0],[9,12.0],[10,15.0],[11,8.0],[12,8.0],[13,9.0],[14,5.0],[15,3.0],[16,8.0],[17,7.0],[18,3.0],[19,1.0],[20,4.0],[21,6.0],[22,1.0],[23,1.0],[24,1.0],[25,4.0],[26,1.0],[27,2.0],[28,1.0],[29,1.0],[33,2.0],[34,1.0],[35,1.0],[36,3.0],[38,1.0],[43,1.0],[57,1.0],[63,1.0],[373,1.0]],"label":{"normal":{"show":false,"position":"top","textStyle":{"fontSize":12}},"emphasis":{"show":true,"textStyle":{"fontSize":12}}},"lineStyle":{"normal":{"width":1,"opacity":1,"curveness":0,"type":"solid"}},"areaStyle":{"opacity":0},"markPoint":{"data":[]},"markLine":{"data":[]},"seriesId":5375887}],"legend":[{"data":["用户统计"],"selectedMode":"multiple","show":true,"left":"center","top":"top","orient":"horizontal","textStyle":{"fontSize":12}}],"animation":true,"xAxis":[{"show":true,"nameLocation":"middle","nameGap":25,"nameTextStyle":{"fontSize":14},"axisTick":{"alignWithLabel":false},"inverse":false,"boundaryGap":true,"type":"category","splitLine":{"show":false},"axisLine":{"lineStyle":{"width":1}},"axisLabel":{"interval":"auto","rotate":0,"margin":8,"textStyle":{"fontSize":12}},"data":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0,21.0,22.0,23.0,24.0,25.0,26.0,27.0,28.0,29.0,33.0,34.0,35.0,36.0,38.0,43.0,57.0,63.0,373.0]}],"yAxis":[{"show":true,"nameLocation":"middle","nameGap":25,"nameTextStyle":{"fontSize":14},"axisTick":{"alignWithLabel":false},"inverse":false,"boundaryGap":true,"type":"value","splitLine":{"show":true},"axisLine":{"lineStyle":{"width":1}},"axisLabel":{"interval":"auto","formatter":"{value}","rotate":0,"margin":8,"textStyle":{"fontSize":12}}}],"color":["#c23531","#2f4554","#61a0a8","#d48265","#749f83","#ca8622","#bda29a","#6e7074","#546570","#c4ccd3","#f05b72","#ef5b9c","#f47920","#905a3d","#fab27b","#2a5caa","#444693","#726930","#b2d235","#6d8346","#ac6767","#1d953f","#6950a1","#918597","#f6f5ec"]}
@@ -423,10 +423,10 @@
         myChart.setOption(option);
 </script>
 <p>下面是对每本书被收藏次数统计，横坐标代表被收藏次数，纵坐标代表该被收藏次数有多少本。可以看出大部分书都只被收藏了很少次，只有少部分书被大量收藏，符合长尾效应。</p>
-<div id="echarts1461" style="width: 81%;height: 400px;margin: 0 auto"></div>
+<div id="echarts1141" style="width: 81%;height: 400px;margin: 0 auto"></div>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts1461'));
+        var myChart = echarts.init(document.getElementById('echarts1141'));
 
         // 指定图表的配置项和数据
         var option = {"title":[{"left":"auto","top":"auto","textStyle":{"fontSize":18},"subtextStyle":{"fontSize":12}}],"toolbox":{"show":true,"orient":"vertical","left":"95%","top":"center","feature":{"saveAsImage":{"show":true,"title":"saveasimage"},"restore":{"show":true,"title":"restore"},"dataView":{"show":true,"title":"dataview"}}},"series_id":7652770,"tooltip":{"trigger":"item","triggerOn":"mousemove|click","axisPointer":{"type":"line"},"textStyle":{"fontSize":14},"backgroundColor":"rgba(50,50,50,0.7)","borderColor":"#333","borderWidth":0},"series":[{"type":"line","name":"书籍统计","symbol":"emptyCircle","symbolSize":4,"smooth":false,"step":false,"showSymbol":true,"data":[[1,1662.0],[2,294.0],[3,137.0],[4,65.0],[5,41.0],[6,19.0],[7,19.0],[8,11.0],[9,7.0],[10,4.0],[11,4.0],[12,6.0],[13,4.0],[15,5.0],[17,2.0],[18,2.0],[19,3.0],[20,1.0],[22,4.0],[23,1.0],[25,1.0],[26,2.0],[29,2.0],[30,1.0],[31,2.0],[32,1.0],[33,1.0],[36,1.0],[39,1.0],[42,1.0],[51,1.0],[52,1.0],[53,1.0],[54,1.0],[96,1.0]],"label":{"normal":{"show":false,"position":"top","textStyle":{"fontSize":12}},"emphasis":{"show":true,"textStyle":{"fontSize":12}}},"lineStyle":{"normal":{"width":1,"opacity":1,"curveness":0,"type":"solid"}},"areaStyle":{"opacity":0},"markPoint":{"data":[]},"markLine":{"data":[]},"seriesId":7652770}],"legend":[{"data":["书籍统计"],"selectedMode":"multiple","show":true,"left":"center","top":"top","orient":"horizontal","textStyle":{"fontSize":12}}],"animation":true,"xAxis":[{"show":true,"nameLocation":"middle","nameGap":25,"nameTextStyle":{"fontSize":14},"axisTick":{"alignWithLabel":false},"inverse":false,"boundaryGap":true,"type":"category","splitLine":{"show":false},"axisLine":{"lineStyle":{"width":1}},"axisLabel":{"interval":"auto","rotate":0,"margin":8,"textStyle":{"fontSize":12}},"data":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,15.0,17.0,18.0,19.0,20.0,22.0,23.0,25.0,26.0,29.0,30.0,31.0,32.0,33.0,36.0,39.0,42.0,51.0,52.0,53.0,54.0,96.0]}],"yAxis":[{"show":true,"nameLocation":"middle","nameGap":25,"nameTextStyle":{"fontSize":14},"axisTick":{"alignWithLabel":false},"inverse":false,"boundaryGap":true,"type":"value","splitLine":{"show":true},"axisLine":{"lineStyle":{"width":1}},"axisLabel":{"interval":"auto","formatter":"{value}","rotate":0,"margin":8,"textStyle":{"fontSize":12}}}],"color":["#c23531","#2f4554","#61a0a8","#d48265","#749f83","#ca8622","#bda29a","#6e7074","#546570","#c4ccd3","#f05b72","#ef5b9c","#f47920","#905a3d","#fab27b","#2a5caa","#444693","#726930","#b2d235","#6d8346","#ac6767","#1d953f","#6950a1","#918597","#f6f5ec"]}
@@ -463,7 +463,7 @@
 </li>
 <li><p>覆盖率反映了推荐算法发掘长尾的能力，覆盖率越高，说明推荐算法越能够将长尾中的物品推荐给用户；</p>
 </li>
-<li><p>新颖度反映了推荐列表中物品的平均流行度。如果推荐出的物品都很热门，说明推荐的新颖度较低，否则说明推荐结果比较新颖。</p>
+<li><p>流行度反映了推荐列表中物品的平均流行度。如果推荐出的物品都很热门，说明推荐的流行度很高，否则说明推荐结果比较新颖。</p>
 </li>
 </ul>
 <h1 id="算法对比"><a href="#算法对比" class="headerlink" title="算法对比"></a>算法对比</h1><p>在上面的几节内容中，我们已经分析了本文的主要几个算法的工作原理，推荐系统的评价指标。真正地推荐过程分为4步：</p>
@@ -479,7 +479,7 @@
 <li>ItemCF，基于物品的协同过滤算法</li>
 <li>Random，随机推荐</li>
 <li>Most Popular，推荐最流行物品</li>
-<li>Most Similar，根据用户标签相似度推荐</li>
+<li>Tag Similar，根据用户标签相似度推荐</li>
 </ul>
 <h2 id="推荐10本书籍"><a href="#推荐10本书籍" class="headerlink" title="推荐10本书籍"></a>推荐10本书籍</h2><p>为了对比，我们一致使用推荐10本书籍，比如下面的含义就是用户<code>h****</code>的所有书籍标签、所有收藏的书籍、给他推荐的书籍：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">User: h****</div><div class="line">User tags: &#123;&apos;上古先秦&apos;, &apos;东方玄幻&apos;, &apos;异术超能&apos;, &apos;都市&apos;, &apos;架空历史&apos;, &apos;玄幻&apos;, &apos;二次元&apos;, &apos;灵异&apos;, &apos;恐怖惊悚&apos;, &apos;幻想修仙&apos;, &apos;武侠仙侠&apos;, &apos;仙侠&apos;, &apos;历史&apos;&#125;</div><div class="line">User books: [&apos;剑来&apos;, &apos;圣墟&apos;, &apos;修真聊天群&apos;, &apos;牧神记&apos;, &apos;汉乡&apos;, &apos;逍遥游&apos;, &apos;深夜书屋&apos;, &apos;秦吏&apos;, &apos;三寸人间&apos;]</div><div class="line">recommend for userid = h****:</div><div class="line">[&apos;大王饶命&apos;, &apos;飞剑问道&apos;, &apos;修真聊天群&apos;, &apos;赘婿&apos;, &apos;太初&apos;, &apos;帝霸&apos;, &apos;一念永恒&apos;, &apos;诡秘之主&apos;, &apos;天道图书馆&apos;, &apos;永夜君王&apos;]</div></pre></td></tr></table></figure>
@@ -524,7 +524,7 @@
 <td style="text-align:right">3.5024</td>
 </tr>
 <tr>
-<td style="text-align:center">Most Similar</td>
+<td style="text-align:center">Tag Similar</td>
 <td style="text-align:right">1.43%</td>
 <td style="text-align:right">14.08%</td>
 <td style="text-align:right">7.96%</td>
@@ -580,7 +580,7 @@
 <td style="text-align:right">3.2299</td>
 </tr>
 <tr>
-<td style="text-align:center">Most Similar</td>
+<td style="text-align:center">Tag Similar</td>
 <td style="text-align:right">0.87%</td>
 <td style="text-align:right">17.52%</td>
 <td style="text-align:right">15.33%</td>

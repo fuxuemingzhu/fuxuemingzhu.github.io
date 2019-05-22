@@ -95,7 +95,7 @@
 <meta property="og:image" content="http://fuxuemingzhu.me/2017/08/25/byrbt-login/imgtochar.png">
 <meta property="og:image" content="http://fuxuemingzhu.me/2017/08/25/byrbt-login/dologin.png">
 <meta property="og:image" content="https://images-1251805293.cos.ap-chengdu.myqcloud.com/caicai-drawing-dark2.jpg">
-<meta property="og:updated_time" content="2019-01-26T03:27:26.534Z">
+<meta property="og:updated_time" content="2019-05-22T07:41:36.745Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python实现北邮人BT模拟登录">
 <meta name="twitter:description" content="如果问大家离开北邮最不舍的东西是什么？很多人肯定会脱口而出：北邮人BT！显然，北邮人BT已经融为每个BYR生活的一部分了。那么就从这个网站下手，练一练Python的爬虫吧。 很早之前写这篇文章时，对下载北邮人BT的资源的理解是先通过模拟北邮人BT登录，然后用代码下载资源。现在觉得这么做太复杂了，所以这篇文章就改成用python模拟登录北邮人BT的教程吧。">
@@ -427,7 +427,7 @@
 <p>上图是在我把shadowsocks设置为全局模式时，能够使用浏览器访问北邮人BT，但系统没有ipv6地址，所以命令行可以连接到北邮人论坛却无法连接到北邮人BT。</p>
 <p>这样做可以让你挑选北邮人BT的资源，但是因为没有ipv6的环境，所以不能方便地通过uTorrent等客户端下载资源。我们的做法是在自己电脑上使用shadowsocks代理访问北邮人BT挑选资源，得到想要下载的资源的id，然后在服务器上运行python脚本下载该id对应的资源，再通过ssh或者ftp传到本地电脑。</p>
 <h2 id="登录分析"><a href="#登录分析" class="headerlink" title="登录分析"></a>登录分析</h2><p>前文已经分析了，必须实现在DO服务器上能模拟登录北邮人BT，才能下载资源。故我们首先实现模拟登录BT。</p>
-<p>网站模拟登录的分析过程可以参考之前的<a href="http://fuxuemingzhu.me/2017/08/12/byrbbs-login/">模拟登录北邮人论坛</a>的文章，这里简单分析BT的模拟登录过程。</p>
+<p>网站模拟登录的分析过程可以参考之前的<a href="http://fuxuemingzhu.cn/2017/08/12/byrbbs-login/" target="_blank" rel="external">模拟登录北邮人论坛</a>的文章，这里简单分析BT的模拟登录过程。</p>
 <p>在浏览器上打开北邮人BT，退出登录，即在<a href="http://bt.byr.cn/login.php" target="_blank" rel="external">http://bt.byr.cn/login.php</a> 界面，按F12打开开发者选项，选择Network选项卡，勾上Preserve log选项。</p>
 <img src="/2017/08/25/byrbt-login/pre.png" alt="登录前的状态" title="登录前的状态">
 <p>然后填写用户名密码、验证码，点击登录，如果填写的正确就能跳转到BT主界面。</p>
@@ -472,7 +472,7 @@
 <p>你如果使用我的这个网址注册Digital Ocean，<strong>你可以得到10美元的代金券</strong>，我也能赚到一点，就是这个链接：<a href="https://m.do.co/c/86d4e56f6c7a" target="_blank" rel="external">https://m.do.co/c/86d4e56f6c7a</a>。</p>
 <p>另外，如果你也是学生，有校园网邮箱，即可申请GitHub的Student Pack，免费送你50美刀的Digital Ocean代金券！地址是：<a href="https://education.github.com/pack/offers" target="_blank" rel="external">https://education.github.com/pack/offers</a>。</p>
 <h3 id="菜菜手绘坊"><a href="#菜菜手绘坊" class="headerlink" title="菜菜手绘坊"></a>菜菜手绘坊</h3><p>菜菜手绘坊是我的姐姐在经营的一个手绘店铺，每一笔都是我的姐姐亲自画出来的。手绘坊里有很多风格可以选择，特别适合做头像，屏保，聊天背景等等！！甚至可以画好图之后做成手机壳，情侣T恤都是可以的！价格真的很便宜，可以加微信具体聊价格，绝对会让你惊喜！</p>
-<p>更详细的宣传可以看我的这篇文章：<a href="http://fuxuemingzhu.me/drawing/">http://fuxuemingzhu.cn/drawing/</a></p>
+<p>更详细的宣传可以看我的这篇文章：<a href="http://fuxuemingzhu.cn/drawing/" target="_blank" rel="external">http://fuxuemingzhu.cn/drawing/</a></p>
 <p><strong>店主微信和QQ：290885604</strong></p>
 <p>下面是暗黑风格的，看看有没有心动：</p>
 <p>暗黑风格：<br><img src="https://images-1251805293.cos.ap-chengdu.myqcloud.com/caicai-drawing-dark2.jpg" alt="暗黑"></p>
